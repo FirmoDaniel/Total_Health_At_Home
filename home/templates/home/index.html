@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container mt-3" id="index-hero">
+        <div class="container per-marker-white bg-blue">
+            <div class="row g-0 ">
+                <div class="col-3 offset-2 text-right">
+                    <h1><span class="text-green">W</span>hat</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 offset-4 text-center">
+                    <h1><span class="text-green">W</span>here</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 offset-6 text-left">
+                    <h1><span class="text-green">W</span>hen</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!--Why Choose us (List)-->
+    <div class="container">
+        <h2 class="text-green">Why choose us ?</h2>
+        <h6 class="text-muted">Hint: beacuse we really only ask three questions.</h5>
+        <div class="list-group">
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 text-green">What's your goal ?</h5>
+                </div>
+                <p class="mb-1">Whether it's increased strenght, building stamina or weight loss, we have a custom plan for it.</p>
+            </div>
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-green">Where can you work on it ?</h5>
+                </div>
+                <p class="mb-1">Not everyone can afford the gym, or has their own space. Our courses don't require equipment and aren't limited to the indoors.</p> 
+            </div>
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 text-green">When suit's you best ?</h5>
+                </div>
+                <p class="mb-1">Not everyone works 9-5, and night owls may need to be quiet in shareed spaces. We cater to anytime, and at any decibel.</p>
+            </div>
+        </div>    
+    </div>
+    <br>
+    <div class="container">
+        <p>All our workouts include a specific dietary plan, and a wellness element, as well as the physical means to accomplish your goals. </p>
+        <p>Check out our best sellers below for more information, visit our <a class="text-blue" href="">products</a> page for more details, or start your own journey <a class="text-blue" href="#">here.(link to form)</a></p>
+    </div>
+    <!--Offer Cards, Highest rated displayed to user-->
+    <br>
+        <div class="container mb-5">
+            <div class="row mb-2">
+                <div class="col-sm-6 col-md-6 col-lg-4 per-marker-green"><h2>Top Rated</h2></div>
+            </div>
+            <div class="row">
+                {% for product in products|dictsortreversed:"rating" %}
+                    {% if forloop.counter <= 3 %}
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="card h-100 border-0">
+                                {% if product.image %}
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}"
+                                        alt="{{ product.name }}">
+                                </a>
+                                {% else %}
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                        alt="{{ product.name }}">
+                                </a>
+                                {% endif %}
+                                <div class="card-body h-100 pb-0">
+                                    <p class="mb-0">{{ product.name }}</p>
+                                </div>
+                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+                                            {% if product.rating %}
+                                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
+                                                20</small>
+                                            {% else %}
+                                            <small class="text-muted">No Rating</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+            {% endfor %}
+            </div> 
+        </div>
+    <!--Testimonials (List)-->
+    <div class="container bg-blue pb-4 mb-2">
+        <h2  class="shadows-white border-bottom-green">What are people saying about us ?</h2>
+        {% for testimonial in testimonials %}
+        <div class="list-group">
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><span class="text-green">"{{ testimonial.username }}"</span> said : </h5>
+                </div>
+                <p class="mb-1 text-muted">{{ testimonial.description }}</p>
+            </div>
+        </div> 
+        {% endfor %}
+    </div>
+    
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}
