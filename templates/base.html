@@ -1,0 +1,151 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+
+    {% block meta %}
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endblock %}
+
+    {% block extra_meta %}
+    {% endblock %}
+
+    {% block corecss %}
+      <!--Boostrap-->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <!--Base css-->
+      <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    {% block corejs %}
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <!--New Jquery above-->
+        <!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      old Jquery above-->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
+        <!--Stripe-->
+        <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+    <title>Total Health At Home{% block extra_title %}{% endblock %}</title>
+  </head>
+  <body>
+    <header>
+    <div class="container mb-5">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-blue">
+        <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-home fa-lg text-green"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item ">
+                <a class="nav-link" href="">Products <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="">Diet <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="">Wellness <span class="sr-only">(current)</span></a>
+              </li>
+              <!--Dropdown 1-->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="fittness-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Fittness
+                </a>
+                <div class="dropdown-menu" aria-labelledby="fittness-link">
+                  <a class="dropdown-item" href="">Core Strenght</a>
+                  <a class="dropdown-item" href="">Cardio</a>
+                  <a class="dropdown-item" href="">Weight Loss</a>
+                  <a class="dropdown-item" href="">All Fittness</a>
+                </div>
+              </li>
+              <!--Dropdown 2-->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  My Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                      <a href="" class="dropdown-item">Product Management</a>
+                    {% endif %}
+                    <a href="" class="dropdown-item">My Profile</a>
+                    <a href="" class="dropdown-item">Logout</a>
+                  {% else %}
+                    <a href="" class="dropdown-item">Register</a>
+                    <a href="" class="dropdown-item">Login</a>
+                  {% endif %}
+                </div>
+              </li>
+              <li class="nav-item">
+                <!--once bag is working , have no cart icon or number unless bag exists-->
+                <a class="{% if grand_total %}text-green{% else %}text_white{% endif %} nav-link" href="">
+                    <div class="">
+                        <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                        <p class="">
+                            {% if grand_total %}
+                                €{{ grand_total|floatformat:2 }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <br>
+  </header>
+
+    {% if messages %}
+    <div class="message-container">
+      {% for message in messages %}
+          {% with message.level as level %}
+              {% if level == 40 %}
+                  {% include 'includes/toasts/toast_error.html' %}
+              {% elif level == 30 %}
+                  {% include 'includes/toasts/toast_warning.html' %}
+              {% elif level == 25 %}
+                  {% include 'includes/toasts/toast_success.html' %}
+              {% else %}
+                  {% include 'includes/toasts/toast_info.html' %}
+              {% endif %}
+          {% endwith %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% block page_header %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    <footer class="bg-blue" id="footer">
+          <a class="footer-items" href="https://www.facebook.com" target="_blank" rel="noopener"><i class="fab fa-facebook-square" aria-hidden="true"></i><span>Facebook</span></a>
+          <a class="footer-items" href="https://www.twitter.com" target="_blank" rel="noopener"><i class="fab fa-twitter-square" aria-hidden="true"></i><span>Twitter</span></a>
+          <a class="footer-items" href="https://www.instagram.com" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+    </nav>
+
+    {% block postloadjs %}
+    <script type="text/javascript">
+      $('.toast').toast('show');
+    </script>
+    {% endblock %}
+
+    
+  </body>
+</html>
