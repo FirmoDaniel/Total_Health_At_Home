@@ -1,0 +1,22 @@
+[{
+    "pk": 1,
+    "model": "products.category",
+    "fields": {
+        "name": "cardio",
+        "friendly_name": "Cardio"
+    }
+}, {
+    "pk": 2,
+    "model": "products.category",
+    "fields": {
+        "name": "core_strength",
+        "friendly_name": "Core Strength"
+    }
+}, {
+    "pk": 3,
+    "model": "products.category",
+    "fields": {
+        "name": "weight_loss",
+        "friendly_name": "Weight Loss"
+    }
+}]

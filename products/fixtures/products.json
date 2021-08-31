@@ -1,0 +1,113 @@
+[{
+    "pk": 1,
+    "model": "products.product",
+    "fields": {
+        "name": "Dance Machine",
+        "description": "A targeted, swift but silent, workout of high octane movement.",
+        "price": 60,
+        "category": 1,
+        "rating": 15,
+        "home": true,
+        "outdoors": true,
+        "day": true,
+        "night": true,
+        "image_url": "https://unsplash.com/photos/JsQ6K5CfJ7s",
+        "image": "danceMachine.jpg"
+    }
+}, {
+    "pk": 2,
+    "model": "products.product",
+    "fields": {
+        "name": "Dynamite",
+        "description": "Things are about to get explosive. Harness your body's weight with a tailored routine.",
+        "price": 60,
+        "category": 1,
+        "rating": 2,
+        "home": true,
+        "outdoors": true,
+        "day": true,
+        "night": false,
+        "image_url": "https://unsplash.com/photos/Oi31uKsnM1Q",
+        "image": "dynamite.jpg"
+    }
+}, {
+    "pk": 3,
+    "model": "products.product",
+    "fields": {
+        "name": "Mountain Lion",
+        "description": "Half hiking half running, always on the hunt.",
+        "price": 60,
+        "category": 1,
+        "rating": 3,
+        "home": false,
+        "outdoors": true,
+        "day": true,
+        "night": false,
+        "image_url": "https://unsplash.com/photos/aMBhrrveocw",
+        "image": "mountainLion.jpg"
+    }
+}, {
+    "pk": 4,
+    "model": "products.product",
+    "fields": {
+        "name": "The Fox",
+        "description": "Prowling the streets, silent, quick. Intermittent high bursts of cardio.",
+        "price": 60,
+        "category": 1,
+        "rating": 4,
+        "home": false,
+        "outdoors": true,
+        "day": true,
+        "night": true,
+        "image_url": "https://unsplash.com/photos/CQl3Y5bV6FA",
+        "image": "fox.jpg"
+    }
+}, {
+    "pk": 5,
+    "model": "products.product",
+    "fields": {
+        "name": "Molten Monk",
+        "description": "Intensive hybrid of pilates and yoga. Requiring an iron will and the floor.",
+        "price": 60,
+        "category": 2,
+        "rating": 14,
+        "home": true,
+        "outdoors": true,
+        "day": true,
+        "night": true,
+        "image_url": "https://unsplash.com/photos/_Wi5bi-yjXI",
+        "image": "moltenMonk.jpg"
+    }
+}, {
+    "pk": 6,
+    "model": "products.product",
+    "fields": {
+        "name": "Water Dragon",
+        "description": "A rotating combination of swimming, rowing and kayaking.",
+        "price": 60,
+        "category": 2,
+        "rating": 6,
+        "home": false,
+        "outdoors": true,
+        "day": true,
+        "night": false,
+        "image_url": "https://unsplash.com/photos/a4_vdJ3gbHE",
+        "image": "waterDragon.jpg"
+    }
+}, {
+    "pk": 7,
+    "model": "products.product",
+    "fields": {
+        "name": "Ninja",
+        "description": "Utilise your surroundings with situps, pressups and resistence training.",
+        "price": 60,
+        "category": 3,
+        "rating": 15,
+        "home": true,
+        "outdoors": true,
+        "day": true,
+        "night": true,
+        "image_url": "https://unsplash.com/photos/E3CZ_AtzixY",
+        "image": "ninja.jpg"
+    }
+}]
