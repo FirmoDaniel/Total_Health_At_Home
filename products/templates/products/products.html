@@ -31,12 +31,12 @@
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                         <div class="card h-100 border-0">
                             {% if product.image %}
-                            <a href="">
+                            <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}"
                                     alt="{{ product.name }}">
                             </a>
                             {% else %}
-                            <a href="">
+                            <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
                                     alt="{{ product.name }}">
                             </a>
@@ -68,7 +68,7 @@
                                         {% endif %}
                                         <p class="lead mb-0 text-left">
                                             <a class=" btn btn-sm bg-green shadows-white" 
-                                            href=""> More Info
+                                            href="{% url 'product_detail' product.id %}"> More Info
                                             </a>
                                         </p>
                                     </div>
