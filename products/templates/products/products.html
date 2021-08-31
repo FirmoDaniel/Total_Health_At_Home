@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container-fluid mb-3">
+        <div class="row">
+            <div class="col text-center mt-5">
+                {% if current_categories %}   
+                <h2> Currently viewing :
+                    {% for c in current_categories %}
+                    <a class="badge bg-blue shadows-white" href=""><span> {{ c.friendly_name }} </span></a>
+                    {% endfor %}
+                    <a class="badge text-green" href="{% url 'products' %}"><span> (Back to all) </span></a>
+                </h2>
+                {% else%}
+                    <h2>All Products</h2>
+                {% endif %}
+                <hr class="w-100 mb-1">
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="product-container col-10 offset-1">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    {% for product in products|dictsort:"price" %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card h-100 border-0">
+                            {% if product.image %}
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}"
+                                    alt="{{ product.name }}">
+                            </a>
+                            {% else %}
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                    alt="{{ product.name }}">
+                            </a>
+                            {% endif %}
+                            <div class="card-body h-100 pb-0">
+                                <p class="mb-0 shadows-white">{{ product.name }}</p>
+                            </div>
+                            <div class="card-footer bg-white pt-0 border-0 text-left">
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="lead mb-0 text-left">€{{ product.price }}</p>
+                                        {% if product.category %}
+                                        <p class="lead mb-0 text-left">
+                                            <a class="text-muted" href="">
+                                                {{ product.category.friendly_name }}
+                                            </a>
+                                        </p>
+                                        {% endif %}
+                                        {% if product.rating %}
+                                        <small class="text-muted"><i class="fas fa-star mr-1"></i> Rating: {{ product.rating }}</small>
+                                        {% else %}
+                                        <small class="text-muted"> Rating: N/A</small>
+                                        {% endif %}
+                                        {% if request.user.is_superuser %}
+                                            <small class="ml-3">
+                                                <a href="">Edit</a>
+                                                <a class="text-danger" href="">Delete</a>
+                                            </small>  
+                                        {% endif %}
+                                        <p class="lead mb-0 text-left">
+                                            <a class=" btn btn-sm bg-green shadows-white" 
+                                            href=""> More Info
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--for the hr on diff screen sizes, taken directly from CI video-->
+                    {% if forloop.counter|divisibleby:1 %}
+                        <div class="col-12 d-sm-none mb-5">
+                            <hr>
+                        </div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                            <hr>
+                        </div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:3 %}
+                        <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                            <hr>
+                        </div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:4 %}
+                        <div class="col-12 d-none d-xl-block mb-5">
+                            <hr>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% endblock %}
