@@ -20,10 +20,19 @@
                     <h2>All Products</h2>
                 {% endif %}
                 <hr class="w-100 mb-1">
+                <!--Sorting by categories-->
                 <div class="">
                     <a class="" href="{% url 'products' %}?category=core_strength">Core Strenght</a>
                     <a class="" href="{% url 'products' %}?category=cardio">Cardio</a>
                     <a class="" href="{% url 'products' %}?category=weight_loss">Weight Loss</a>
+                </div>
+                <!--Sorting by product info-->
+                <div class="">
+                    <a class="" href="{% url 'products' %}?sort=rating&direction=desc">rating</a>
+                    <a class="" href="{% url 'products' %}?sort=home">home</a>
+                    <a class="" href="{% url 'products' %}?sort=outdoors&direction=desc">outdoors</a>
+                    <a class="" href="{% url 'products' %}?sort=day">day</a>
+                    <a class="" href="{% url 'products' %}?sort=night">nigth</a>
                 </div>
             </div>
         </div>
