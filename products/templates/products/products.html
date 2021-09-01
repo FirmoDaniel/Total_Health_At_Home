@@ -14,13 +14,17 @@
                     {% for c in current_categories %}
                     <a class="badge bg-blue shadows-white" href=""><span> {{ c.friendly_name }} </span></a>
                     {% endfor %}
-                    <a class="badge text-green" href="{% url 'products' %}"><span> (Back to all) </span></a>
+                    <a class="badge text-green" href="{% url 'products' %}"><span> (View All) </span></a>
                 </h2>
                 {% else%}
                     <h2>All Products</h2>
                 {% endif %}
                 <hr class="w-100 mb-1">
-                
+                <div class="">
+                    <a class="" href="{% url 'products' %}?category=core_strength">Core Strenght</a>
+                    <a class="" href="{% url 'products' %}?category=cardio">Cardio</a>
+                    <a class="" href="{% url 'products' %}?category=weight_loss">Weight Loss</a>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -50,7 +54,7 @@
                                         <p class="lead mb-0 text-left">€{{ product.price }}</p>
                                         {% if product.category %}
                                         <p class="lead mb-0 text-left">
-                                            <a class="text-muted" href="">
+                                            <a class="text-muted" href="{% url 'products' %}?category={{ product.category }}">
                                                 {{ product.category.friendly_name }}
                                             </a>
                                         </p>

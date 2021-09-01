@@ -39,7 +39,7 @@
                     </p>
                     {% else %}
                     <p class="lead mb-0 text-left">
-                        <a class="text-muted" href="">
+                        <a class="text-muted" href="{% url 'products' %}?category={{ product.category }}">
                             {{ product.category.friendly_name }}
                         </a>
                     </p>
