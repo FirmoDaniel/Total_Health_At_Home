@@ -12,6 +12,10 @@ def all_products(request):
     categories = None
     sort = None
     direction = None
+    night = None
+    day = None
+    home = None
+    outdoors = None
 
     if request.GET:
         # sorting by product details (day,home,night)
@@ -27,18 +31,27 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'  # reverses direction with -1 if direction == desc
             products = products.order_by(sortkey)  # sorts the products by the sortkey
-        # sorting by categories
+        # filtering by categories
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')  # splits query into a list at the comma
             products = products.filter(category__name__in=categories)  # filter products by those with matching category name
             categories = Category.objects.filter(name__in=categories)  # filter categories down to ones existing in the url to show what categorys are veing viewed by friendly name
+        #  filtering by product details
+        if 'night' in request.GET:
+            products = products.filter(night__in=products)
+        if 'day' in request.GET:
+            products = products.filter(day__in=products)
+        if 'home' in request.GET:
+            products = products.filter(home__in=products)
+        if 'outdoors' in request.GET:
+            products = products.filter(outdoors__in=products)
 
     current_sorting = f'{sort}_{direction}'  # to display current sorting to user
 
     context = {
         'products': products,  # products variable sent to template via context
         'current_categories': categories,
-        'current_sorting' : current_sorting,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
