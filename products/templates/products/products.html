@@ -12,11 +12,16 @@
                 {% if current_categories %}   
                 <h2> Currently viewing :
                     {% for c in current_categories %}
-                    <a class="badge bg-blue shadows-white" href=""><span> {{ c.friendly_name }} </span></a>
+                    <span> {{ c.friendly_name }} </span>
                     {% endfor %}
                     <a class="badge text-green" href="{% url 'products' %}"><span> (View All) </span></a>
                 </h2>
-                {% else%}
+                {% elif product_detail %}
+                <h2> Currently viewing :
+                    <a class="badge bg-blue shadows-white" href=""><span> {{ product_detail }} </span></a>
+                    <a class="badge text-green" href="{% url 'products' %}"><span> (View All) </span></a>
+                </h2>
+                {% else %}
                     <h2>All Products</h2>
                 {% endif %}
                 <hr class="w-100 mb-1">
@@ -28,7 +33,6 @@
                 </div>
                 <!--Sorting by product info-->
                 <div class="">
-                    <a class="" href="{% url 'products' %}?sort=rating&direction=desc">rating</a>
                     <a class="" href="{% url 'products' %}?home">home</a>
                     <a class="" href="{% url 'products' %}?outdoors">outdoors</a>
                     <a class="" href="{% url 'products' %}?day">day</a>
@@ -40,7 +44,8 @@
             <div class="product-container col-10 offset-1">
                 <div class="row mt-1 mb-2"></div>
                 <div class="row">
-                    {% for product in products|dictsort:"price" %}
+                    <!--Display all products , sorted by highest rated first-->
+                    {% for product in products|dictsortreversed:"rating" %}
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                         <div class="card h-100 border-0">
                             {% if product.image %}
