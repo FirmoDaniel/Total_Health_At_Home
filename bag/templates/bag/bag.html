@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container mb-2">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4">Shopping Bag</h2>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {% if bag_items %}
+            <div class="table-responsive rounded">
+                <table class="table table-sm table-borderless">
+                    <thead class="text-black">
+                        <tr>
+                            <th scope="col">Product Info</th>
+                            <th scope="col"></th>
+                            <th scope="col">Item Total</th>
+                        </tr>
+                    </thead>
+
+                    {% for item in bag_items %}
+                    <tr>
+                        <td class="p-3 w-25">
+                            {% if item.product.image %}
+                            <img class="image-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            {% else % }
+                            <img class="image-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                            {% endif %}
+                        </td>
+                        <td class="py-3">
+                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                            <p class="my-0"><strong>Category: </strong>{{ item.product.category.friendly_name }}</p>
+                            {% if item.product.diet_options %}
+                                <p class="my-0"><strong>Diet Option: </strong>{% if item.product.diet_options %} {{ item.diet }} {% else %} N/A {% endif %}</p>
+                            {% endif %}
+                            <p class="my-0"><strong>At Home:</strong>{% if item.product.home %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                            <p class="my-0"><strong>Outdoors:</strong>{% if item.product.outdoors %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                            <p class="my-0"><strong>By Day:</strong>{% if item.product.day %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                            <p class="my-0"><strong>At Night:</strong>{% if item.product.night %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                        <!--Remove item button-->
+                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-size=""><medium>Remove</medium></a>
+                        <!--Update diet button check back when checkout is working, ref'd in views, urls and java below.-->
+                            <!--<a class="update-link text-info"><small>Update</small></a>-->
+                        </td>
+                        <td class="py-3">
+                            <p class="my-0">€{{ item.product.price }}</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="5" class="pt-5 text-right">
+                            <h4 class="mt-4"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-right">
+                            <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="text-uppercase">Back to Products</span>
+                            </a>
+                            <a href="" class="btn btn-black rounded-0 btn-lg">
+                                <span class="text-uppercase">Secure Checkout</span>
+                                <span class="icon">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {% else %}
+            <p class="lead mb-5">Your bag is empty.</p>
+            <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-uppercase">Keep Shopping</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script type="text/javascript">
+       
+        // Update diet on click
+        /* $('.update-link').click(function(e) {
+            var form = $(this).prev('.update-form');
+            form.submit();
+        })*/
+
+        // Remove item and reload on click
+        $('.remove-item').click(function(e) {
+            var csrfToken = "{{ csrf_token }}";
+            var itemId = $(this).attr('id').split('remove_')[1];
+            var diet = $(this).data('diet');  //may not need this
+            var url = `/bag/remove/${itemId}/`;
+            var data = {'csrfmiddlewaretoken': csrfToken, 'diet': diet};
+
+            $.post(url, data)
+            .done(function() {
+                location.reload();
+            });
+        })
+    </script>
+{% endblock %}

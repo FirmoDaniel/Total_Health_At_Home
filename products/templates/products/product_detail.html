@@ -57,24 +57,10 @@
                             <a class="text-danger" href="">Delete</a>
                         </small>  
                     {% endif %}
-                     <!--diet options form row-->
-                    
+                     <!--Form to post product to the bag-->
                         <form class="form" action="" method="POST">
                             {% csrf_token %}
-                            {% with product.diet_options as d %}
-                            {% if d %}
-                            <div class="form-row">
-                                <div class="col-12 mt-3">
-                                    <p><strong>Diet:</strong></p>
-                                    <select class="form-control rounded-0 w-50" name="product_diet" id="id_product_diet">
-                                        <option value="Vegan">Vegan</option>
-                                        <option value="Vegiterian">Vegiterian</option>
-                                        <option value="Omnivore">Omnivore</option>
-                                        <option value="Select Diet" selected> Select Diet </option>
-                                    </select>
-                                </div>
-                            {% endif %}
-                                <div class="col{% if d %}-12 mt-2{% endif %}">
+                                <div class="col">
                                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
@@ -84,7 +70,6 @@
                                     <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
                                 </div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            {% endwith %}
                             </div>
                         </form>
                 </div>

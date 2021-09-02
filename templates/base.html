@@ -93,7 +93,7 @@
               </li>
               <li class="nav-item">
                 <!--once bag is working , have no cart icon or number unless bag exists-->
-                <a class="{% if grand_total %}text-green{% else %}text_white{% endif %} nav-link" href="">
+                <a class="{% if grand_total %}text-green{% else %}text_white{% endif %} nav-link" href="{% url 'view_bag' %}">
                     <div class="">
                         <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                         <p class="">
@@ -118,7 +118,7 @@
     {% endif %}
 
     {% block page_header %}
-        <!--Extra header or page info outsid eof main nav-->
+        <!--Extra header or page info outside of main nav-->
     {% endblock %}
 
     {% block content %}
