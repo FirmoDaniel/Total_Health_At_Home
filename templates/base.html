@@ -55,24 +55,6 @@
               <li class="nav-item ">
                 <a class="nav-link" href="{% url 'products' %}">Products <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="">Diet <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="">Wellness <span class="sr-only">(current)</span></a>
-              </li>
-              <!--Dropdown 1-->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="fittness-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Fittness
-                </a>
-                <div class="dropdown-menu" aria-labelledby="fittness-link">
-                  <a class="dropdown-item" href="">Core Strenght</a>
-                  <a class="dropdown-item" href="">Cardio</a>
-                  <a class="dropdown-item" href="">Weight Loss</a>
-                  <a class="dropdown-item" href="">All Fittness</a>
-                </div>
-              </li>
               <!--Dropdown 2-->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,10 +66,10 @@
                       <a href="" class="dropdown-item">Product Management</a>
                     {% endif %}
                     <a href="" class="dropdown-item">My Profile</a>
-                    <a href="" class="dropdown-item">Logout</a>
+                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                   {% else %}
-                    <a href="" class="dropdown-item">Register</a>
-                    <a href="" class="dropdown-item">Login</a>
+                  <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                  <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
                   {% endif %}
                 </div>
               </li>
