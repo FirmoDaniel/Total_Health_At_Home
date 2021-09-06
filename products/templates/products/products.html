@@ -8,13 +8,13 @@
                 {% if current_categories %}   
                 <h3> Currently viewing :
                     {% for c in current_categories %}
-                    <small><span class="bg-green shadows-white"> {{ c.friendly_name.capitalize }} </span></small>
+                    <small><span class="bg-green shadows-white text-capitalize"> {{ c.friendly_name }} </span></small>
                     {% endfor %}
                 </h3>
                 <small><a class="internal-link" href="{% url 'products' %}"><span> Clear Filter </span></a></small>
                 {% elif product_detail %}
                 <h3> Currently viewing :
-                    <small><span class="bg-green shadows-white"> {{ product_detail.capitalize }} </span></small>
+                    <small><span class="bg-green shadows-white text-capitalize"> {{ product_detail}} </span></small>
                 </h3>
                 <small><a class="internal-link" href="{% url 'products' %}"><span> Clear Filter </span></a></small>
                 {% else %}
