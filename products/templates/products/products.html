@@ -1,42 +1,38 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-{% endblock %}
-
 {% block content %}
-    <div class="overlay"></div>
     <div class="container-fluid mb-3">
         <div class="row">
             <div class="col text-center mt-5">
                 {% if current_categories %}   
-                <h2> Currently viewing :
+                <h3> Currently viewing :
                     {% for c in current_categories %}
-                    <span> {{ c.friendly_name }} </span>
+                    <small><span class="bg-green shadows-white"> {{ c.friendly_name.capitalize }} </span></small>
                     {% endfor %}
-                    <a class="badge text-green" href="{% url 'products' %}"><span> (View All) </span></a>
-                </h2>
+                </h3>
+                <small><a class="internal-link" href="{% url 'products' %}"><span> Clear Filter </span></a></small>
                 {% elif product_detail %}
-                <h2> Currently viewing :
-                    <a class="badge bg-blue shadows-white" href=""><span> {{ product_detail }} </span></a>
-                    <a class="badge text-green" href="{% url 'products' %}"><span> (View All) </span></a>
-                </h2>
+                <h3> Currently viewing :
+                    <small><span class="bg-green shadows-white"> {{ product_detail.capitalize }} </span></small>
+                </h3>
+                <small><a class="internal-link" href="{% url 'products' %}"><span> Clear Filter </span></a></small>
                 {% else %}
                     <h2>All Products</h2>
                 {% endif %}
                 <hr class="w-100 mb-1">
                 <!--Sorting by categories-->
                 <div class="">
-                    <a class="" href="{% url 'products' %}?category=core_strength">Core Strenght</a>
-                    <a class="" href="{% url 'products' %}?category=cardio">Cardio</a>
-                    <a class="" href="{% url 'products' %}?category=weight_loss">Weight Loss</a>
+                    <a class="badge bg-blue shadows-white" href="{% url 'products' %}?category=core_strength">Core Strenght</a>
+                    <a class="badge bg-blue shadows-white" href="{% url 'products' %}?category=cardio">Cardio</a>
+                    <a class="badge bg-blue shadows-white" href="{% url 'products' %}?category=weight_loss">Weight Loss</a>
                 </div>
                 <!--Sorting by product info-->
                 <div class="">
-                    <a class="" href="{% url 'products' %}?home">home</a>
-                    <a class="" href="{% url 'products' %}?outdoors">outdoors</a>
-                    <a class="" href="{% url 'products' %}?day">day</a>
-                    <a class="" href="{% url 'products' %}?night">nigth</a>
+                    <a class="badge bg-blue shadows-white" href="{% url 'products' %}?home">home</a>
+                    <a class="badge bg-blue shadows-white" href="{% url 'products' %}?outdoors">outdoors</a>
+                    <a class="badge bg-blue shadows-white" href="{% url 'products' %}?day">day</a>
+                    <a class="badge bg-blue shadows-white" href="{% url 'products' %}?night">night</a>
                 </div>
             </div>
         </div>
