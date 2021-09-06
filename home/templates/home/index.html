@@ -3,57 +3,32 @@
 
 
 {% block content %}
-    <br>
-    <div class="container img-fluid" id="heroImage"></div>
-    <div class="container mt-3" id="index-hero">
-        <div class="container per-marker-white bg-blue">
-            <div class="row g-0 ">
-                <div class="col-3 offset-2 text-right">
-                    <h1><span class="text-green">W</span>hat</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3 offset-4 text-center">
-                    <h1><span class="text-green">W</span>here</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3 offset-6 text-left">
-                    <h1><span class="text-green">W</span>hen</h1>
-                </div>
-            </div>
-        </div>
+    <div class="container img-fluid mt-3" id="heroImage"></div>
+    <div class="container per-marker-white bg-blue" id="index-hero">
+        <h1><span class="text-green">W</span>elcome to <span class="text-green">T</span>otal <span class="text-green">H</span>ealth at <span class="text-green">H</span>ome</h1>
     </div>
     <br>
     <!--Why Choose us (List)-->
     <div class="container">
-        <h2 class="text-green">Why choose us ?</h2>
-        <h6 class="text-muted">Hint: beacuse we really only ask three questions.</h5>
-        <div class="list-group">
-            <div class="list-group-item">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1 text-green">What's your goal ?</h5>
-                </div>
-                <p class="mb-1">Whether it's increased strenght, building stamina or weight loss, we have a custom plan for it.</p>
-            </div>
-            <div class="list-group-item">
-                <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 text-green">Where can you work on it ?</h5>
-                </div>
-                <p class="mb-1">Not everyone can afford the gym, or has their own space. Our courses don't require equipment and aren't limited to the indoors.</p> 
-            </div>
-            <div class="list-group-item">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1 text-green">When suit's you best ?</h5>
-                </div>
-                <p class="mb-1">Not everyone works 9-5, and night owls may need to be quiet in shareed spaces. We cater to anytime, and at any decibel.</p>
-            </div>
-        </div>    
-    </div>
-    <br>
-    <div class="container">
-        <p>All our workouts include a specific dietary plan, and a wellness element, as well as the physical means to accomplish your goals. </p>
-        <p>Check out our best sellers below for more information, visit our <a class="text-blue" href="{% url 'products' %}">products</a> page for more details, or start your own journey <a class="text-blue" href="#">here.(link to form)</a></p>
+        <p>
+            We specilaise in goal-orientated, lasting health. Our programs are designed around flexibility and real-life demands on your time.
+            If you want to lose weight but can't make the gym every morning or evening that's fine, our workouts don't require it. In fact, we've tailored programs 
+            for maximum benefits at home during the day, or by night where noise might be an issue.
+        </p>
+        <p>
+            If you've tried dieting before and it left you miserable, not to worry, our approach is to total health. You don't have to starve to lose weight,
+            or survive exclusively on lettuce anbd twigs (unless that's your thing). All our programs pair your specific goal with your current diet. 
+        </p>
+        <p>
+            Getting started is easy! Select your goal (Weight-loss, Core Strenght or Cardio) from our <a class="internal-link" href="{% url 'products' %}">Products.</a>
+            We'll pair you with an instructor to help you along. 
+        </p>
+        <p>
+            {% if request.user.is_anonymous %}
+            Verified users get access to a Wellness element for free.<a class="internal-link" href="{% url 'account_signup' %}"> Sign Up</a> / 
+            <a class="internal-link" href="{% url 'account_login' %}"> Login.</a>
+            {% endif %}
+        </p>
     </div>
     <!--Offer Cards, Highest rated displayed to user-->
     <br>
