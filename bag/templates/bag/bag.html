@@ -56,17 +56,23 @@
                         </a>
                         {% endif %}
                         <div class="card-body h-100 pb-0">
-                            <p class="mb-0">{{ item.product.name }}</p>
+                            <p class="text-uppercase per-marker-white">{{ item.product.name }}</p>
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">€{{ item.product.price }}</p>
+                                    <p class="my-0"><strong>{{ item.product.category.friendly_name }}</strong></p>
                                     <p class="my-0"><strong>At Home:</strong>{% if item.product.home %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                                     <p class="my-0"><strong>Outdoors:</strong>{% if item.product.outdoors %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                                     <p class="my-0"><strong>By Day:</strong>{% if item.product.day %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                                     <p class="my-0"><strong>At Night:</strong>{% if item.product.night %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
-                                    <a class="remove-item text-danger float-left" id="remove_{{ item.item_id }}" data-size=""><medium>Remove</medium></a>
+                                    {% if request.user.is_anonymous %}
+                                        <p class="my-0" data-toggle="tooltip" data-placement="bottom" title="login or register to include for free"><strong>Wellness Included:</strong> <i class="fas fa-times mr-1 text-red"></i></p>
+                                    {% else %} 
+                                        <p class="my-0"><strong>Wellness Included:</strong><i class="fas fa-check mr-1 text-green"></i></p>
+                                    {% endif %}
+                                    <a class="remove-item btn p-0 text-danger float-left" id="remove_{{ item.item_id }}" data-size=""><medium>Remove</medium></a>
                                 </div>
                             </div>
                         </div>
@@ -92,6 +98,10 @@
             .done(function() {
                 location.reload();
             });
+        })
+        // tooltip
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
 {% endblock %}
