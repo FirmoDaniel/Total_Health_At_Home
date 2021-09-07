@@ -3,20 +3,23 @@
     "model": "home.testimonial",
     "fields": {
         "username": "test1",
-        "description": "I really liked the website."
+        "description": "I really liked the website.",
+        "approved": true
     }
 }, {
     "pk": 2,
     "model": "home.testimonial",
     "fields": {
         "username": "test2",
-        "description": "The website helped me out a lot."
+        "description": "The website helped me out a lot.",
+        "approved": true
     }
 }, {
     "pk": 3,
     "model": "home.testimonial",
     "fields": {
         "username": "test3",
-        "description": "Something Something Somthing."
+        "description": "this is not approved.",
+        "approved": false
     }
 }]
