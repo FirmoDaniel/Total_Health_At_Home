@@ -38,6 +38,14 @@
     
 }
 
+.shadows-green{
+    font-family: 'Shadows Into Light', sans-serif;
+    color: rgb(57, 250, 18)!important;
+    font-weight: bold;
+    letter-spacing: 3px;
+    
+}
+
 .per-marker-white{
     font-family:'Permanent Marker', sans-serif;
     color: white!important;
@@ -70,6 +78,12 @@
     text-decoration: none;
 }
 
+.border-bottom-blue{
+    border-bottom: 5px solid;
+    border-bottom-color: rgb(106, 164, 187)!important;
+    text-decoration: none;
+}
+
 
 /*--------------------------------------------------Internal Links*/
 
@@ -89,6 +103,17 @@
     color: rgb(57, 250, 18);
 }
 
+.plain-anchor{
+    text-decoration: none!important;
+    border-bottom: none!important;
+    color: black;
+}
+
+.plain-anchor:hover{
+    text-decoration: none!important;
+    border-bottom: none!important;
+    color: rgb(57, 250, 18);
+}
 
 /*-------------------------------------------------CARDS*/
 

@@ -19,16 +19,20 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Checkout</h2>
+                <h2 class="per-marker-green">Checkout</h2>
                 <hr>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-lg-6 order-lg-last mb-5">
-                <p class="text-muted">Order Summary ({{ product_count }})</p>
+                <p class="border-bottom-blue">Bag Contents : {{ product_count }}
+                    <a href="{% url 'view_bag' %}" class="btn">
+                    <span class="text-muted small">(Update Bag)</span>
+                    </a>
+                </p>
                 <div class="row">
-                    <div class="col-7 offset-2">
+                    <div class="col-9">
                         <p class="mb-1 mt-0 small text-muted">Item</p>
                     </div>
                     <div class="col-3 text-right">
@@ -36,36 +40,22 @@
                     </div>
                 </div>
                 {% for item in bag_items %}
-                    <div class="row">
-                        <div class="col-2 mb-1">
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                {% if item.product.image %}
-                                    <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                {% endif %}
-                            </a>
-                        </div>
-                        <div class="col-7">
-                            <p class="my-0 small">Product: <strong>{{ item.product.name }}</strong></p>
-                            <p class="my-0 small">Category: {{ item.product.category.friendly_name }}</p> 
-                            {% if item.product.diet_options %}
-                            <p class="my-0 small">Diet: {{ item.diet }}</p>
-                            {% endif %}
+                    <div class="row bg-blue">
+                        <div class="col-9">
+                            <p class=""><strong>{{ forloop.counter }}</strong> <span class="shadows-white">{{ item.product.name }}</span>
+                                <a class="small plain-anchor" href="{% url 'product_detail' item.product.id %}">(details)</a></p>
                         </div>
                         <div class="col-3 text-right">
-                            <p class="my-0 small text-muted">€{{ item.product.price }}</p>
+                            <p class="text-white">€{{ item.product.price }}</p>
                         </div>
                     </div>
                 {% endfor %}
                 <hr class="my-0">
                 <div class="row text-black text-right">
                     <div class="col-7 offset-2">
-                        <p class="my-0">Order Total:</p>
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
-                        <p class="my-0">€{{ total | floatformat:2 }}</p>
                         <p class="my-0"><strong>€{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
@@ -109,17 +99,11 @@
                     </fieldset>
 
                     <div class="submit-button text-right mt-5 mb-2">                    
-						<a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
-							<span class="icon">
-								<i class="fas fa-chevron-left"></i>
-							</span>
-							<span class="font-weight-bold">Adjust Bag</span>
+						<a href="{% url 'view_bag' %}" class="btn">
+							<span class="internal-link">Update Bag</span>
 						</a>
-						<button id="submit-button" class="btn btn-black rounded-0">
-							<span class="font-weight-bold">Complete Order</span>
-							<span class="icon">
-								<i class="fas fa-lock"></i>
-							</span>
+						<button id="submit-button" class="btn">
+							<span class="internal-link">Complete Order</span>
 						</button>
 						<p class="small text-danger my-0">
 							<span class="icon">

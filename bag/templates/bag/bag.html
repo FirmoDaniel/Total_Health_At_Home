@@ -7,13 +7,9 @@
     {% if bag_items %}
         <div class="container mb-3">
             <div class="row row-cols-2">
-                <div class="col text-center text-uppercase">Grand Total: €{{ grand_total|floatformat:2 }}</div>
-                <div class="col text-center text-muted">
-                {% if product_count > 1 %}
-                    {{ product_count }} Products in your bag
-                {% else %}
-                    {{ product_count }} Product in your bag
-                {% endif %}
+                <div class="col text-center text-capitalize">Order Total: €{{ total | floatformat:2 }}</div>
+                <div class="col text-center text-capitalize">
+                    bag Contents : {{ product_count }}
                 </div>
                 <div class="col text-center">
                     <a href="{% url 'products' %}" class="btn">
