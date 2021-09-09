@@ -3,7 +3,6 @@
 
 {% block content %}
 <div class="container mb-2">
-    <!--test bag details card-->
     {% if bag_items %}
         <div class="container mb-3">
             <div class="row row-cols-2">
@@ -24,10 +23,13 @@
             </div>
         </div>
     {% else %}
-        <div class="div"> Your bag is empty.
-            <a href="{% url 'products' %}" class="btn">
-                <span class="internal-link">Keep Shopping</span>
-            </a>
+        <div>
+            <div class="row m-2">
+                <h3 class="">Whoops! Your bag is empty. 
+                    <a href="{% url 'products' %}" class="">
+                    <span class="internal-link">Keep Shopping</span></a>
+                </h3>
+            </div>
         </div>
     {% endif %}
     

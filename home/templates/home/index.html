@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container img-fluid mt-3" id="heroImage"></div>
     <div class="container per-marker-white bg-blue" id="index-hero">
-        <h1><span class="text-green">W</span>elcome to <span class="text-green">T</span>otal <span class="text-green">H</span>ealth at <span class="text-green">H</span>ome</h1>
+        <h1 class="text-center"><span class="text-green">W</span>elcome to <span class="text-green">T</span>otal <span class="text-green">H</span>ealth at <span class="text-green">H</span>ome</h1>
     </div>
     <br>
     <!--Why Choose us (List)-->
@@ -17,7 +17,7 @@
         </p>
         <p>
             If you've tried dieting before and it left you miserable, not to worry, our approach is to total health. You don't have to starve to lose weight,
-            or survive exclusively on lettuce anbd twigs (unless that's your thing). All our programs pair your specific goal with your current diet. 
+            or survive exclusively on lettuce and twigs (unless that's your thing). All our programs pair your specific goal with your current diet. 
         </p>
         <p>
             Getting started is easy! Select your goal (Weight-loss, Core Strenght or Cardio) from our <a class="internal-link" href="{% url 'products' %}">Products.</a>
@@ -39,7 +39,7 @@
             <div class="row">
                 {% for product in products|dictsortreversed:"rating" %}
                     {% if forloop.counter <= 3 %}
-                        <div class="col-sm-6 col-md-6 col-lg-4">
+                        <div class="col-sm-6 col-md-6 col-lg-4 mb-1">
                             <div class="card h-100 border-0">
                                 {% if product.image %}
                                 <a href="{% url 'product_detail' product.id %}">
@@ -52,22 +52,29 @@
                                         alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
-                                <div class="card-body h-100 pb-0">
-                                    <p class="mb-0">{{ product.name }}</p>
+                                <div class="card-body h-100">
+                                    <p class="mb-0 per-marker-white">{{ product.name }}</p>
+                                    <div class="row">
+                                        <p class="text-white pl-3 mb-0"><i class="fas fa-euro-sign mr-1 text-green"></i>{{ product.price }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <small class="text-white pl-3"><i class="fas fa-star mr-1 text-green"></i>{{ product.rating }} /
+                                            20</small>
+                                    </div>
                                 </div>
-                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                <!--<div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+                                            <p class="lead mb-0 text-left">€{{ product.price }}</p>
                                             {% if product.rating %}
-                                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
+                                            <small class="text-muted"><i class="fas fa-star mr-1 text-green"></i>{{ product.rating }} /
                                                 20</small>
                                             {% else %}
                                             <small class="text-muted">No Rating</small>
                                             {% endif %}
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     {% endif %}
@@ -76,7 +83,7 @@
         </div>
     <!--Testimonials (List)-->
     <div class="container bg-blue pb-4 mb-2">
-        <h2  class="shadows-white border-bottom-green">What are people saying about us ? (TESTIMONIALS NOT APPROVED DO ONOT SHOW)</h2>
+        <h2  class="shadows-white border-bottom-green">What are people saying about us ? (TESTIMONIALS NOT APPROVED DON'T SHOW)</h2>
         {% for testimonial in testimonials %}
             {% if testimonial.approved %}
         <div class="list-group">
