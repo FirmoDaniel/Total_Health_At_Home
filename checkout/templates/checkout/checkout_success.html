@@ -14,16 +14,103 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
+    <!--Collaspables-->
     <div class="container">
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Thank You</h2>
+                <h2 class="per-marker-green">Order Confirmed <span class="per-marker-blue">!</span> Thank You.</h2>
                 <hr>
-                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+                <p> A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+                <p> We'll contact you on <strong>{{ order.phone_number }}</strong>.</p>
             </div>
         </div>
+        <div id="accordion">
+            <!--Card 1-->
+            <div class="card">
+              <div class="card-header bg-white" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Your Order Info <span class="per-marker-green">!</span>
+                  </button>
+                </h5>
+              </div>
+          
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body bg-white">
+                    <div class="row">
+                        <div class="col"><p class= "mb-0 font-weight-bold" >Order Date</p></div>
+                        <div class="col text-left"><p >{{ order.date }}</p></div>   
+                    </div>
+                    <div class="row">
+                        <div class="col"><p class= "mb-0 font-weight-bold" >Order Number</p></div>
+                        <div class="col text-left"><p >{{ order.order_number }}</p></div>   
+                    </div>
+                    <div class="row">
+                        <div class="col"><p class= "mb-0 font-weight-bold" >Order Total</p></div>
+                        <div class="col text-left"><p >€{{ order.grand_total }} </p>
+                        </div>   
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!--Card 2-->
+            <div class="card">
+              <div class="card-header bg-white" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Order Details
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body bg-white">
+                    {% for item in order.lineitems.all %}
+                    <div class="row">
+                        <div class="col"><p class= "mb-0 font-weight-bold" >Product : {{ forloop.counter }}</p></div>
+                        <div class="col text-left"><p > {{ item.product.name }} ( <strong>Category :</strong> {{ item.product.category.friendly_name}} ) </p></div>   
+                    </div>
+                    <div class="row">
+                        <div class="col"><p class= "mb-0 font-weight-bold" >Diet info</p></div>
+                        <div class="col text-left"><p >{{ order.diet }}</p></div>   
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+            <!--Card 3-->
+            <div class="card">
+              <div class="card-header bg-white" id="headingThree">
+                <h5 class="mb-0">
+                  <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Your Contact Info
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body bg-white">
+                    <div class="card-body bg-white">
+                        <div class="row">
+                            <div class="col"><p class= "mb-0 font-weight-bold" >Name</p></div>
+                            <div class="col text-left"><p >{{ order.full_name }}</p></div>   
+                        </div>
+                        <div class="row">
+                            <div class="col"><p class= "mb-0 font-weight-bold" >Address</p></div>
+                            <div class="col text-left"><p >{{ order.street_address1 }},
+                                {% if order.street_address2 %}
+                                    {{ order.street_address2 }}
+                                {% endif %}
+                                {{ order.county }}, {{ order.town_or_city }}, {{ order.country }}</p>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!--course-->
+    <div class="container">
         <!--The row below is where we'll render the order summary-->
         <div class="row">
             <div class="col-12 col-lg-7">
@@ -169,24 +256,6 @@
                             <small class="text-muted">Billing Info:</small>
                         </div>
                     </div>
-                    <!--ORDER TOTAL SHOULD = GRAND TOTAL-->
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Order Total</p>
-                        </div>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.order_total }}</p>
-                        </div>
-                    </div>
-                    <!--DELIVERY NOT REQUIRED-->
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">Delivery</p>
-                        </div>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.delivery_cost }}</p>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -201,7 +270,7 @@
         </div>
         <!--end of order summary-->
         <div class="row">
-			<div class="col-12 col-lg-7 text-right">
+			<div class="col-12 col-lg-7 text-center">
                 {% if from_profile %}
                     <a href="" class="btn btn-black rounded-0 my-2">
                         <span class="icon mr-2">
@@ -210,11 +279,8 @@
                         <span class="text-uppercase">Back to Profile</span>
                     </a>
                 {% else %}
-                    <a href="{% url 'products' %}" class="btn btn-black rounded-0 my-2">
-                        <span class="icon mr-2">
-                            <i class="fas fa-gifts"></i>
-                        </span>
-                        <span class="text-uppercase">Now check out the latest deals!</span>
+                    <a href="{% url 'products' %}" class="btn">
+                        <span class="internal-link">Back to Products</span>
                     </a>
                 {% endif %}
 			</div>
