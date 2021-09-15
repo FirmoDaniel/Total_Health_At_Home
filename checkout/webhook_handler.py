@@ -95,7 +95,6 @@ class StripeWH_Handler:
             content=f'Webhook recieved: {event["type"]} | SUCCESS: Created Order in Webhook',
             status=200)
 
-
     #  PAYMENT INTENT FAILED
 
     def handle_payment_intent_payment_failed(self, event):

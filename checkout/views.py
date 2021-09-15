@@ -1,5 +1,5 @@
 from django.shortcuts import (render, redirect, reverse,
-                             get_object_or_404, HttpResponse)
+                              get_object_or_404, HttpResponse)
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
@@ -56,7 +56,7 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
-            for item_id, quantity in bag.items():
+            for item_id, __ in bag.items():  # remove quantity after item_id
                 try:
                     product = Product.objects.get(id=item_id)
                     order_line_item = OrderLineItem(
@@ -66,14 +66,16 @@ def checkout(request):
                     order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
+                        "One of the products in your bag wasn't \
+                        found in our database."
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                                    args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
@@ -127,4 +129,3 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
-

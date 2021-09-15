@@ -78,7 +78,7 @@ form.addEventListener('submit', function(ev) {
                         country: $.trim(form.country.value),
                     }
                 }
-            }, // May not need shipping info
+            },
             shipping: {
                 name: $.trim(form.full_name.value),
                 phone: $.trim(form.phone_number.value),
