@@ -1,1 +1,16 @@
 {% extends "base.html" %}
+
+{% block content %}
+
+<div class="div pl-5">
+    <div class="row">something</div>
+    <div class="row">something else </div>
+    <div class="allauth-form-inner-content"> <!--use this class to style the all auth forms-->
+        {% block inner_content %} <!--this block contains the allauth-->
+        <!-- changes to inner-content on allauth forms to make changes-->
+        {% endblock %}
+    </div>
+</div>
+
+
+{% endblock %}
