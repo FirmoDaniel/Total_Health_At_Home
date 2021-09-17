@@ -21,7 +21,7 @@
             <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button class="btn float-right">Update Information</button>
+                <button class="btn internal-link">Update Information</button>
             </form>
         </div>
         <div class="col-12 col-lg-6">
