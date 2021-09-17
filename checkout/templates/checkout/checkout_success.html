@@ -5,24 +5,24 @@
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
 
 {% block content %}
     <!--Collaspables-->
     <div class="container">
         <div class="row">
             <div class="col">
-                <hr>
-                <h2 class="per-marker-green">Order Confirmed <span class="per-marker-blue">!</span> Thank You.</h2>
-                <hr>
-                <p> A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
-                <p> We'll contact you on <strong>{{ order.phone_number }}</strong>.</p>
+                {% if from_profile %}
+                  <hr>
+                  <h2 class="per-marker-green">Previous Order</h2>
+                  <hr>
+                  <p> From {{ order.date }}</p>
+                {% else %}
+                  <hr>
+                  <h2 class="per-marker-green">Order Confirmed <span class="per-marker-blue">!</span> Thank You.</h2>
+                  <hr>
+                  <p> A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+                  <p> We'll contact you on <strong>{{ order.phone_number }}</strong>.</p>
+                {% endif %}
             </div>
         </div>
         <div id="accordion">
