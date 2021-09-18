@@ -31,7 +31,8 @@ class Order(models.Model):
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def shortdate(self):
-        return self.date.strftime('%B %d %Y')
+        return self.date.strftime('%d %b %Y')
+
 
     def _generate_order_number(self):
         """

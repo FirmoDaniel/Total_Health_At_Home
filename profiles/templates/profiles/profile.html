@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container mb-2">
         <div class="row">
             <div class="col">
                 <hr>
@@ -18,134 +18,100 @@
         <div id="accordion">
             <!--Card 1-->
             <div class="card">
-              <div class="card-header bg-white" id="headingOne">
-                <h5 class="mb-0">
-                  <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Default Delivery Information <span class="per-marker-green">!</span>
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body bg-white">
-                    <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button class="btn internal-link">Update Information</button>
-                    </form>
+                <div class="card-header bg-white" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                         Default Delivery Info. <span class="per-marker-green">!</span>
+                        </button>
+                    </h5>
                 </div>
-              </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body bg-white">
+                        <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button class="btn internal-link">Update Information</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <!--Card 2-->
             <div class="card">
-              <div class="card-header bg-white" id="headingTwo">
+                <div class="card-header bg-white" id="headingTwo">
                 <h5 class="mb-0">
-                  <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Order History : Total Orders : {% for order in orders %} {% if forloop.last %} {{ forloop.counter}} {% endif %} {% endfor %}
-                  </button>
+                    <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Previous Orders : <span class="per-marker-green">{% for order in orders %} {% if forloop.last %} {{ forloop.counter}} {% endif %} {% endfor %}</span>
+                    </button>
                 </h5>
-              </div>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body bg-white">
-                    {% for item in order.lineitems.all %}
-                    <div class="row">
-                        <div class="col"><p class= "mb-0 font-weight-bold" >Product : {{ forloop.counter }}</p></div>
-                        <div class="col text-left"><p > {{ item.product.name }} ( <strong>Category :</strong> {{ item.product.category.friendly_name}} ) </p></div>   
-                    </div>
-                    <hr>
-                    {% endfor %}
-                    <div class="row">
-                        <div class="col"><p class= "mb-0 font-weight-bold" >Diet info :</p></div>
-                        <div class="col text-left"><p >{{ order.diet }}</p></div>   
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body bg-white">
+                        <div class="col-12 col-lg-6">
+                            <div class="order-history table-responsive">
+                                <table class="table table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>Order Number</th>
+                                            <th>Date</th>
+                                            <th>Order Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in orders|dictsortreversed:"date" %}
+                                        <tr>
+                                            <td>
+                                                <a class="plain-anchor" href="{% url 'order_history' order.order_number %}"
+                                                title="{{ order.order_number }}">
+                                                    {{ order.order_number|truncatechars:6 }}
+                                                </a>
+                                            </td>
+                                            <td>{{ order.shortdate }}</td>
+                                            <td>€{{ order.grand_total|floatformat:"0" }}<span class="per-marker-green">*</span></td>
+                                        </tr>  
+                                        {% endfor %}    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-              </div>
             </div>
             <!--Card 3-->
             <div class="card">
-              <div class="card-header bg-white" id="headingThree">
-                <h5 class="mb-0">
-                  <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Your Contact Info
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body bg-white">
+                <div class="card-header bg-white" id="headingThree">
+                    <h5 class="mb-0">
+                    <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Spare
+                    </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body bg-white">
-                        <div class="row">
-                            <div class="col"><p class= "mb-0 font-weight-bold" >Name :</p></div>
-                            <div class="col text-left"><p >{{ order.full_name }}</p></div>   
-                        </div>
-                        <div class="row">
-                            <div class="col"><p class= "mb-0 font-weight-bold" >Phone :</p></div>
-                            <div class="col text-left"><p >{{ order.phone_number }}</p></div>   
-                        </div>
-                        <div class="row">
-                            <div class="col"><p class= "mb-0 font-weight-bold" >Email :</p></div>
-                            <div class="col text-left"><p >{{ order.email }}</p></div>   
-                        </div>
-                        <div class="row">
-                            <div class="col"><p class= "mb-0 font-weight-bold" >Address :</p></div>
-                            <div class="col text-left"><p >{{ order.street_address1 }},
-                                {% if order.street_address2 %}
-                                    {{ order.street_address2 }}
-                                {% endif %}
-                                , {{ order.town_or_city }}, {{ order.country }}</p>
-                            </div>   
+                        <div class="card-body bg-white">
+                            <div class="row">
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Name :</p></div>
+                                <div class="col text-left"><p >{{ order.full_name }}</p></div>   
+                            </div>
+                            <div class="row">
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Phone :</p></div>
+                                <div class="col text-left"><p >{{ order.phone_number }}</p></div>   
+                            </div>
+                            <div class="row">
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Email :</p></div>
+                                <div class="col text-left"><p >{{ order.email }}</p></div>   
+                            </div>
+                            <div class="row">
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Address :</p></div>
+                                <div class="col text-left"><p >{{ order.street_address1 }},
+                                    {% if order.street_address2 %}
+                                        {{ order.street_address2 }}
+                                    {% endif %}
+                                    , {{ order.town_or_city }}, {{ order.country }}</p>
+                                </div>   
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
-            </div>
-          </div>
-    </div>
-    
-
-    <!--from course-->
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <p>Default Delivery Information</p>
-            <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button class="btn internal-link">Update Information</button>
-            </form>
-        </div>
-        <div class="col-12 col-lg-6">
-            <p>Order History</p>
-            <div class="order-history table-responsive">
-                <table class="table table-sm table-borderless">
-                    <thead>
-                        <tr>
-                            <th>Order Number</th>
-                            <th>Date</th>
-                            <th>Items</th>
-                            <th>Order Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in orders %}
-                            <tr>
-                                <td>
-                                    <a class="plain-anchor" href="{% url 'order_history' order.order_number %}"
-                                    title="{{ order.order_number }}">
-                                        {{ order.order_number|truncatechars:6 }}
-                                    </a>
-                                </td>
-                                <td>{{ order.shortdate }}</td>
-                                <td>
-                                    <ul class="list-unstyled">
-                                        {% for item in order.lineitems.all %}
-                                            <li class="small">{{ item.product.name }}
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
-                                <td>${{ order.grand_total }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
