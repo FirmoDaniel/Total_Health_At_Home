@@ -18,7 +18,7 @@ def all_products(request):
             categories = request.GET['category'].split(',')  # splits query into a list at the comma
             products = products.filter(category__name__in=categories)  # filter products by those with matching category name
             categories = Category.objects.filter(name__in=categories)  # filter categories down to ones existing in the url to show what categorys are veing viewed by friendly name
-        #  filtering by product details (day,home,night, outdoors)
+        #  filtering by product details (day,home,night,outdoors)
         if 'night' in request.GET:
             products = products.filter(night__in=products)
             product_detail = 'night'

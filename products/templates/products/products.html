@@ -6,15 +6,15 @@
         <div class="row">
             <div class="col text-center mt-5">
                 {% if current_categories %}   
-                <h4> Currently viewing :
+                <h4> Sorted by :
                     {% for c in current_categories %}
-                    <small><span class="bg-green shadows-white text-capitalize"> {{ c.friendly_name }} </span></small>
+                    <small><span class="bg-green shadows-white text-capitalize px-1"> {{ c.friendly_name }} </span></small>
                     {% endfor %}
                 </h4>
                 <small><a class="internal-link" href="{% url 'products' %}"><span> Clear Filter </span></a></small>
                 {% elif product_detail %}
-                <h4> Currently viewing :
-                    <small><span class="bg-green shadows-white text-capitalize"> {{ product_detail}} </span></small>
+                <h4> Sorted by :
+                    <small><span class="bg-green shadows-white text-capitalize px-1"> {{ product_detail}} </span></small>
                 </h4>
                 <small><a class="internal-link" href="{% url 'products' %}"><span> Clear Filter </span></a></small>
                 {% else %}
@@ -69,6 +69,14 @@
                                             </a>
                                         </p>
                                         {% endif %}
+                                        <!--WORKING HERE-->
+                                        {% if product_detail or current_categories %}
+                                            <p class="mb-0">At Home:{% if product.home %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                                            <p class="mb-0">By Day:{% if product.day %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                                            <p class="mb-0">At Night:{% if product.night %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                                            <p class="mb-0">Outdoors:{% if product.outdoors %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                                        {% endif %}
+                                        <!--TO HERE-->
                                         {% if product.rating %}
                                         <small class="text-muted"><i class="fas fa-star mr-1"></i> Rating: {{ product.rating }}</small>
                                         {% else %}
