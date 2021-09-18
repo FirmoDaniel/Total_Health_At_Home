@@ -66,7 +66,7 @@
                                                 </a>
                                             </td>
                                             <td>{{ order.shortdate }}</td>
-                                            <td>€{{ order.grand_total|floatformat:"0" }}<span class="per-marker-green">*</span></td>
+                                            <td>€{{ order.grand_total|floatformat:"0" }}<small><span class="per-marker-green">*</span></small></td>
                                         </tr>  
                                         {% endfor %}    
                                     </tbody>
