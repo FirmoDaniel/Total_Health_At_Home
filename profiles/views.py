@@ -14,19 +14,19 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
+        form_UserProfileForm = UserProfileForm(request.POST, instance=profile)
+        if form_UserProfileForm.is_valid():
+            form_UserProfileForm.save()
             messages.success(request, 'Profile updated successfully')
         else:
             messages.error(request, 'Update failed. Please ensure the form is valid')
 
-    form = UserProfileForm(instance=profile)
+    form_UserProfileForm = UserProfileForm(instance=profile)
     orders = profile.orders.all()
 
     template = 'profiles/profile.html'
     context = {
-        'form': form,
+        'form_UserProfileForm': form_UserProfileForm,
         'orders': orders,
         'on_profile_page': True,
     }

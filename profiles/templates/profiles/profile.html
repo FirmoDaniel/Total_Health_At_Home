@@ -29,7 +29,7 @@
                     <div class="card-body bg-white">
                         <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                             {% csrf_token %}
-                            {{ form|crispy }}
+                            {{ form_UserProfileForm|crispy }}
                             <button class="btn internal-link">Update Information</button>
                         </form>
                     </div>
@@ -76,12 +76,13 @@
                     </div>
                 </div>
             </div>
-            <!--Card 3-->
+            <!--Card 3 only shows if 'Orders' exists-->
+            {% if orders %}
             <div class="card">
                 <div class="card-header bg-white" id="headingThree">
                     <h5 class="mb-0">
                     <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Spare
+                        My Testimonials
                     </button>
                     </h5>
                 </div>
@@ -90,29 +91,26 @@
                         <div class="card-body bg-white">
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Name :</p></div>
-                                <div class="col text-left"><p >{{ order.full_name }}</p></div>   
+                                <div class="col text-left"><p ></p></div>   
                             </div>
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Phone :</p></div>
-                                <div class="col text-left"><p >{{ order.phone_number }}</p></div>   
+                                <div class="col text-left"><p ></p></div>   
                             </div>
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Email :</p></div>
-                                <div class="col text-left"><p >{{ order.email }}</p></div>   
+                                <div class="col text-left"><p ></p></div>   
                             </div>
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Address :</p></div>
-                                <div class="col text-left"><p >{{ order.street_address1 }},
-                                    {% if order.street_address2 %}
-                                        {{ order.street_address2 }}
-                                    {% endif %}
-                                    , {{ order.town_or_city }}, {{ order.country }}</p>
+                                <div class="col text-left"><p ></p>
                                 </div>   
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
