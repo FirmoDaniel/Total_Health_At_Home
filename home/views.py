@@ -32,7 +32,7 @@ def add_testimonial(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added Testimonial for review.')
-            return redirect(reverse('add_testimonial'))
+            return redirect(reverse('profile'))
         else:
             messages.error(request, 'Failed to add Testimonial. Please ensure your form is valid.')
     else:
