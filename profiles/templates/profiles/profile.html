@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="per-marker-green">My Profile</h2>
+                <h2 class="per-marker-green"> {{ user }}'s Profile'</h2>
                 <hr>
             </div>
         </div>
@@ -90,13 +90,17 @@
                     <div class="card-body bg-white">
                         <div class="card-body bg-white">
                             <div class="row">
-                                <a href="{% url 'add_testimonial' %}" class="internal-link">Add Testi</a>
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Name :</p></div>
-                                <div class="col text-left"><p ></p></div>   
+                                <div class="col">
+                                    <a href="{% url 'add_testimonial' %}" class="internal-link">Add Testi</a>
+                                </div>
+                                <div class="col text-left"><p> spare</p></div>   
                             </div>
                             <div class="row">
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Phone :</p></div>
-                                <div class="col text-left"><p ></p></div>   
+                                <div class="col"><p class= "mb-0 font-weight-bold" >You Testimonial </p></div>
+                                {% for test in testimonials %}
+                                <div class="col text-left"><p>user : {{ test.username }}</p></div>
+                                <div class="col text-left"><p>words : {{ test.description }}</p></div>
+                                {% endfor %}
                             </div>
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Email :</p></div>
