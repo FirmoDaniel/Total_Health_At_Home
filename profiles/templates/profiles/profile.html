@@ -10,18 +10,18 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="per-marker-green"> {{ user }}'s Profile'</h2>
+                <h2 class="per-marker-green"> {{ user }}'s Profile</h2>
                 <hr>
             </div>
         </div>
         <!--new layout-->
         <div id="accordion">
-            <!--Card 1-->
+            <!--Card 1 Customer Information-->
             <div class="card">
                 <div class="card-header bg-white" id="headingOne">
                     <h5 class="mb-0">
                         <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                         Default Delivery Info. <span class="per-marker-green">!</span>
+                         Customer Info. <span class="per-marker-green">!</span>
                         </button>
                     </h5>
                 </div>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <!--Card 2-->
+            <!--Card 2 Order History-->
             <div class="card">
                 <div class="card-header bg-white" id="headingTwo">
                 <h5 class="mb-0">
@@ -46,6 +46,7 @@
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body bg-white">
+                        {% if orders %}
                         <div class="col-12 col-lg-6">
                             <div class="order-history table-responsive">
                                 <table class="table table-sm table-borderless">
@@ -73,35 +74,46 @@
                                 </table>
                             </div>
                         </div>
+                        {% else %}
+                        <div class="row">
+                            <div class="col"><p class= "mb-0 font-weight-bold" >No past orders to display </p></div>
+                            <div class="col text-left"><p ></p></div>   
+                        </div>
+                        {% endif %}
                     </div>
-                </div>
+                </div>  
             </div>
-            <!--Card 3 only shows if 'Orders' exists-->
-            {% if orders %}
+            <!--Card 3 feedback Section-->
             <div class="card">
                 <div class="card-header bg-white" id="headingThree">
                     <h5 class="mb-0">
                     <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        My Testimonials
+                        My Feedback
                     </button>
                     </h5>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body bg-white">
-                        <div class="card-body bg-white">
+                        {% if orders %}
                             <div class="row">
-                                <div class="col">
-                                    <a href="{% url 'add_testimonial' %}" class="internal-link">Add Testi</a>
-                                </div>
-                                <div class="col text-left"><p> spare</p></div>   
+                                {% if testimonials %}
+                                    <div class="col"><p class= "mb-0 font-weight-bold" >Your Testimonial </p></div>
+                                    {% for test in testimonials %}
+                                        <div class="col text-left"><p>user : {{ test.username }}</p></div>
+                                        <div class="col text-left"><p>words : {{ test.description }}</p></div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="col">
+                                        <a href="{% url 'add_testimonial' %}" class="internal-link">Submit a Testimonial</a>
+                                    </div>
+                                {% endif %} 
                             </div>
+                        {% else %}
                             <div class="row">
-                                <div class="col"><p class= "mb-0 font-weight-bold" >You Testimonial </p></div>
-                                {% for test in testimonials %}
-                                <div class="col text-left"><p>user : {{ test.username }}</p></div>
-                                <div class="col text-left"><p>words : {{ test.description }}</p></div>
-                                {% endfor %}
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Feedback available after first purchase </p></div>
+                                <div class="col text-left"><p ></p></div>   
                             </div>
+                        {% endif %}
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Email :</p></div>
                                 <div class="col text-left"><p ></p></div>   
@@ -111,11 +123,9 @@
                                 <div class="col text-left"><p ></p>
                                 </div>   
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            {% endif %}
         </div>
     </div>
 {% endblock %}
