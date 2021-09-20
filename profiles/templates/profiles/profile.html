@@ -97,10 +97,9 @@
                         {% if orders %}
                             <div class="row">
                                 {% if testimonials %}
-                                    <div class="col"><p class= "mb-0 font-weight-bold" >Your Testimonial </p></div>
+                                    <div class="col"><p class= "mb-0 font-weight-bold" >Your Testimonial :</p></div>
                                     {% for test in testimonials %}
-                                        <div class="col text-left"><p>user : {{ test.username }}</p></div>
-                                        <div class="col text-left"><p>words : {{ test.description }}</p></div>
+                                        <div class="col text-left"><p> {{ test.description|capfirst }} >Status: {% if test.approved %} posted ! {% else %} under review {% endif %}</p></div>
                                     {% endfor %}
                                 {% else %}
                                     <div class="col">
@@ -111,12 +110,21 @@
                         {% else %}
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Feedback available after first purchase </p></div>
-                                <div class="col text-left"><p ></p></div>   
                             </div>
                         {% endif %}
                             <div class="row">
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Email :</p></div>
-                                <div class="col text-left"><p ></p></div>   
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Your Products :</p></div>
+                                {% for order in orders %}
+                                    {% for item in order.lineitems.all %}
+                                        <div class="col text-left"><p> {{ item.product.name }} <span><a href="{% url 'product_detail' item.product.id %}">Rate It</a></span></p></div>
+                                    {% endfor %}  
+                                {% endfor %}    
+                            </div>
+                            <div class="row">
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Your Products :</p></div>
+                                {% for product in products %}
+                                        <div class="col text-left"><p> {{ item.product.name }} <span><a href="{% url 'product_detail' item.product.id %}">Rate It</a></span></p></div>  
+                                {% endfor %}    
                             </div>
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Address :</p></div>

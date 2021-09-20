@@ -68,7 +68,11 @@
                     {% for item in order.lineitems.all %}
                     <div class="row">
                         <div class="col"><p class= "mb-0 font-weight-bold" >Product : {{ forloop.counter }}</p></div>
-                        <div class="col text-left"><p > {{ item.product.name }} ( <strong>Category :</strong> {{ item.product.category.friendly_name}} ) </p></div>   
+                        <div class="col text-left">
+                          <p> {{ item.product.name }} ( <strong>Category :</strong> {{ item.product.category.friendly_name}} ) 
+                            <span><a href="{% url 'product_detail' item.product.id %}">Details</a></span>
+                          </p>
+                        </div>   
                     </div>
                     <hr>
                     {% endfor %}
