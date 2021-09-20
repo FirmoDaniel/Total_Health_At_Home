@@ -120,10 +120,11 @@
                                     {% endfor %}  
                                 {% endfor %}    
                             </div>
+                            <!--display all products here <not working>-->
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Your Products :</p></div>
                                 {% for product in products %}
-                                        <div class="col text-left"><p> {{ item.product.name }} <span><a href="{% url 'product_detail' item.product.id %}">Rate It</a></span></p></div>  
+                                    <div class="col text-left"><p> {{ product.name }} <span><a href="{% url 'product_detail' item.product.id %}">Rate It</a></span></p></div>  
                                 {% endfor %}    
                             </div>
                             <div class="row">
