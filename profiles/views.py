@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from products.models import Product
 from home.models import Testimonial
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -14,8 +13,8 @@ from checkout.models import Order
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
-    testimonials = Testimonial.objects.filter(username=request.user)  # get only testimonial posted by current user
-    products = Product.objects.all()  # get all products to display those capable to rating.
+    testimonials = Testimonial.objects.all()  # get all testimonials
+    user_testimonials = Testimonial.objects.filter(username=request.user)  # get only testimonial posted by current user
 
     if request.method == 'POST':
         form_UserProfileForm = UserProfileForm(request.POST, instance=profile)
@@ -33,7 +32,8 @@ def profile(request):
         'form_UserProfileForm': form_UserProfileForm,
         'orders': orders,
         'on_profile_page': True,
-        'testimonials': testimonials
+        'testimonials': testimonials,
+        'user_testimonials': user_testimonials,
     }
 
     return render(request, template, context)

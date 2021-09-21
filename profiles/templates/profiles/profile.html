@@ -96,9 +96,9 @@
                     <div class="card-body bg-white">
                         {% if orders %}
                             <div class="row">
-                                {% if testimonials %}
+                                {% if user_testimonials %}
                                     <div class="col"><p class= "mb-0 font-weight-bold" >Your Testimonial :</p></div>
-                                    {% for test in testimonials %}
+                                    {% for test in user_testimonials %}
                                         <div class="col text-left"><p> {{ test.description|capfirst }} >Status: {% if test.approved %} posted ! {% else %} under review {% endif %}</p></div>
                                     {% endfor %}
                                 {% else %}
@@ -107,13 +107,31 @@
                                     </div>
                                 {% endif %} 
                             </div>
+                            <!-- for super user to view all testimonials pending approval-->
+                            {% if request.user.is_superuser %}
+                            <div class="row">
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Testimonials pending approval :</p></div>
+                                {% for test in testimonials %}
+                                    {% if not test.approved %}
+                                        <div class="col text-left">
+                                            <p>{{ test.username}} :>>> {{ test.description|capfirst }}</p>
+                                            <small class="ml-3">
+                                                <a href="">Edit</a>
+                                                <a class="text-danger" href="">Delete</a>
+                                            </small>
+                                        </div>   
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         {% else %}
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Feedback available after first purchase </p></div>
                             </div>
                         {% endif %}
+                            <hr>
                             <div class="row">
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Your Products :</p></div>
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Your Purchased Products :</p></div>
                                 {% for order in orders %}
                                     {% for item in order.lineitems.all %}
                                         <div class="col text-left"><p> {{ item.product.name }} <span><a href="{% url 'product_detail' item.product.id %}">Rate It</a></span></p></div>
