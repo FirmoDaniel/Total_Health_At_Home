@@ -1,0 +1,28 @@
+[{
+    "pk": 1,
+    "model": "products.review",
+    "fields": {
+        "username": "test1",
+        "name": "Dance Machine",
+        "description": "this is for product dance machine",
+        "approved": true
+    }
+}, {
+    "pk": 2,
+    "model": "products.review",
+    "fields": {
+        "username": "test2",
+        "name": "Dynamite",
+        "description": "this is for dynamite",
+        "approved": true
+    }
+}, {
+    "pk": 3,
+    "model": "products.review",
+    "fields": {
+        "username": "test3",
+        "name": "Mountain Lion",
+        "description": "this is for Mountain Lion and not approved",
+        "approved": false
+    }
+}]
