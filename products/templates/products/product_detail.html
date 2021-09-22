@@ -7,10 +7,6 @@
 {% block content %}
     <br>
     <div class="container">
-        
-    </div>
-    <div class="overlay"></div>
-    <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
                 <div class="image-container my-5">
@@ -55,21 +51,30 @@
                         </small>  
                     {% endif %}
                      <!--Form to post product to the bag-->
-                        <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
-                            {% csrf_token %}
-                                <div class="col">
-                                    <a href="{% url 'products' %}" class="btn mt-5">
-                                        <i class="fas fa-arrow-left"></i>
-                                        <span class="internal-link">Back to Products</span>
-                                    </a>
-                                    <input type="submit" class="btn mt-5 bg-blue per-marker-white" value="Add to Bag">
-                                </div>
-                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            </div>
-                        </form>
+                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="col">
+                            <a href="{% url 'products' %}" class="btn mt-5">
+                                <i class="fas fa-arrow-left"></i>
+                                <span class="internal-link">Back to Products</span>
+                            </a>
+                            <input type="submit" class="btn mt-5 bg-blue per-marker-white" value="Add to Bag">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+    <!--reviews-->
+    <div class="container">
+            {% for review in reviews %}
+                <p> No. of product reviews: {{ forloop.counter}}</p>
+                <p>username: {{ review.username }}</p>
+                <p>product name: {{ review.name }}</p>
+                <p>description: {{ review.description }}</p>
+                <p>approved: {{ review.approved }}</p>
+            {% endfor %}
     </div>
 {% endblock %}
 
