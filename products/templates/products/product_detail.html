@@ -72,7 +72,7 @@
             {% for review in reviews %}
                 <p> No. of product reviews: {{ forloop.counter}}</p>
                 <p>username: {{ review.username }}</p>
-                <p>product name: {{ review.product_name}}</p>
+                <p>product name: {{ review.name }}</p>
                 <p>description: {{ review.description }}</p>
                 <p>approved: {{ review.approved }}</p>
             {% endfor %}

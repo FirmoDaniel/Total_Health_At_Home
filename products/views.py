@@ -47,7 +47,7 @@ def product_detail(request, product_id):
     """ A view to show individual product details and thier reviews """
 
     product = get_object_or_404(Product, pk=product_id)
-    reviews = Review.objects.filter(product_name=product.name)
+    reviews = Review.objects.filter(name=product.id)
 
     context = {
         'product': product,
@@ -110,7 +110,6 @@ def edit_product(request, product_id):
 @login_required
 def add_review(request):
     """ Add a review using a product list """
-    products = Product.objects.all()
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -120,11 +119,11 @@ def add_review(request):
         else:
             messages.error(request, 'Failed to add product. Please ensure your form is valid.')
     else:
-        form = ReviewForm(initial={'username': request.user})  # prepop the user name in form
+        form = ReviewForm(
+                        initial={'username': request.user})  # prepop the user name in form
     template = 'products/add_review.html'
     context = {
         'form': form,
-        'products': products,
     }
 
     return render(request, template, context)

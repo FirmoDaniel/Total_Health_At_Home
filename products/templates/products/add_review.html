@@ -15,19 +15,9 @@
 
         <div class="row">
             <div class="col-12 col-md-6">
-                <form method="POST" name="ReviewForm" id="ReviewForm" action="{% url 'add_review' %}" class="form mb-2" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'add_review' %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <!--generate review form here-->
-                    <label for="username">Username</label>
-                    <input name="username" id="username" placeholder="{{ request.user }}" readonly>
-                    <label for="product_name">Product Name</label>
-                    <select name="product_name" id="product_name" placeholder="{{ request.user }}" readonly>
-                        <option selected> Choose a product</option>
-                        {% for product in products %}
-                        <option>{{ product.name }}</option>
-                        {% endfor %}
-                    </select>
-                    <textarea id="description" name="description"></textarea>
+                    {{ form|crispy }}
                     <div class="text-right">
                         <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
                         <button class="btn btn-black rounded-0" type="submit">Submit</button>
