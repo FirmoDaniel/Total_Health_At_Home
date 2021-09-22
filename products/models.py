@@ -40,9 +40,10 @@ class Product(models.Model):
 class Review(models.Model):
 
     username = models.CharField(max_length=64, null=False, blank=False)
-    product_name = models.CharField(max_length=64, null=False, blank=False)
+    name = models.ForeignKey('Product', null=True, blank=True,
+                             on_delete=models.SET_NULL)
     description = models.TextField(null=False, blank=False, default='The site helped me achieve my goals')
     approved = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):
-        return self.username
+        return self.name

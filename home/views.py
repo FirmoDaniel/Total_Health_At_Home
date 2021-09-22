@@ -18,7 +18,7 @@ def index(request):
 
     context = {
         'products': products,
-        'testimonials': testimonials
+        'testimonials': testimonials,
     }
 
     return render(request, 'home/index.html', context)

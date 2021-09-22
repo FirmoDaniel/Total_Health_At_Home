@@ -30,7 +30,4 @@ class ReviewForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ReviewForm, self).__init__(*args, **kwargs)
-        products = Product.objects.all()
-        product_names = [(p.id, p.name) for p in products]
         self.fields['username'].widget.attrs['readonly'] = True
-        self.fields['name'].choices = product_names
