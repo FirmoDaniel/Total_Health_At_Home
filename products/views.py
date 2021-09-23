@@ -48,17 +48,22 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     reviews = Review.objects.filter(name=product.id)  # get only reviews related to the specific product on display
     approved_reviews = Review.objects.filter(name=product.id, approved=True)  # get only reviews related to the specific product on display which are approved
-    true_values = 0  
-    live_rating = product.rating
+    postivie_feedback = Review.objects.filter(name=product.id, feedback=True)  # get only reviews related to the specific product on display which are approved
+    negative_feedback = Review.objects.filter(name=product.id, feedback=False)  # get only reviews related to the specific product on display which are approved
+    feedback = 0 
     number_of_reviews = 0
 
-    if product.home:  # assign an int if product.home is true
-        true_values = 1
-    else:
-        true_values = -1
-    live_rating = product.rating + true_values  # deduct/add live_rating from/to original rating
+    positive = len(postivie_feedback)  # get number of positive/true feedbacks > should be 2 on dancemachine
+    negative = -len(negative_feedback)  # get number of positive/true feedbacks > should be 1 on dancemachine
+    live_rating = product.rating + positive + negative
     if live_rating < 0:
         live_rating = 0
+    elif live_rating > 100:
+        live_rating = 10
+    else:
+        live_rating
+
+
 
     number_of_reviews = len(approved_reviews)  # get the len of the reviews loop.
     
@@ -66,8 +71,9 @@ def product_detail(request, product_id):
     context = {
         'product': product,
         'reviews': reviews,
-        'number_of_reviews': number_of_reviews,
-        'true_values': true_values,
+        'number_of_reviews': number_of_reviews,  # working
+        'positive': positive,
+        'negative': negative,
         'live_rating': live_rating,
     }
 
