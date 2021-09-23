@@ -80,11 +80,14 @@
     <div class="container"><a class="internal-link" href="{% url 'add_review' %}">add new</a></div>
     <div class="container">
             {% for review in reviews %}
-                <p> No. of product reviews: {{ forloop.counter}}</p>
-                <p>username: {{ review.username }}</p>
-                <p>product name: {{ review.name }}</p>
-                <p>description: {{ review.description }}</p>
-                <p>approved: {{ review.approved }}</p>
+                {% if review.approved %}
+                    <p> No. of product reviews: {{ forloop.counter}}</p>
+                    <p>username: {{ review.username }}</p>
+                    <p>product name: {{ review.name }}</p>
+                    <p>description: {{ review.description }}</p>
+                    <p>feedback: {{ review.feedback }}</p>
+                    <p>approved: {{ review.approved }}</p>
+                {% endif %}
             {% endfor %}
     </div>
 {% endblock %}

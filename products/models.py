@@ -43,7 +43,8 @@ class Review(models.Model):
     name = models.ForeignKey('Product', null=True, blank=True,
                              on_delete=models.SET_NULL)
     description = models.TextField(null=False, blank=False, default='The site helped me achieve my goals')
+    feedback = models.BooleanField(default=False, null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):
-        return self.name
+        return self.username
