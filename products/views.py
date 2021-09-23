@@ -45,9 +45,16 @@ def all_products(request):
 
 def product_detail(request, product_id):
     """ A view to show individual product details and thier specific reviews """
-
     product = get_object_or_404(Product, pk=product_id)
     reviews = Review.objects.filter(name=product.id)  # get only reviews related to the specific product on display
+    true_values = 0  
+    live_rating = product.rating
+
+    if product.home:  # assign an int if product.home is true
+        true_values = 8
+    else:
+        true_values = -55
+    live_rating = product.rating + true_values  # deduct/add live_rating from/to original rating
 
     
     number_of_reviews = len(reviews)  # get the len of the reviews loop.
@@ -60,6 +67,8 @@ def product_detail(request, product_id):
         'product': product,
         'reviews': reviews,
         'number_of_reviews': number_of_reviews,
+        'true_values': true_values,
+        'live_rating': live_rating,
     }
 
     return render(request, 'products/product_detail.html', context)

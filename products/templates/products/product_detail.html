@@ -35,16 +35,19 @@
                     <p class="mb-0">Outdoors:{% if product.outdoors %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                     <p class="mb-0">By Day:{% if product.day %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                     <p class="mb-0">At Night:{% if product.night %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
-                    {% if product.rating %}
+                    
                         <small class="text-muted"><i class="fas fa-star mr-1"></i> Rating: {{ product.rating }}</small>
-                    <!-- no. customer reviews-->    
-                    {% endif %}
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i> True Values : {{ true_values }}</small>
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i> Live Rating: {{ live_rating }}</small>
+
+                    <!-- no. customer reviews-->   
                     {% if number_of_reviews %}
                         <small class="text-muted"><i class="fas fa-star mr-1"></i> Customer Reviews: {{ number_of_reviews }}</small>
                     {% else %}
                     <small class="text-muted"><i class="fas fa-star mr-1"></i> Customer Reviews: be the first to review </small>
                     {% endif %}
-                    
+                    <!--get number of ture values -->
+                    <small class="text-muted"><i class="fas fa-star mr-1"></i> True Values : {{ true_values }}</small>
                     <p>
                         {% if request.user.is_anonymous %}
                         Verified users get access to a Wellness element for free.<a class="internal-link" href="{% url 'account_signup' %}"> Sign Up</a> / 
