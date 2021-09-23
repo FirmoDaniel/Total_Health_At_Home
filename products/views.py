@@ -44,14 +44,22 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show individual product details and thier reviews """
+    """ A view to show individual product details and thier specific reviews """
 
     product = get_object_or_404(Product, pk=product_id)
-    reviews = Review.objects.filter(name=product.id)
+    reviews = Review.objects.filter(name=product.id)  # get only reviews related to the specific product on display
+
+    
+    number_of_reviews = len(reviews)  # get the len of the reviews loop.
+    for index, r in enumerate(reviews):
+        if index == number_of_reviews:
+            pass
+
 
     context = {
         'product': product,
         'reviews': reviews,
+        'number_of_reviews': number_of_reviews,
     }
 
     return render(request, 'products/product_detail.html', context)
