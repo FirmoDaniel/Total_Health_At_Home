@@ -30,4 +30,6 @@ class ReviewForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ReviewForm, self).__init__(*args, **kwargs)
+        product = Product.objects.all()  # setting product variable
         self.fields['username'].widget.attrs['readonly'] = True
+        self.fields['name'].initial = 'product.name'  # trying to set product.id as initial 
