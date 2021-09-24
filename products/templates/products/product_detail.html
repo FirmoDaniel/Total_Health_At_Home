@@ -76,9 +76,9 @@
         </div>
     </div>
     <!--reviews-->
-    {% if from_products %}
+    
     <div class="container"><a class="internal-link" href="{% url 'add_review' %}">add new</a></div>
-    {% endif %}
+    
     <div class="container">
             {% for review in reviews %}
                 {% if review.approved %}

@@ -6,7 +6,9 @@ from home.models import Testimonial
 from .models import UserProfile
 from .forms import UserProfileForm
 
-from checkout.models import Order
+from checkout.models import Order, OrderLineItem
+
+from products.models import Product
 
 
 @login_required
@@ -15,6 +17,7 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     testimonials = Testimonial.objects.all()  # get all testimonials
     user_testimonials = Testimonial.objects.filter(username=request.user)  # get only testimonial posted by current user
+    order = Order.objects.all()
 
     if request.method == 'POST':
         form_UserProfileForm = UserProfileForm(request.POST, instance=profile)
@@ -26,6 +29,8 @@ def profile(request):
     else:
         form_UserProfileForm = UserProfileForm(instance=profile)
     orders = profile.orders.all()
+
+   
 
     template = 'profiles/profile.html'
     context = {

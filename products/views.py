@@ -140,7 +140,7 @@ def add_review(request):
             messages.success(request, 'Successfully added review!')
             return redirect(reverse('products'))
         else:
-            messages.error(request, 'Failed to add product. Please ensure your form is valid.')
+            messages.error(request, 'Failed to add Review. Please ensure your form is valid.')
     else:
         form = ReviewForm(
                         initial={'username': request.user})  # prepop the user name in form
