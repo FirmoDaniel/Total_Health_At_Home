@@ -78,6 +78,7 @@ def add_testimonial(request):
             messages.error(request, 'Failed to add Testimonial. Please ensure your form is valid.')
     else:
         form = TestimonialForm(initial={'username': request.user}, user=request.user)  # prepop the user name in form
+    
     template = 'profiles/add_testimonial.html'
     context = {
         'form': form,
