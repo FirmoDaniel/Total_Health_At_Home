@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserProfile
+from .models import Testimonial
 
 
 class UserProfileForm(forms.ModelForm):
@@ -31,3 +32,14 @@ class UserProfileForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'profile-update-form'
             self.fields[field].label = False
+
+
+class TestimonialForm(forms.ModelForm):
+
+    class Meta:
+        model = Testimonial
+        exclude = ('approved',)
+
+    def __init__(self, *args, **kwargs):
+        super(TestimonialForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['readonly'] = True

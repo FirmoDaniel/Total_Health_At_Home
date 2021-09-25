@@ -31,3 +31,13 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
     instance.userprofile.save()
+
+
+class Testimonial(models.Model):
+
+    username = models.CharField(max_length=64, null=False, blank=False)
+    description = models.TextField(null=False, blank=False, default='The site helped me achieve my goals')
+    approved = models.BooleanField(default=False, null=False, blank=False)
+
+    def __str__(self):
+        return self.username

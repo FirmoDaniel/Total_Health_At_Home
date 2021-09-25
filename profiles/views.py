@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from home.models import Testimonial
+from .models import Testimonial
+from .forms import TestimonialForm
+
 from .models import UserProfile
 from .forms import UserProfileForm
 
@@ -56,6 +58,58 @@ def order_history(request, order_number):
     context = {
         'order': order,
         'from_profile': True,
+    }
+
+    return render(request, template, context)
+
+
+#  TESTIMONIALS
+
+@login_required
+def add_testimonial(request):
+    """ Add a Testimonial to the store """
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added Testimonial for review.')
+            return redirect(reverse('profile'))
+        else:
+            messages.error(request, 'Failed to add Testimonial. Please ensure your form is valid.')
+    else:
+        form = TestimonialForm(initial={'username': request.user})  # prepop the user name in form
+    template = 'home/add_testimonial.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_testimonial(request, testimonial_id):
+    """ Edit a testimonial """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST, instance=testimonial)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated Testimonial!')
+            return redirect(reverse('home'))
+        else:
+            messages.error(request, 'Failed to update Testimonial. Please ensure the form is valid.')
+    else:
+        form = TestimonialForm(instance=testimonial)
+        messages.info(request, f'You are editing {testimonial.username}(s) testimonial')
+
+    template = 'home/edit_testimonial.html'
+    context = {
+        'form': form,
+        'testimonial': testimonial,
     }
 
     return render(request, template, context)
