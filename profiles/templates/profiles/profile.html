@@ -116,7 +116,7 @@
                                         <div class="col text-left">
                                             <p>{{ test.username}} :>>> {{ test.description|capfirst }}</p>
                                             <small class="ml-3">
-                                                <a href="">Edit</a>
+                                                <a href="{% url 'edit_testimonial' testimonial.id %}">Edit</a>
                                                 <a class="text-danger" href="">Delete</a>
                                             </small>
                                         </div>   

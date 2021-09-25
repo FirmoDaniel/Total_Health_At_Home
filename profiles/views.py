@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -78,7 +78,7 @@ def add_testimonial(request):
             messages.error(request, 'Failed to add Testimonial. Please ensure your form is valid.')
     else:
         form = TestimonialForm(initial={'username': request.user})  # prepop the user name in form
-    template = 'home/add_testimonial.html'
+    template = 'profiles/add_testimonial.html'
     context = {
         'form': form,
     }
@@ -91,7 +91,7 @@ def edit_testimonial(request, testimonial_id):
     """ Edit a testimonial """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('profile'))
 
     testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
     if request.method == 'POST':
@@ -99,14 +99,14 @@ def edit_testimonial(request, testimonial_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated Testimonial!')
-            return redirect(reverse('home'))
+            return redirect(reverse('profile'))
         else:
             messages.error(request, 'Failed to update Testimonial. Please ensure the form is valid.')
     else:
         form = TestimonialForm(instance=testimonial)
         messages.info(request, f'You are editing {testimonial.username}(s) testimonial')
 
-    template = 'home/edit_testimonial.html'
+    template = 'profiles/edit_testimonial.html'
     context = {
         'form': form,
         'testimonial': testimonial,
