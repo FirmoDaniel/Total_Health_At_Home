@@ -69,7 +69,7 @@ def order_history(request, order_number):
 def add_testimonial(request):
     """ Add a Testimonial to the store """
     if request.method == 'POST':
-        form = TestimonialForm(request.POST)
+        form = TestimonialForm(request.POST, user=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added Testimonial for review.')
@@ -77,7 +77,7 @@ def add_testimonial(request):
         else:
             messages.error(request, 'Failed to add Testimonial. Please ensure your form is valid.')
     else:
-        form = TestimonialForm(initial={'username': request.user})  # prepop the user name in form
+        form = TestimonialForm(initial={'username': request.user}, user=request.user)  # prepop the user name in form
     template = 'profiles/add_testimonial.html'
     context = {
         'form': form,
@@ -95,7 +95,7 @@ def edit_testimonial(request, testimonial_id):
 
     testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
     if request.method == 'POST':
-        form = TestimonialForm(request.POST, instance=testimonial)
+        form = TestimonialForm(request.POST, instance=testimonial, user=request.user)  # added user to kwargs
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated Testimonial!')
@@ -103,7 +103,7 @@ def edit_testimonial(request, testimonial_id):
         else:
             messages.error(request, 'Failed to update Testimonial. Please ensure the form is valid.')
     else:
-        form = TestimonialForm(instance=testimonial)
+        form = TestimonialForm(instance=testimonial, user=request.user)  # added user to kwargs
         messages.info(request, f'You are editing {testimonial.username}(s) testimonial')
 
     template = 'profiles/edit_testimonial.html'
@@ -113,3 +113,16 @@ def edit_testimonial(request, testimonial_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_testimonial(request, testimonial_id):
+    """ Delete a Testimonial """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
+    testimonial.delete()
+    messages.success(request, 'Testimonial deleted!')
+    return redirect(reverse('profile'))

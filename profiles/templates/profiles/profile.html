@@ -96,28 +96,41 @@
                     <div class="card-body bg-white">
                         {% if orders %}
                             <div class="row">
+                                <!--List current user's testimonial and approval status-->
                                 {% if user_testimonials %}
                                     <div class="col"><p class= "mb-0 font-weight-bold" >Your Testimonial :</p></div>
-                                    {% for test in user_testimonials %}
-                                        <div class="col text-left"><p> {{ test.description|capfirst }} >Status: {% if test.approved %} posted ! {% else %} under review {% endif %}</p></div>
+                                    {% for testimonial in user_testimonials %}
+                                        <div class="col text-left"><p> {{ testimonial.description|capfirst }} >Status: {% if testimonal.approved %} posted ! {% else %} under review {% endif %}</p></div>
                                     {% endfor %}
+                                <!--list approved testimonials if superuser-->
+                                {% elif request.user.is_superuser %}
+                                <div class="col"><p class= "mb-0 font-weight-bold" >Approved Testimonials :</p></div>
+                                    {% for testimonial in testimonials %}
+                                        {% if testimonial.approved %}    
+                                            <div class="col text-left"><p> {{ testimonial.description|capfirst }}</p></div>
+                                            <!--SuperUser can delete and edit existing/approved-->
+                                            <a href="{% url 'edit_testimonial' testimonial.id %}">Edit</a>
+                                            <a class="text-danger" href="{% url 'delete_testimonial' testimonial.id %}">Delete</a>
+                                        {% endif %}    
+                                    {% endfor %} 
+                                <!--Present button to add a testimonial to verified user-->
                                 {% else %}
-                                    <div class="col">
+                                    <div class="col text-left">
                                         <a href="{% url 'add_testimonial' %}" class="internal-link">Submit a Testimonial</a>
                                     </div>
                                 {% endif %} 
                             </div>
-                            <!-- for super user to view all testimonials pending approval-->
+                            <!-- SuperUser can view all testimonials pending approval-->
                             {% if request.user.is_superuser %}
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Testimonials pending approval :</p></div>
-                                {% for test in testimonials %}
-                                    {% if not test.approved %}
+                                {% for testimonial in testimonials %}
+                                    {% if not testimonial.approved %}
                                         <div class="col text-left">
-                                            <p>{{ test.username}} :>>> {{ test.description|capfirst }}</p>
+                                            <p>{{ testimonial.username }} :>>> {{ testimonial.description|capfirst }}</p>
                                             <small class="ml-3">
                                                 <a href="{% url 'edit_testimonial' testimonial.id %}">Edit</a>
-                                                <a class="text-danger" href="">Delete</a>
+                                                <a class="text-danger" href="{% url 'delete_testimonial' testimonial.id %}">Delete</a>
                                             </small>
                                         </div>   
                                     {% endif %}

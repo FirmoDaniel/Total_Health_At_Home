@@ -38,8 +38,15 @@ class TestimonialForm(forms.ModelForm):
 
     class Meta:
         model = Testimonial
-        exclude = ('approved',)
+        fields = '__all__'
+        
+
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
         super(TestimonialForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['readonly'] = True
+        if self.user.is_superuser:
+            self.fields['approved'].widget.attrs['disabled'] = False
+        else:
+            self.fields['approved'].widget.attrs['disabled'] = True
