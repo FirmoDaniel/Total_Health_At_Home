@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Testimonial
-from .forms import TestimonialForm
+from .models import Testimonial, Review
+from .forms import TestimonialForm, ReviewForm
 
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -140,4 +140,27 @@ def test_review(request, product_id):
         'product': product,
     }
 
-    return render(request, template, context )
+    return render(request, template, context)
+
+
+#  FROM PRODUCTS EG OLD
+@login_required
+def add_review(request):
+    """ Add a review using a product list """
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added review!')
+            return redirect(reverse('products'))
+        else:
+            messages.error(request, 'Failed to add Review. Please ensure your form is valid.')
+    else:
+        form = ReviewForm(
+                        initial={'username': request.user})  # prepop the user name in form
+    template = 'products/add_review.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

@@ -1,6 +1,7 @@
 from django import forms
 from .models import UserProfile
-from .models import Testimonial
+from .models import Testimonial, Review
+from products.models import Product
 
 
 class UserProfileForm(forms.ModelForm):
@@ -50,3 +51,18 @@ class TestimonialForm(forms.ModelForm):
             self.fields['approved'].widget.attrs['disabled'] = False
         else:
             self.fields['approved'].widget.attrs['disabled'] = True
+
+
+#  REVIEW FORM
+
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        exclude = ('approved',)
+
+    def __init__(self, *args, **kwargs):
+        super(ReviewForm, self).__init__(*args, **kwargs)
+        product = Product.objects.all()  # setting product variable
+        self.fields['username'].widget.attrs['readonly'] = True
+        self.fields['name'].initial = 'product.name'  # trying to set product.id as initial 

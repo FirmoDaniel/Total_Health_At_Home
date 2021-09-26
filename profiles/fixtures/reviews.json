@@ -1,6 +1,6 @@
 [{
     "pk": 1,
-    "model": "products.review",
+    "model": "profiles.review",
     "fields": {
         "username": "test1",
         "name": 1,
@@ -10,7 +10,7 @@
     }
 }, {
     "pk": 2,
-    "model": "products.review",
+    "model": "profiles.review",
     "fields": {
         "username": "test2",
         "name": 2,
@@ -20,7 +20,7 @@
     }
 }, {
     "pk": 3,
-    "model": "products.review",
+    "model": "profiles.review",
     "fields": {
         "username": "test3",
         "name": 3,

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Testimonial
+from .models import Testimonial, Review
 
 # Register your models here.
 
@@ -10,5 +10,14 @@ class TestimonialAdmin(admin.ModelAdmin):
         'description',
     )
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = (
+        'username',
+        'name',
+        'description',
+        'feedback',
+        'approved',
+    )
 
 admin.site.register(Testimonial, TestimonialAdmin)
+admin.site.register(Review, ReviewAdmin)

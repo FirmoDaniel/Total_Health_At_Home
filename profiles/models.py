@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from products.models import Product
 
 from django_countries.fields import CountryField
 
@@ -37,6 +38,19 @@ class Testimonial(models.Model):
 
     username = models.CharField(max_length=64, null=False, blank=False)
     description = models.TextField(null=False, blank=False, default='The site helped me achieve my goals')
+    approved = models.BooleanField(default=False, null=False, blank=False)
+
+    def __str__(self):
+        return self.username
+
+#  REVIEW MODEL
+
+class Review(models.Model):
+
+    username = models.CharField(max_length=64, null=False, blank=False)
+    name = models.CharField(max_length=64, null=False, blank=False)
+    description = models.TextField(null=False, blank=False, default='The site helped me achieve my goals')
+    feedback = models.BooleanField(default=False, null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):

@@ -1,7 +1,7 @@
 from django import forms
 from django.shortcuts import get_object_or_404
 from .widgets import CustomClearableFileInput
-from .models import Product, Category, Review
+from .models import Product, Category
 
 
 class ProductForm(forms.ModelForm):
@@ -20,16 +20,3 @@ class ProductForm(forms.ModelForm):
         self.fields['category'].choices = friendly_names  # update category field to use friendly names instead of id
         for field_name, field in self.fields.items():  # set classes on the fields 
             field.widget.attrs['class'] = 'border-black rounded-0'
-
-
-class ReviewForm(forms.ModelForm):
-
-    class Meta:
-        model = Review
-        exclude = ('approved',)
-
-    def __init__(self, *args, **kwargs):
-        super(ReviewForm, self).__init__(*args, **kwargs)
-        product = Product.objects.all()  # setting product variable
-        self.fields['username'].widget.attrs['readonly'] = True
-        self.fields['name'].initial = 'product.name'  # trying to set product.id as initial 
