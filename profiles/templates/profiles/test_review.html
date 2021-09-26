@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <h1>test review page </h1>
+    <p>{{ product.id }}</p>
+    <p>{{ product.name }}</p>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}

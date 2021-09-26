@@ -48,8 +48,8 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     reviews = Review.objects.filter(name=product.id)  # get only reviews related to the specific product on display
     approved_reviews = Review.objects.filter(name=product.id, approved=True)  # get only reviews related to the specific product on display which are approved
-    postivie_feedback = Review.objects.filter(name=product.id, feedback=True, approved=True)  # get only reviews related to the specific product on display which are approved
-    negative_feedback = Review.objects.filter(name=product.id, feedback=False, approved=True)  # get only reviews related to the specific product on display which are approved
+    postivie_feedback = Review.objects.filter(name=product.id, feedback=True, approved=True)  # get only positive reviews related to the specific product on display which are approved
+    negative_feedback = Review.objects.filter(name=product.id, feedback=False, approved=True)  # get only negative reviews related to the specific product on display which are approved
     feedback = 0 
     number_of_reviews = 0
 

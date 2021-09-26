@@ -127,3 +127,17 @@ def delete_testimonial(request, testimonial_id):
     testimonial.delete()
     messages.success(request, 'Testimonial deleted!')
     return redirect(reverse('profile'))
+
+
+#  TEST REVIEW
+@login_required
+def test_review(request, product_id):
+    """render a pre-populated form with product id from profile purchased products """
+    product = get_object_or_404(Product, pk=product_id)
+
+    template = 'profiles/test_review.html'
+    context = {
+        'product': product,
+    }
+
+    return render(request, template, context )
