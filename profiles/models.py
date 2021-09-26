@@ -37,7 +37,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 class Testimonial(models.Model):
 
     username = models.CharField(max_length=64, null=False, blank=False)
-    description = models.TextField(null=False, blank=False, default='The site helped me achieve my goals')
+    description = models.TextField(null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):
@@ -49,7 +49,7 @@ class Review(models.Model):
 
     username = models.CharField(max_length=64, null=False, blank=False)
     name = models.CharField(max_length=64, null=False, blank=False)
-    description = models.TextField(null=False, blank=False, default='This product helped me achieve my goals')
+    description = models.TextField(null=False, blank=False)
     feedback = models.BooleanField(default=False, null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
 

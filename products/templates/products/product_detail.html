@@ -87,12 +87,29 @@
                     <p>approved: {{ review.approved }}</p>
                     {% if user.is_superuser %}
                         <p><a href="{% url 'delete_review' review.id %}">Delete</a></p>
-                        <p>edit</p>
+                        <p><a href="{% url 'edit_review' review.id %}">Edit</a></p>
                     {% endif %}
                     <hr>
                 {% endif %}
             {% endfor %}
     </div>
+    <div class="container">
+        {% if user.is_superuser %}
+            {% for review in reviews %}
+                {% if not review.approved %}
+                    <p> No. of product reviews: {{ forloop.counter}}</p>
+                    <p>username: {{ review.username }}</p>
+                    <p>product name: {{ review.name }}</p>
+                    <p>description: {{ review.description }}</p>
+                    <p>feedback: {{ review.feedback }}</p>
+                    <p>approved: {{ review.approved }}</p>
+                    <p><a href="{% url 'delete_review' review.id %}">Delete</a></p>
+                    <p><a href="{% url 'edit_review' review.id %}">Edit</a></p>
+                {% endif %}
+                <hr>
+            {% endfor %}
+        {% endif %}
+</div>
 {% endblock %}
 
 {% block postloadjs %}

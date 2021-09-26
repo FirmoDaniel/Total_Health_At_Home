@@ -170,3 +170,31 @@ def delete_review(request, review_id):
     review.delete()
     messages.success(request, 'Review deleted!')
     return redirect(reverse('products'))
+
+
+@login_required
+def edit_review(request, review_id):
+    """ Edit a Review """
+    
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    review = get_object_or_404(Review, pk=review_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review, user=request.user)  # added user to kwargs
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated Review!')
+            return redirect(reverse('products'))
+        else:
+            messages.error(request, 'Failed to update Review. Please ensure the form is valid.')
+    else:
+        form = ReviewForm(instance=review, user=request.user)
+
+    template = 'profiles/edit_review.html'
+    context = {
+        'form': form,
+        'review': review,
+    }
+    return render(request, template, context)
