@@ -76,37 +76,6 @@
         </div>
     </div>
     <!--reviews-->
-    
-    {% if from_profile %}
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <hr>
-                <h2 class="logo-font mb-4">Reviews</h2>
-                <h5 class="text-muted">Add a Review</h5>
-                <hr>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <form method="POST" action="{% url 'add_review' %}" class="form mb-2" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>            
-        </div>
-    </div>
-    {% endif %}
-
-
-
-    <div class="container"><a class="internal-link" href="">add new</a></div>
-    
     <div class="container">
             {% for review in reviews %}
                 {% if review.approved %}
@@ -116,6 +85,11 @@
                     <p>description: {{ review.description }}</p>
                     <p>feedback: {{ review.feedback }}</p>
                     <p>approved: {{ review.approved }}</p>
+                    {% if user.is_superuser %}
+                        <p><a href="{% url 'delete_review' review.id %}">Delete</a></p>
+                        <p>edit</p>
+                    {% endif %}
+                    <hr>
                 {% endif %}
             {% endfor %}
     </div>
