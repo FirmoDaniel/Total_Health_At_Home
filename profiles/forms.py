@@ -40,11 +40,9 @@ class TestimonialForm(forms.ModelForm):
     class Meta:
         model = Testimonial
         fields = '__all__'
-        
-
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user')
+        self.user = kwargs.pop('user')  # get user to check if superuser
         super(TestimonialForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['readonly'] = True
         if self.user.is_superuser:
@@ -59,10 +57,14 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Review
-        exclude = ('approved',)
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')  # get user to check if superuser
         super(ReviewForm, self).__init__(*args, **kwargs)
-        product = Product.objects.all()  # setting product variable
         self.fields['username'].widget.attrs['readonly'] = True
-        self.fields['name'].initial = 'product.name'  # trying to set product.id as initial 
+        self.fields['name'].widget.attrs['readonly'] = True
+        if self.user.is_superuser:
+            self.fields['approved'].widget.attrs['disabled'] = False
+        else:
+            self.fields['approved'].widget.attrs['disabled'] = True
