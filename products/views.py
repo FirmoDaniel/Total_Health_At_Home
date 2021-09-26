@@ -44,9 +44,9 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
-def product_detail(request, product_id):
+def product_detail(request, product_id): 
     """ A view to show individual product details and thier specific reviews """
-    product = get_object_or_404(Product, pk=product_id)
+    product = get_object_or_404(Product, pk=product_id)  #  this was product_id
     reviews = Review.objects.filter(name=product.id)  # get only reviews related to the specific product on display
     approved_reviews = Review.objects.filter(name=product.id, approved=True)  # get only reviews related to the specific product on display which are approved
     postivie_feedback = Review.objects.filter(name=product.id, feedback=True, approved=True)  # get only positive reviews related to the specific product on display which are approved

@@ -147,7 +147,7 @@
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Your Purchased Products :</p></div>
                                 {% for order in orders %}
                                     {% for item in order.lineitems.all %}
-                                            <div class="col text-left"><p> {{ item.product.name }} {{ item.product.id }} <span><a href="{% url 'test_review' item.product.id %}">Rate It</a></span></p></div>
+                                            <div class="col text-left"><p> {{ item.product.name }} {{ item.product.id }} <span><a href="{% url 'add_review' item.product.id %}">Rate It</a></span></p></div>
                                     
                                     {% endfor %}  
                                 {% endfor %} 

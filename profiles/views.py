@@ -131,7 +131,7 @@ def delete_testimonial(request, testimonial_id):
 
 #  TEST REVIEW
 @login_required
-def test_review(request, product_id):
+def add_review(request, product_id):
     """render a pre-populated form with product id from profile purchased products """
     product = get_object_or_404(Product, pk=product_id)
     
@@ -144,35 +144,12 @@ def test_review(request, product_id):
         else:
             messages.error(request, 'Failed to add Review. Please ensure your form is valid.')
     else:
-        form = ReviewForm(initial={'username': request.user, 'name': product.name}, user=request.user)
+        form = ReviewForm(initial={'username': request.user, 'name': product.id}, user=request.user)
 
-    template = 'profiles/test_review.html'
+    template = 'profiles/add_review.html'
     context = {
         'product': product,
         'form':form,
-    }
-
-    return render(request, template, context)
-
-
-#  FROM PRODUCTS EG OLD
-@login_required
-def add_review(request):
-    """ Add a review using a product list """
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Successfully added review!')
-            return redirect(reverse('products'))
-        else:
-            messages.error(request, 'Failed to add Review. Please ensure your form is valid.')
-    else:
-        form = ReviewForm(
-                        initial={'username': request.user})  # prepop the user name in form
-    template = 'products/add_review.html'
-    context = {
-        'form': form,
     }
 
     return render(request, template, context)
