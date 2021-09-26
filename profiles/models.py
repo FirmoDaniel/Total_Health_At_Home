@@ -49,7 +49,7 @@ class Review(models.Model):
 
     username = models.CharField(max_length=64, null=False, blank=False)
     name = models.CharField(max_length=64, null=False, blank=False)
-    description = models.TextField(null=False, blank=False, default='The site helped me achieve my goals')
+    description = models.TextField(null=False, blank=False, default='This product helped me achieve my goals')
     feedback = models.BooleanField(default=False, null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
 

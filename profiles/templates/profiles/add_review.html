@@ -4,22 +4,27 @@
 
 {% block content %}
 <div class="container">
-    <h1>You Are Reviewing </h1>
-    <p>{{ product.id }}</p>
-    <p>{{ product.name }}</p>
+    {% if existing_reviews > 0 %}
+        <p>You have already revied this product <a href="{% url 'product_detail' product.id %}">here</a></p>
+    {% else %}
+        <h1>You Are Reviewing </h1>
+        <p>product id :{{ product.id }}</p>
+        <p>{{ product.name }}</p>
+        <p> number of existing reviews: {{ existing_reviews }}</p>
 
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <form method="POST" action="{% url 'add_review' product.id %}" class="form mb-2" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'profile' %}">Cancel</a>
-                    <button class="btn btn-black rounded-0" type="submit">Submit</button>
-                </div>
-            </form>
-        </div>            
-    </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <form method="POST" action="{% url 'add_review' product.id %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-right">
+                        <a class="btn btn-outline-black rounded-0" href="{% url 'profile' %}">Cancel</a>
+                        <button class="btn btn-black rounded-0" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
 

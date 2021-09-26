@@ -134,6 +134,9 @@ def delete_testimonial(request, testimonial_id):
 def add_review(request, product_id):
     """render a pre-populated form with product id from profile purchased products """
     product = get_object_or_404(Product, pk=product_id)
+
+    users_existing_reviews = Review.objects.filter(name=product.id, username=request.user)
+    existing_reviews = len(users_existing_reviews)
     
     if request.method == 'POST':
         form = ReviewForm(request.POST, user=request.user)
@@ -150,6 +153,7 @@ def add_review(request, product_id):
     context = {
         'product': product,
         'form':form,
+        'existing_reviews': existing_reviews,
     }
 
     return render(request, template, context)
