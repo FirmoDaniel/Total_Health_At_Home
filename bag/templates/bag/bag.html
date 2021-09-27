@@ -2,44 +2,40 @@
 {% load static %}
 
 {% block content %}
-<div class="container mb-2">
-    {% if bag_items %}
-        <div class="container mb-3">
-            <div class="row row-cols-2">
-                <div class="col text-center text-capitalize">Order Total: €{{ total | floatformat:2 }}</div>
-                <div class="col text-center text-capitalize">
-                    bag Contents : {{ product_count }}
-                </div>
-                <div class="col text-center">
-                    <a href="{% url 'products' %}" class="btn">
-                        <span class="internal-link">Keep Shopping</span>
-                    </a>
-                </div>
-                <div class="col text-center">
-                    <a href="{% url 'checkout' %}" class="btn">
-                        <span class="internal-link">Secure Checkout</span>
-                    </a>
+<div class="container-fluid bg-grey">
+    <div class="container mb-2">
+        {% if bag_items %}
+            <div class="container mb-3">
+                <div class="row row-cols-2">
+                    <div class="col text-center text-capitalize">Order Total: €{{ total | floatformat:2 }}</div>
+                    <div class="col text-center text-capitalize">
+                        bag Contents : {{ product_count }}
+                    </div>
+                    <div class="col text-center">
+                        <a href="{% url 'products' %}" class="btn">
+                            <span class="internal-link">Keep Shopping</span>
+                        </a>
+                    </div>
+                    <div class="col text-center">
+                        <a href="{% url 'checkout' %}" class="btn">
+                            <span class="internal-link">Secure Checkout</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    {% else %}
-        <div>
-            <div class="row m-2">
-                <h3 class="">Whoops! Your bag is empty. 
-                    <a href="{% url 'products' %}" class="btn btn-lg">
-                    <span class="internal-link">Keep Shopping</span></a>
-                </h3>
+        {% else %}
+            <div>
+                <div class="row m-2">
+                    <h3 class="">Whoops! Your bag is empty. 
+                        <a href="{% url 'products' %}" class="btn btn-lg">
+                        <span class="internal-link">Keep Shopping</span></a>
+                    </h3>
+                </div>
             </div>
-        </div>
-    {% endif %}
-    
-
-
-
-    <!--New cards-->
-    {% if bag_items %}
-    <div class="row">
-        {% for item in bag_items %}
+        {% endif %}
+        {% if bag_items %}
+        <div class="row">
+            {% for item in bag_items %}
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="card h-100 border-0">
                         {% if item.product.image %}
@@ -78,7 +74,8 @@
                 </div>
                 {% endfor %}
             {% endif %}
-    </div> 
+        </div> 
+    </div>
 </div>
 {% endblock %}
 

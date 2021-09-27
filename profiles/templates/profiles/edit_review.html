@@ -3,11 +3,10 @@
 
 
 {% block content %}
-<div class="container">
+<div class="container-fluid bg-grey">
+    <div class="container">
         <h1>You Are Editing  </h1>
         <p>product id : </p>
-        <p></p>
-
         <div class="row">
             <div class="col-12 col-md-6">
                 <form method="POST" action="{% url 'edit_review' review.id %}" class="form mb-2" enctype="multipart/form-data">
@@ -20,6 +19,7 @@
                 </form>
             </div>            
         </div>
+    </div>
 </div>
 {% endblock %}
 

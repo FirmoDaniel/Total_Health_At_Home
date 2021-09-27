@@ -8,6 +8,7 @@
 
 {% block content %}
     <!--Collaspables-->
+  <div class="container-fluid bg-grey">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -128,21 +129,20 @@
             </div>
           </div>
     </div>
-    <!--course-->
     <div class="container">
-        <!--end of order summary-->
-        <div class="row">
-			<div class="col-12 col-lg-7 text-center">
-                {% if from_profile %}
-                    <a href="{% url 'profile' %}" class="btn">
-                        <span class="internal-link">Back to Profile</span>
-                    </a>
-                {% else %}
-                    <a href="{% url 'products' %}" class="btn">
-                        <span class="internal-link">Back to Products</span>
-                    </a>
-                {% endif %}
-			</div>
-		</div>
+      <div class="row">
+			  <div class="col-12 col-lg-7 text-center">
+          {% if from_profile %}
+              <a href="{% url 'profile' %}" class="btn">
+                  <span class="internal-link">Back to Profile</span>
+              </a>
+          {% else %}
+              <a href="{% url 'products' %}" class="btn">
+                  <span class="internal-link">Back to Products</span>
+              </a>
+          {% endif %}
+			  </div>
+		  </div>
     </div>
+  </div>
 {% endblock %}

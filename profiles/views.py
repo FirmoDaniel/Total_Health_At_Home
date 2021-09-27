@@ -66,6 +66,9 @@ def order_history(request, order_number):
 @login_required
 def add_testimonial(request):
     """ Add a Testimonial to the store """
+    users_existing_testimonials = Testimonial.objects.filter(username=request.user)
+    existing_testimonials = len(users_existing_testimonials)
+
     if request.method == 'POST':
         form = TestimonialForm(request.POST, user=request.user)
         if form.is_valid():
@@ -80,6 +83,7 @@ def add_testimonial(request):
     template = 'profiles/add_testimonial.html'
     context = {
         'form': form,
+        'existing_testimonials': existing_testimonials,
     }
 
     return render(request, template, context)
