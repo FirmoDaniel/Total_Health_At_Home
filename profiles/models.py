@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from products.models import Product
 
 from django_countries.fields import CountryField
-
+from datetime import datetime
 
 class UserProfile(models.Model):
     """
@@ -39,6 +39,10 @@ class Testimonial(models.Model):
     username = models.CharField(max_length=64, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
+    date = models.DateTimeField(auto_now_add=True)
+    
+    def shortdate(self):
+        return self.date.strftime('%d %b %Y')
 
     def __str__(self):
         return self.username
@@ -52,6 +56,10 @@ class Review(models.Model):
     description = models.TextField(null=False, blank=False)
     feedback = models.BooleanField(default=False, null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def shortdate(self):
+        return self.date.strftime('%d %b %Y')
 
     def __str__(self):
         return self.username

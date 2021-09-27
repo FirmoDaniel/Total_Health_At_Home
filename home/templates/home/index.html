@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="row">
                                         <small class="text-white pl-3"><i class="fas fa-star mr-1 text-green"></i>{{ product.rating }} /
-                                            20</small>
+                                            10</small>
                                     </div>
                                 </div>
                                 
@@ -73,19 +73,19 @@
     <!--Testimonials (List)-->
     {% if user.is_authenticated %}
     <div class="container">
-       <p>After your first purchase you can submit testimonials and product ratings from the feedback section on your profile page. <a href="{% url 'profile' %}" class="internal-link">My Profile</a></p> 
+       <p>Now that you've signed up, we'd appreciate any feedback you have for us. You can submit a testimonial <a href="{% url 'profile' %}" class="internal-link">here</a></p> 
     </div>
     {% endif %}
     <div class="container bg-blue pb-4 mb-2">
-        <h2  class="shadows-white border-bottom-green">What are people saying about us ?</h2>
+        <h2 class="shadows-white border-bottom-green">What are people saying about us ?</h2>
         {% for testimonial in testimonials %}
             {% if testimonial.approved %}
         <div class="list-group">
             <div class="list-group-item bg-grey">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><span class="text-green">"{{ testimonial.username }}"</span> said : </h5>
+                    <p class="mb-1 text-small">Submitted by: <span>"{{ testimonial.username }}"</span></p>
                 </div>
-                <p class="mb-1 text-muted">{{ testimonial.description }}</p>
+                <p class="mb-1">{{ testimonial.description }} <span class="text-muted">( {{ testimonial.shortdate }} )</span></p>
             </div>
         </div>
         {% endif %}
