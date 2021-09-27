@@ -54,8 +54,8 @@ def product_detail(request, product_id):
     feedback = 0 
     number_of_reviews = 0
 
-    positive = len(postivie_feedback)  # get number of positive/true feedbacks > should be 2 on dancemachine
-    negative = -len(negative_feedback)  # get number of positive/true feedbacks > should be 1 on dancemachine
+    positive = len(postivie_feedback)  # get number of positive/true feedbacks
+    negative = -len(negative_feedback)  # get number of negative/false feedbacks
     live_rating = product.rating + positive + negative
     if live_rating < 0:
         live_rating = 0
