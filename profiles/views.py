@@ -22,19 +22,19 @@ def profile(request):
     order = Order.objects.all()
 
     if request.method == 'POST':
-        form_UserProfileForm = UserProfileForm(request.POST, instance=profile)
-        if form_UserProfileForm.is_valid():
-            form_UserProfileForm.save()
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
             messages.success(request, 'Profile updated successfully')
         else:
             messages.error(request, 'Update failed. Please ensure the form is valid')
     else:
-        form_UserProfileForm = UserProfileForm(instance=profile)
+        form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
 
     template = 'profiles/profile.html'
     context = {
-        'form_UserProfileForm': form_UserProfileForm,
+        'form': form,
         'orders': orders,
         'on_profile_page': True,
         'testimonials': testimonials,

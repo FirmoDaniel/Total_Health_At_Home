@@ -14,14 +14,13 @@
                 <hr>
             </div>
         </div>
-        <!--new layout-->
         <div id="accordion">
-            <!--Card 1 Customer Information-->
+            <!--Card 1 Customer Information -->
             <div class="card">
                 <div class="card-header bg-white" id="headingOne">
                     <h5 class="mb-0">
                         <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                         Customer Info. <span class="per-marker-green">!</span>
+                         My Info. <span class="per-marker-green">!</span>
                         </button>
                     </h5>
                 </div>
@@ -29,13 +28,13 @@
                     <div class="card-body bg-white">
                         <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                             {% csrf_token %}
-                            {{ form_UserProfileForm|crispy }}
+                            {{ form|crispy }}
                             <button class="btn internal-link">Update Information</button>
                         </form>
                     </div>
                 </div>
             </div>
-            <!--Card 2 Order History-->
+            <!--Card 2 Previous Orders-->
             <div class="card">
                 <div class="card-header bg-white" id="headingTwo">
                 <h5 class="mb-0">

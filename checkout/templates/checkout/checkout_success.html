@@ -40,7 +40,7 @@
                 <div class="card-body bg-white">
                     <div class="row">
                         <div class="col"><p class= "mb-0 font-weight-bold" >Order Date :</p></div>
-                        <div class="col text-left"><p >{{ order.date }}</p></div>   
+                        <div class="col text-left"><p >{{ order.shortdate }}</p></div>   
                     </div>
                     <div class="row">
                         <div class="col"><p class= "mb-0 font-weight-bold" >Order No. :</p></div>
@@ -69,11 +69,17 @@
                     <div class="row">
                         <div class="col"><p class= "mb-0 font-weight-bold" >Product : {{ forloop.counter }}</p></div>
                         <div class="col text-left">
-                          <p> {{ item.product.name }} ( <strong>Category :</strong> {{ item.product.category.friendly_name}} ) 
-                            <span><a href="{% url 'product_detail' item.product.id %}">Details</a></span>
+                          <p> {{ item.product.name }}
+                            <span><a class="small plain-anchor" href="{% url 'product_detail' item.product.id %}">(Details)</a></span>
                           </p>
                         </div>   
                     </div>
+                    <div class="row">
+                      <div class="col"><p class= "mb-0 font-weight-bold" >Category :</p></div>
+                      <div class="col text-left">
+                        <p>{{ item.product.category.friendly_name }}</p>
+                      </div>   
+                  </div>
                     <hr>
                     {% endfor %}
                     <div class="row">
