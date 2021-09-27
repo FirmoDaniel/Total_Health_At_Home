@@ -59,15 +59,12 @@ def product_detail(request, product_id):
     live_rating = product.rating + positive + negative
     if live_rating < 0:
         live_rating = 0
-    elif live_rating > 100:  # change this back to 10
+    elif live_rating > 10:
         live_rating = 10
     else:
         live_rating
 
-
-
     number_of_reviews = len(approved_reviews)  # get the len of the reviews loop.
-    
 
     context = {
         'product': product,

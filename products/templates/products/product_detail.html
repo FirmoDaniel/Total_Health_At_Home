@@ -5,78 +5,73 @@
 {% endblock %}
 
 {% block content %}
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
-                <div class="image-container my-5">
-                    {% if product.image %}
-                        <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </a>
-                        {% else %}
-                        <a href="">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
-                <div class="product-details-container mb-5 mt-md-5">
-                    <p class="lead mb-3 font-weight-bold"><span class="border-bottom-green">{{ product.name }}</span></span></p>
-                    <p class="lead mb-0 text-left">€{{ product.price }}</p>
-                    <p class="mt-3">{{ product.description }}</p>
-                    <p class="lead mb-0 text-left">
-                        <a class="text-muted" href="{% url 'products' %}?category={{ product.category }}">
-                            {{ product.category.friendly_name }}
-                        </a>
-                    </p>
-                    <p class="mb-0">At Home:{% if product.home %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
-                    <p class="mb-0">Outdoors:{% if product.outdoors %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
-                    <p class="mb-0">By Day:{% if product.day %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
-                    <p class="mb-0">At Night:{% if product.night %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
-                    
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i> Rating: {{ product.rating }}</small>
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i> postitive: {{ positive }}</small>
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i> negative: {{ negative }}</small>
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i> live rating (r+f): {{ live_rating }}</small>
-
-                    <!-- no. customer reviews-->   
-                    {% if number_of_reviews %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i> Customer Reviews: {{ number_of_reviews }}</small>
-                    {% else %}
-                    <small class="text-muted"><i class="fas fa-star mr-1"></i> Customer Reviews: be the first to review </small>
-                    {% endif %}
-                    <p>
-                        {% if request.user.is_anonymous %}
-                        Verified users get access to a Wellness element for free.<a class="internal-link" href="{% url 'account_signup' %}"> Sign Up</a> / 
-                        <a class="internal-link" href="{% url 'account_login' %}"> Login.</a>
-                        {% endif %}
-                    </p>
-                    {% if request.user.is_superuser %}
-                        <small class="ml-3">
-                            <a href="{% url 'edit_product' product.id %}">Edit</a>
-                            <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                        </small>  
-                    {% endif %}
-                     <!--Form to post product to the bag-->
-                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="col">
-                            <a href="{% url 'products' %}" class="btn mt-5">
-                                <i class="fas fa-arrow-left"></i>
-                                <span class="internal-link">Back to Products</span>
+    <div class="container-fluid bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
+                    <div class="image-container my-5">
+                        {% if product.image %}
+                            <a href="{{ product.image.url }}" target="_blank">
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>
-                            <input type="submit" class="btn mt-5 bg-blue per-marker-white" value="Add to Bag">
-                        </div>
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    </form>
+                            {% else %}
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 offset-lg-1">
+                    <div class="product-details-container mb-5 mt-md-5">
+                        <p class="lead mb-3 font-weight-bold"><span class="border-bottom-green">{{ product.name }}</span></span></p>
+                        <p class="lead mb-0 text-left">€{{ product.price }}</p>
+                        <p class="mt-3">{{ product.description }}</p>
+                        <p class="lead mb-0 text-left">
+                            <a class="text-muted" href="{% url 'products' %}?category={{ product.category }}">
+                                {{ product.category.friendly_name }}
+                            </a>
+                        </p>
+                        <p class="mb-0">At Home:{% if product.home %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                        <p class="mb-0">Outdoors:{% if product.outdoors %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                        <p class="mb-0">By Day:{% if product.day %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                        <p class="mb-0">At Night:{% if product.night %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
+                        
+                        <!-- no. customer reviews-->   
+                        {% if number_of_reviews %}
+                            <small class="text-muted"><i class="{% if live_rating > 5 %} text-green {% else %} text-orange {% endif %}fas fa-star mr-1"></i> Cutomer Rating: {{ live_rating }}/10</small>
+                            <small class="text-muted"><i class="fas fa-star mr-1"></i> By {{ number_of_reviews }} customers.</small>
+                        {% else %}
+                            <small class="text-muted"><i class="fas fa-star mr-1"></i> Be the first to review this product from your profile page.</a></small>
+                        {% endif %}
+                        <p>
+                            {% if request.user.is_anonymous %}
+                            Verified users get access to a Wellness element for free.<a class="internal-link" href="{% url 'account_signup' %}"> Sign Up</a> / 
+                            <a class="internal-link" href="{% url 'account_login' %}"> Login.</a>
+                            {% endif %}
+                        </p>
+                        {% if request.user.is_superuser %}
+                            <small class="ml-3">
+                                <a href="{% url 'edit_product' product.id %}">Edit</a>
+                                <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                            </small>  
+                        {% endif %}
+                        <!--Form to post product to the bag-->
+                        <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="col">
+                                <a href="{% url 'products' %}" class="btn mt-5">
+                                    <span class="internal-link">Back to Products</span>
+                                </a>
+                                <input type="submit" class="btn mt-5 bg-blue per-marker-white" value="Add to Bag">
+                            </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--reviews-->
-    <div class="container">
+        <!--reviews-->
+        <div class="container">
             {% for review in reviews %}
                 {% if review.approved %}
                     <p> No. of product reviews: {{ forloop.counter}}</p>
@@ -92,24 +87,8 @@
                     <hr>
                 {% endif %}
             {% endfor %}
+        </div>
     </div>
-    <div class="container">
-        {% if user.is_superuser %}
-            {% for review in reviews %}
-                {% if not review.approved %}
-                    <p> No. of product reviews: {{ forloop.counter}}</p>
-                    <p>username: {{ review.username }}</p>
-                    <p>product name: {{ review.name }}</p>
-                    <p>description: {{ review.description }}</p>
-                    <p>feedback: {{ review.feedback }}</p>
-                    <p>approved: {{ review.approved }}</p>
-                    <p><a href="{% url 'delete_review' review.id %}">Delete</a></p>
-                    <p><a href="{% url 'edit_review' review.id %}">Edit</a></p>
-                {% endif %}
-                <hr>
-            {% endfor %}
-        {% endif %}
-</div>
 {% endblock %}
 
 {% block postloadjs %}

@@ -33,6 +33,10 @@
     color: red;
 }
 
+.text-orange{
+    color: orange;
+}
+
 .shadows-white{
     font-family: 'Shadows Into Light', sans-serif;
     color: white;
@@ -69,8 +73,6 @@
 .bg-grey{
 	background: whitesmoke!important;
 }
-
-
 
 .bg-blue{
     background-color: rgb(106, 164, 187)!important;

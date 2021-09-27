@@ -31,14 +31,13 @@
             {% endif %}
         </p>
     </div>
-    <!--Offer Cards, Highest rated displayed to user-->
     <br>
         <div class="container mb-5">
             <div class="row mb-2">
-                <div class="col-sm-6 col-md-6 col-lg-4 per-marker-green"><h2>Top Rated</h2></div>
+                <div class="col-sm-6 col-md-6 col-lg-4 per-marker-green"><h2>Our Products</h2><span><a class="small plain-anchor" href="{% url 'products' %}">See more</a></span></div>
             </div>
             <div class="row">
-                {% for product in products|dictsortreversed:"rating" %}
+                {% for product in products %}
                     {% if forloop.counter <= 3 %}
                         <div class="col-sm-6 col-md-6 col-lg-4 mb-1">
                             <div class="card h-100 border-0">
@@ -57,10 +56,6 @@
                                     <p class="mb-0 per-marker-white">{{ product.name }}</p>
                                     <div class="row">
                                         <p class="text-white pl-3 mb-0"><i class="fas fa-euro-sign mr-1 text-green"></i>{{ product.price }}</p>
-                                    </div>
-                                    <div class="row">
-                                        <small class="text-white pl-3"><i class="fas fa-star mr-1 text-green"></i>{{ product.rating }} /
-                                            10</small>
                                     </div>
                                 </div>
                                 

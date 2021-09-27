@@ -66,11 +66,11 @@
                                     <p class="my-0"><strong>By Day:</strong>{% if item.product.day %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                                     <p class="my-0"><strong>At Night:</strong>{% if item.product.night %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                                     {% if request.user.is_anonymous %}
-                                        <p class="my-0" data-toggle="tooltip" data-placement="bottom" title="login or register to include for free"><strong>Wellness Included:</strong> <i class="fas fa-times mr-1 text-red"></i></p>
+                                        <p class="my-0" data-toggle="tooltip" data-placement="bottom" title="login or register to include for free"><strong class="border-bottom-blue">Wellness Included:</strong> <i class="fas fa-times mr-1 text-red"></i></p>
                                     {% else %} 
                                         <p class="my-0"><strong>Wellness Included:</strong><i class="fas fa-check mr-1 text-green"></i></p>
                                     {% endif %}
-                                    <a class="remove-item btn p-0 text-danger float-left" id="remove_{{ item.item_id }}" data-size=""><medium>Remove</medium></a>
+                                    <a class="remove-item btn p-0 text-danger float-left" id="remove_{{ item.item_id }}" data-size=""><medium>Remove this item.</medium></a>
                                 </div>
                             </div>
                         </div>
