@@ -44,6 +44,7 @@
   </head>
   <body>
     <header>
+      <div class="container-fluid bg-grey">
     <div class="container p-0">
       <nav class="navbar navbar-expand-lg navbar-light bg-blue">
         <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-home fa-lg text-green"></i></a>
@@ -90,6 +91,7 @@
         </div>
       </nav>
     </div>
+  </div>
   </header>
 
     {% if messages %}
@@ -117,12 +119,12 @@
     {% block content %}
         <!--This is where page contents go-->
     {% endblock %}
-
-    <footer class="bg-blue" id="footer">
+        <!-- removed footer-->
+    <!-- <footer class="bg-blue" id="footer">
           <a class="footer-items" href="https://www.facebook.com" target="_blank" rel="noopener"><i class="fab fa-facebook-square" aria-hidden="true"></i><span>Facebook</span></a>
           <a class="footer-items" href="https://www.twitter.com" target="_blank" rel="noopener"><i class="fab fa-twitter-square" aria-hidden="true"></i><span>Twitter</span></a>
           <a class="footer-items" href="https://www.instagram.com" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
-    </footer>
+    </footer> -->
 
     {% block postloadjs %}
     <script type="text/javascript">

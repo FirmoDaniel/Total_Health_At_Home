@@ -66,6 +66,12 @@
 
 /*-------------------------------------------------BACKGROUND COLOURS*/
 
+.bg-grey{
+	background: whitesmoke!important;
+}
+
+
+
 .bg-blue{
     background-color: rgb(106, 164, 187)!important;
 }
@@ -177,16 +183,6 @@
 
 /*------------------------------------------------------------------------------FROM COURSE*/
 
-/*---------------------------overlay may not be needed.*/
-.overlay {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: white;
-	z-index: -1;
-}
 
 /*----------------------------TOASTS AND MESSAGES*/
 .message-container {

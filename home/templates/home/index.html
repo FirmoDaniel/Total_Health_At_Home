@@ -3,6 +3,7 @@
 
 
 {% block content %}
+<div class="container-fluid bg-grey">
     <div class="container img-fluid" id="heroImage"></div>
     <div class="container per-marker-white bg-blue" id="index-hero">
         <h1 class="text-center"><span class="text-green">W</span>elcome to <span class="text-green">T</span>otal <span class="text-green">H</span>ealth at <span class="text-green">H</span>ome</h1>
@@ -62,19 +63,7 @@
                                             20</small>
                                     </div>
                                 </div>
-                                <!--<div class="card-footer bg-white pt-0 border-0 text-left">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="lead mb-0 text-left">€{{ product.price }}</p>
-                                            {% if product.rating %}
-                                            <small class="text-muted"><i class="fas fa-star mr-1 text-green"></i>{{ product.rating }} /
-                                                20</small>
-                                            {% else %}
-                                            <small class="text-muted">No Rating</small>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>-->
+                                
                             </div>
                         </div>
                     {% endif %}
@@ -88,11 +77,11 @@
     </div>
     {% endif %}
     <div class="container bg-blue pb-4 mb-2">
-        <h2  class="shadows-white border-bottom-green">What are people saying about us ? (TESTIMONIALS NOT APPROVED DON'T SHOW)</h2>
+        <h2  class="shadows-white border-bottom-green">What are people saying about us ?</h2>
         {% for testimonial in testimonials %}
             {% if testimonial.approved %}
         <div class="list-group">
-            <div class="list-group-item">
+            <div class="list-group-item bg-grey">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><span class="text-green">"{{ testimonial.username }}"</span> said : </h5>
                 </div>
@@ -102,6 +91,7 @@
         {% endif %}
         {% endfor %}
     </div>
+</div>
     
 {% endblock %}
 

@@ -32,8 +32,6 @@ def profile(request):
         form_UserProfileForm = UserProfileForm(instance=profile)
     orders = profile.orders.all()
 
-   
-
     template = 'profiles/profile.html'
     context = {
         'form_UserProfileForm': form_UserProfileForm,
@@ -129,7 +127,8 @@ def delete_testimonial(request, testimonial_id):
     return redirect(reverse('profile'))
 
 
-#  TEST REVIEW
+#  REVIEWS
+
 @login_required
 def add_review(request, product_id):
     """render a pre-populated form with product id from profile purchased products """
