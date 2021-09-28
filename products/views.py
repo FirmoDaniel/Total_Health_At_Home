@@ -70,8 +70,6 @@ def product_detail(request, product_id):
         'product': product,
         'reviews': reviews,
         'number_of_reviews': number_of_reviews,  # working
-        'positive': positive,
-        'negative': negative,
         'live_rating': live_rating,
     }
 

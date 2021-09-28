@@ -76,12 +76,6 @@
                                                 <p class="mb-0">At Night:{% if product.night %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                                                 <p class="mb-0">Outdoors:{% if product.outdoors %} <i class="fas fa-check mr-1 text-green"></i> {% else %} <i class="fas fa-times mr-1 text-red"></i> {% endif %}</p>
                                             {% endif %}
-                                            {% if request.user.is_superuser %}
-                                                <small class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}">Edit</a>
-                                                    <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                                                </small>  
-                                            {% endif %}
                                             <p class="lead mb-0 text-left">
                                                 <a class=" btn btn-sm bg-green shadows-white" 
                                                 href="{% url 'product_detail' product.id %}"> More Info

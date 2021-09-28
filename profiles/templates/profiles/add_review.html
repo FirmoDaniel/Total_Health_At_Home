@@ -8,9 +8,8 @@
         {% if existing_reviews > 0 %}
             <p>You have already revied this product <a href="{% url 'product_detail' product.id %}">here</a></p>
         {% else %}
-            <h1>You Are Reviewing </h1>
+            <h1>You Are Reviewing: {{ product.name }} </h1>
             <p>product id :{{ product.id }}</p>
-            <p>{{ product.name }}</p>
             <p> number of existing reviews: {{ existing_reviews }}</p>
             <div class="row">
                 <div class="col-12 col-md-6">

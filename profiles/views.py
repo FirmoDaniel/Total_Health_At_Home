@@ -178,7 +178,7 @@ def delete_review(request, review_id):
 @login_required
 def edit_review(request, review_id):
     """ Edit a Review """
-    
+   
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))

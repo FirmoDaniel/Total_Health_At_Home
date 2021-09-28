@@ -38,7 +38,7 @@
                         
                         <!-- no. customer reviews-->   
                         {% if number_of_reviews %}
-                            <small class="text-muted"><i class="{% if live_rating > 5 %} text-green {% else %} text-orange {% endif %}fas fa-star mr-1"></i> Cutomer Rating: {{ live_rating }}/10</small>
+                            <small class="text-muted"><i class="{% if live_rating >= 5 %} text-green {% else %} text-orange {% endif %}fas fa-star mr-1"></i> Cutomer Rating: {{ live_rating }}/10</small>
                             <small class="text-muted"><i class="fas fa-star mr-1"></i> By {{ number_of_reviews }} customers.</small>
                         {% else %}
                             <small class="text-muted"><i class="fas fa-star mr-1"></i> Be the first to review this product from your profile page.</a></small>
@@ -70,21 +70,39 @@
                 </div>
             </div>
         </div>
-        <!--reviews-->
-        <div class="container">
+        <!--Current User's review-->
+        <div class="container bg-blue pb-4 mb-2">
             {% for review in reviews %}
+                {% if review.username == request.user.username %}
+                    <h2 class="shadows-white border-bottom-green"> Your review </h2>
+                    <div class="list-group">
+                        <div class="list-group-item bg-grey">
+                            {% if review.approved %}
+                                <i class="{% if review.feedback %} text-green {% else %} text-orange {% endif %} fas fa-star mr-1"></i>
+                            {% else %}
+                                <p class="text-orange font-weight-bold">This review is pending approval.</p>
+                            {% endif %}
+                            <p class="mb-1 text-small">"{{ review.username }}" said, {{ review.description|capfirst }}</p>
+                            <p class="small text-muted"> {{ review.shortdate }} </p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <!--Approved reviews-->
+            <h2 class="shadows-white border-bottom-green"> ({{ number_of_reviews }}) Customer Reviews </h2>
+            {% for review in reviews|dictsortreversed:"date" %}
                 {% if review.approved %}
-                    <p> No. of product reviews: {{ forloop.counter}}</p>
-                    <p>username: {{ review.username }}</p>
-                    <p>product name: {{ review.name }}</p>
-                    <p>description: {{ review.description }}</p>
-                    <p>feedback: {{ review.feedback }}</p>
-                    <p>approved: {{ review.approved }}</p>
-                    {% if user.is_superuser %}
-                        <p><a href="{% url 'delete_review' review.id %}">Delete</a></p>
-                        <p><a href="{% url 'edit_review' review.id %}">Edit</a></p>
-                    {% endif %}
-                    <hr>
+                <div class="list-group">
+                    <div class="list-group-item bg-grey">
+                        <i class="{% if review.feedback %} text-green {% else %} text-orange {% endif %} fas fa-star mr-1"></i>
+                        <p class="mb-1 text-small">"{{ review.username }}" said, {{ review.description|capfirst }}</p>
+                        <p class="small text-muted"> {{ review.shortdate }} </p> 
+                        {% if user.is_superuser %}
+                            <span><a href="{% url 'delete_review' review.id %}">Delete</a></span>
+                            <span><a href="{% url 'edit_review' review.id %}">Edit</a></span>
+                        {% endif %} 
+                    </div>
+                </div> 
                 {% endif %}
             {% endfor %}
         </div>

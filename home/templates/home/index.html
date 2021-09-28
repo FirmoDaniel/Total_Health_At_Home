@@ -75,15 +75,15 @@
         <h2 class="shadows-white border-bottom-green">What are people saying about us ?</h2>
         {% for testimonial in testimonials %}
             {% if testimonial.approved %}
-        <div class="list-group">
-            <div class="list-group-item bg-grey">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1 text-small">Submitted by: <span>"{{ testimonial.username }}"</span></p>
+                <div class="list-group">
+                    <div class="list-group-item bg-grey">
+                        <div class="d-flex w-100 justify-content-between">
+                            <p class="mb-1 text-small">Submitted by: <span>"{{ testimonial.username }}"</span></p>
+                        </div>
+                        <p class="mb-1">{{ testimonial.description }} <span class="text-muted">( {{ testimonial.shortdate }} )</span></p>
+                    </div>
                 </div>
-                <p class="mb-1">{{ testimonial.description }} <span class="text-muted">( {{ testimonial.shortdate }} )</span></p>
-            </div>
-        </div>
-        {% endif %}
+            {% endif %}
         {% endfor %}
     </div>
 </div>
