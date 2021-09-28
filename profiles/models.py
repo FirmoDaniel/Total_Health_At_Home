@@ -7,6 +7,7 @@ from products.models import Product
 from django_countries.fields import CountryField
 from datetime import datetime
 
+
 class UserProfile(models.Model):
     """
     A user profile model for maintaining default
@@ -40,7 +41,7 @@ class Testimonial(models.Model):
     description = models.TextField(null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
-    
+
     def shortdate(self):
         return self.date.strftime('%d %b %Y')
 
@@ -49,14 +50,16 @@ class Testimonial(models.Model):
 
 #  REVIEW MODEL
 
+
 class Review(models.Model):
 
     username = models.CharField(max_length=64, null=False, blank=False)
+    pname = models.CharField(max_length=64, null=False, blank=False)
     name = models.CharField(max_length=64, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
     feedback = models.BooleanField(default=False, null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True,)
 
     def shortdate(self):
         return self.date.strftime('%d %b %Y')

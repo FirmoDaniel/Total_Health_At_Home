@@ -90,7 +90,7 @@
             {% endfor %}
             <!--Approved reviews-->
             <h2 class="shadows-white border-bottom-green"> ({{ number_of_reviews }}) Customer Reviews </h2>
-            {% for review in reviews|dictsortreversed:"date" %}
+            {% for review in reviews %}
                 {% if review.approved %}
                 <div class="list-group">
                     <div class="list-group-item bg-grey">

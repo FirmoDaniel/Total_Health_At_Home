@@ -3,7 +3,8 @@
     "model": "profiles.review",
     "fields": {
         "username": "test1",
-        "name": 1,
+        "pname": 1,
+        "name": "Dance Machine",
         "description": "this is for product dance machine",
         "feedback": true,
         "approved": true
@@ -13,7 +14,8 @@
     "model": "profiles.review",
     "fields": {
         "username": "test2",
-        "name": 2,
+        "pname": 2,
+        "name": "Dynamite",
         "description": "this is for dynamite",
         "feedback": false,
         "approved": true
@@ -23,7 +25,8 @@
     "model": "profiles.review",
     "fields": {
         "username": "test3",
-        "name": 3,
+        "pname": 3,
+        "name": "Mountain Lion",
         "description": "this is for Mountain Lion and not approved",
         "feedback": true,
         "approved": false

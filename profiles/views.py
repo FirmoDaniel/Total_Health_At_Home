@@ -138,9 +138,9 @@ def add_review(request, product_id):
     """render a pre-populated form with product id from profile purchased products """
     product = get_object_or_404(Product, pk=product_id)
 
-    users_existing_reviews = Review.objects.filter(name=product.id, username=request.user)
+    users_existing_reviews = Review.objects.filter(pname=product.id, username=request.user)
     existing_reviews = len(users_existing_reviews)
-    
+
     if request.method == 'POST':
         form = ReviewForm(request.POST, user=request.user)
         if form.is_valid():
@@ -150,12 +150,14 @@ def add_review(request, product_id):
         else:
             messages.error(request, 'Failed to add Review. Please ensure your form is valid.')
     else:
-        form = ReviewForm(initial={'username': request.user, 'name': product.id}, user=request.user)
+        form = ReviewForm(initial={'username': request.user,
+                                   'pname': product.id,
+                                   'name': product.name}, user=request.user)
 
     template = 'profiles/add_review.html'
     context = {
         'product': product,
-        'form':form,
+        'form': form,
         'existing_reviews': existing_reviews,
     }
 
