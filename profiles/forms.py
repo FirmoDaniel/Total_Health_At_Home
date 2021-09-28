@@ -57,12 +57,14 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Review
-        exclude = ('pname',)
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')  # get user to check if superuser
         super(ReviewForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['readonly'] = True
+        self.fields['pname'].widget.attrs['hidden'] = True
+        self.fields['pname'].label = False
         self.fields['name'].widget.attrs['readonly'] = True
         if self.user.is_superuser:
             self.fields['approved'].widget.attrs['disabled'] = False

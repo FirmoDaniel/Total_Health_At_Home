@@ -39,9 +39,11 @@
                         <!-- no. customer reviews-->   
                         {% if number_of_reviews %}
                             <small class="text-muted"><i class="{% if live_rating >= 5 %} text-green {% else %} text-orange {% endif %}fas fa-star mr-1"></i> Cutomer Rating: {{ live_rating }}/10</small>
-                            <small class="text-muted"><i class="fas fa-star mr-1"></i> By {{ number_of_reviews }} customers.</small>
+                            <small class="text-muted"><i class="fas fa-star mr-1"></i> By {{ number_of_reviews }} {% if number_of_reviews > 1 %} customers. {% else %} customer. {% endif %}</small>
                         {% else %}
-                            <small class="text-muted"><i class="fas fa-star mr-1"></i> Be the first to review this product from your profile page.</a></small>
+                            <small class="text-muted"><i class="fas fa-star mr-1"></i>
+                                Be the first to review this product from the 'My Feedback' section on your profile page.
+                            </small>
                         {% endif %}
                         <p>
                             {% if request.user.is_anonymous %}
@@ -89,8 +91,8 @@
                 {% endif %}
             {% endfor %}
             <!--Approved reviews-->
-            <h2 class="shadows-white border-bottom-green"> ({{ number_of_reviews }}) Customer Reviews </h2>
-            {% for review in reviews %}
+            <h2 class="shadows-white border-bottom-green"> ({{ number_of_reviews }}) Customer {% if number_of_reviews > 1 %} Reviews. {% else %} Review. {% endif %}</h2>
+            {% for review in reviews|dictsortreversed:'date' %}
                 {% if review.approved %}
                 <div class="list-group">
                     <div class="list-group-item bg-grey">

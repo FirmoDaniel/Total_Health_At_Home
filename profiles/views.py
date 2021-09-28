@@ -79,7 +79,7 @@ def add_testimonial(request):
             messages.error(request, 'Failed to add Testimonial. Please ensure your form is valid.')
     else:
         form = TestimonialForm(initial={'username': request.user}, user=request.user)  # prepop the user name in form
-    
+
     template = 'profiles/add_testimonial.html'
     context = {
         'form': form,
@@ -152,7 +152,8 @@ def add_review(request, product_id):
     else:
         form = ReviewForm(initial={'username': request.user,
                                    'pname': product.id,
-                                   'name': product.name}, user=request.user)
+                                   'name': product.name,
+                                   'feedback': 'checked'}, user=request.user)
 
     template = 'profiles/add_review.html'
     context = {

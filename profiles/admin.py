@@ -13,11 +13,14 @@ class TestimonialAdmin(admin.ModelAdmin):
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
         'username',
+        'pname',
         'name',
         'description',
         'feedback',
         'approved',
+        'date',
     )
+
 
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Review, ReviewAdmin)

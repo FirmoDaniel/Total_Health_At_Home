@@ -57,7 +57,7 @@ class Review(models.Model):
     pname = models.CharField(max_length=64, null=False, blank=False)
     name = models.CharField(max_length=64, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
-    feedback = models.BooleanField(default=False, null=False, blank=False)
+    feedback = models.BooleanField(default=True, null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True,)
 
