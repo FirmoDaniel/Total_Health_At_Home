@@ -67,10 +67,12 @@ class ReviewForm(forms.ModelForm):
         self.fields['pname'].widget.attrs['hidden'] = True
         self.fields['pname'].label = False
         self.fields['name'].widget.attrs['readonly'] = True
+        for __, field in self.fields.items():  # set classes on the fields
+            field.widget.attrs['class'] = 'generic-form'
 
         feedback_choices = (
-            (True, 'I liked it'),
-            (False, 'No Likey'),
+            (True, 'Overall my review is positive'),
+            (False, 'This is a negative review'),
         )
         self.fields['feedback'].widget = forms.RadioSelect(
             choices=feedback_choices, attrs={'required': 'required'})

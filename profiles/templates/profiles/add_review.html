@@ -2,23 +2,24 @@
 {% load static %}
 
 {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="conatiner-fluid bg-grey">
-    <div class="container">
+    <div class="container mt-3">
         {% if existing_reviews > 0 %}
             <p>You have already reveiwed this product <a class="plain-anchor" href="{% url 'product_detail' product.id %}">here</a></p>
         {% else %}
-            <h1>Your Review of : {{ product.name }} </h1>
-            <div class="row">
+            <h3>Your Review of : <span class="border-bottom-green">{{ product.name }}</span> </h3>
+            <div class="row mt-3">
                 <div class="col-12 col-md-6">
-                    <form method="POST" action="{% url 'add_review' product.id %}" class="form mb-2" enctype="multipart/form-data">
+                    <form method="POST" action="{% url 'add_review' product.id %}" class="mb-3" id="generic-form">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <div class="text-right">
-                            <a class="btn btn-outline-black rounded-0" href="{% url 'profile' %}">Cancel</a>
-                            <button class="btn btn-black rounded-0" type="submit">Submit</button>
+                        <div class="text-left">
+                            <a class="btn text-white bg-blue mr-2" href="{% url 'profile' %}">Cancel</a>
+                            <button class="btn internal-link" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>            

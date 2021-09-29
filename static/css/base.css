@@ -105,7 +105,7 @@
 
 .internal-link{
     border-bottom: 5px solid;
-    border-bottom-color: rgb(57, 250, 18);
+    border-bottom-color: rgb(57, 250, 18)!important;
     text-decoration: none!important;
     font-family:'Permanent Marker', sans-serif;
     color: rgb(106, 164, 187)!important;

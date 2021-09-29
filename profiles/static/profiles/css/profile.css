@@ -6,6 +6,19 @@
     color: #aab7c4;
 }
 
+
+/* generic form for add and edit reviewsand testimonials*/
+#generic-form .form-group label {
+    
+    color: rgb(106, 164, 187);
+    border-bottom: 3px solid rgb(57, 250, 18);
+}
+
+#generic-form .form-group .form-check-label {
+    border-bottom: none;
+}
+
+
 /* NOTE: there is js associated with the default country styles below */
 
 #id_default_country,
