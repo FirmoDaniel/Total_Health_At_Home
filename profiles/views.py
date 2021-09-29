@@ -181,14 +181,13 @@ def delete_review(request, review_id):
 @login_required
 def edit_review(request, review_id):
     """ Edit a Review """
-   
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
     review = get_object_or_404(Review, pk=review_id)
     if request.method == 'POST':
-        form = ReviewForm(request.POST, instance=review, user=request.user)  # added user to kwargs
+        form = ReviewForm(request.POST, instance=review, user=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated Review!')
