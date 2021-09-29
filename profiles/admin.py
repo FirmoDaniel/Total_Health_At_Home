@@ -10,6 +10,7 @@ class TestimonialAdmin(admin.ModelAdmin):
         'description',
     )
 
+
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
         'username',

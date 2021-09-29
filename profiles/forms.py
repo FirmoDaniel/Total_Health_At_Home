@@ -53,6 +53,7 @@ class TestimonialForm(forms.ModelForm):
 
 #  REVIEW FORM
 
+
 class ReviewForm(forms.ModelForm):
 
     class Meta:
@@ -66,6 +67,13 @@ class ReviewForm(forms.ModelForm):
         self.fields['pname'].widget.attrs['hidden'] = True
         self.fields['pname'].label = False
         self.fields['name'].widget.attrs['readonly'] = True
+
+        feedback_choices = (
+            (True, 'I liked it'),
+            (False, 'No Likey'),
+        )
+        self.fields['feedback'].widget = forms.RadioSelect(
+            choices=feedback_choices, attrs={'required': 'required'})
         if self.user.is_superuser:
             self.fields['approved'].widget.attrs['disabled'] = False
         else:
