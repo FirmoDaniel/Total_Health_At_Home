@@ -8,23 +8,31 @@
 {% block content %}
 <div class="conatiner-fluid bg-grey">
     <div class="container mt-3">
-        {% if existing_reviews > 0 %}
-            <p>You have already reveiwed this product <a class="plain-anchor" href="{% url 'product_detail' product.id %}">here</a></p>
-        {% else %}
-            <h3>Your Review of : <span class="border-bottom-green">{{ product.name }}</span> </h3>
-            <div class="row mt-3">
-                <div class="col-12 col-md-6">
-                    <form method="POST" action="{% url 'add_review' product.id %}" class="mb-3" id="generic-form">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <div class="text-left">
-                            <a class="btn text-white bg-blue mr-2" href="{% url 'profile' %}">Cancel</a>
-                            <button class="btn internal-link" type="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>            
-            </div>
-        {% endif %}
+    {% for order in orders|slice:'1' %}
+        {% for item in order.lineitems.all %}
+            {% if item.product.id == product.id %}
+                {% if existing_reviews > 0 %}
+                    <p>You have already reveiwed {{ product.name }} <a class="internal-link" href="{% url 'product_detail' product.id %}">here</a></p>
+                {% else %}
+                    <h3>Your Review of : <span class="border-bottom-green">{{ product.name }}</span> </h3>
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-6">
+                            <form method="POST" action="{% url 'add_review' product.id %}" class="mb-3" id="generic-form">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <div class="text-left">
+                                    <a class="btn text-white bg-blue mr-2" href="{% url 'profile' %}">Cancel</a>
+                                    <button class="btn internal-link" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>            
+                    </div>
+                {% endif %}
+            {% else %}
+                <p>{{ product.name }} doesn't appear to be in your <a class="internal-link" href="{% url 'profile' %}">order history.</a> </p> 
+            {% endif %}
+        {% endfor %}  
+    {% endfor %}
     </div>
 </div>
 {% endblock %}

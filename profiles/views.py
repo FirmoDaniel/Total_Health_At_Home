@@ -8,7 +8,7 @@ from .forms import TestimonialForm, ReviewForm
 from .models import UserProfile
 from .forms import UserProfileForm
 
-from checkout.models import Order, OrderLineItem
+from checkout.models import Order
 
 from products.models import Product
 
@@ -19,7 +19,6 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     testimonials = Testimonial.objects.all()  # get all testimonials
     user_testimonials = Testimonial.objects.filter(username=request.user)  # get only testimonial posted by current user
-    order = Order.objects.all()
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -137,6 +136,8 @@ def delete_testimonial(request, testimonial_id):
 def add_review(request, product_id):
     """render a pre-populated form with product id from profile purchased products """
     product = get_object_or_404(Product, pk=product_id)
+    profile = get_object_or_404(UserProfile, user=request.user)  # testing veri
+    orders = profile.orders.all()  # testing veri
 
     users_existing_reviews = Review.objects.filter(pname=product.id, username=request.user)
     existing_reviews = len(users_existing_reviews)
@@ -160,6 +161,7 @@ def add_review(request, product_id):
         'product': product,
         'form': form,
         'existing_reviews': existing_reviews,
+        'orders': orders,
     }
 
     return render(request, template, context)
