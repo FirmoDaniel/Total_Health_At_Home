@@ -37,12 +37,13 @@ def profile(request):
         'orders': orders,
         'on_profile_page': True,
         'testimonials': testimonials,
-        'user_testimonials': user_testimonials,
+        'user_testimonials': user_testimonials
     }
 
     return render(request, template, context)
 
 
+@login_required
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
@@ -51,14 +52,13 @@ def order_history(request, order_number):
         'A confirmation email was sent on the order date.'
     ))
 
-    template = 'checkout/checkout_success.html'  # uses this template to generate order history via order_number
+    template = 'checkout/checkout_success.html'  # profile/order_history/AA3E474F8D954FDE8F57FBFDB970B23F
     context = {
         'order': order,
         'from_profile': True,
     }
 
     return render(request, template, context)
-
 
 #  TESTIMONIALS
 
@@ -136,8 +136,6 @@ def delete_testimonial(request, testimonial_id):
 def add_review(request, product_id):
     """render a pre-populated form with product id from profile purchased products """
     product = get_object_or_404(Product, pk=product_id)
-    profile = get_object_or_404(UserProfile, user=request.user)
-    orders = profile.orders.all()
 
     lineitems = OrderLineItem.objects.all()
     myorders = lineitems.filter(username=request.user, product=product.id)

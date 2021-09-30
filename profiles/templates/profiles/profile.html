@@ -145,11 +145,9 @@
                             <hr>
                             <div class="row">
                                 <div class="col"><p class= "mb-0 font-weight-bold" >Your Purchased Products :</p></div>
-                                {% for order in orders %}
-                                    {% for item in order.lineitems.all %}
-                                            <div class="col text-left"><p> {{ item.product.name }} {{ item.product.id }} <span><a href="{% url 'add_review' item.product.id %}">Rate It</a></span></p></div>
-                                    
-                                    {% endfor %}  
+                                {% for products in product %}
+                                            <div class="col text-left"><p> {{ products.name }} <span><a href="{% url 'add_review' products.id %}">Rate It</a></span></p></div>
+                                     
                                 {% endfor %} 
                             </div>
                             <!--display all products here <not working>-->

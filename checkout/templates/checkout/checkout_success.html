@@ -72,6 +72,7 @@
                         <div class="col text-left">
                           <p> {{ item.product.name }}
                             <span><a class="small plain-anchor" href="{% url 'product_detail' item.product.id %}">(Details)</a></span>
+                            <span><a class="small plain-anchor" href="{% url 'add_review' item.product.id %}">(Review it)</a></span>
                           </p>
                         </div>   
                     </div>
