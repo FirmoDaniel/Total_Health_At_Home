@@ -49,6 +49,12 @@ def profile(request):
 
 @login_required  # can url if you have an order_number profile/order_history/AA3E474F8D954FDE8F57FBFDB970B23F
 def order_history(request, order_number):
+    profile = get_object_or_404(UserProfile, user=request.user)
+    orders = profile.orders.all()
+    if not orders:
+        messages.warning(request, 'You must have orders to view order history')
+        return redirect(reverse('profile'))
+
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (
@@ -70,6 +76,12 @@ def order_history(request, order_number):
 @login_required
 def add_testimonial(request):
     """ Add a Testimonial to the store """
+    profile = get_object_or_404(UserProfile, user=request.user)
+    orders = profile.orders.all()
+    if not orders:
+        messages.warning(request, 'You must have orders to submit a testimonial')
+        return redirect(reverse('profile'))
+
     users_existing_testimonials = Testimonial.objects.filter(username=request.user)
     existing_testimonials = len(users_existing_testimonials)
 
@@ -87,6 +99,7 @@ def add_testimonial(request):
     template = 'profiles/add_testimonial.html'
     context = {
         'form': form,
+        'orders': orders,
         'existing_testimonials': existing_testimonials,
     }
 
@@ -127,7 +140,7 @@ def delete_testimonial(request, testimonial_id):
     """ Delete a Testimonial """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('profile'))
 
     testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
     testimonial.delete()
