@@ -64,8 +64,8 @@ class ReviewForm(forms.ModelForm):
         self.user = kwargs.pop('user')  # get user to check if superuser
         super(ReviewForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['readonly'] = True
-        self.fields['pname'].widget.attrs['hidden'] = True
-        self.fields['pname'].label = False
+        self.fields['pname'].widget.attrs['hidden'] = False
+        self.fields['pname'].label = True
         self.fields['name'].widget.attrs['readonly'] = True
         for __, field in self.fields.items():  # set classes on the fields
             field.widget.attrs['class'] = 'generic-form'

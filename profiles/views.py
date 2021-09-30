@@ -8,7 +8,7 @@ from .forms import TestimonialForm, ReviewForm
 from .models import UserProfile
 from .forms import UserProfileForm
 
-from checkout.models import Order
+from checkout.models import Order, OrderLineItem
 
 from products.models import Product
 
@@ -136,8 +136,8 @@ def delete_testimonial(request, testimonial_id):
 def add_review(request, product_id):
     """render a pre-populated form with product id from profile purchased products """
     product = get_object_or_404(Product, pk=product_id)
-    profile = get_object_or_404(UserProfile, user=request.user)  # testing veri
-    orders = profile.orders.all()  # testing veri
+    profile = get_object_or_404(UserProfile, user=request.user)
+    orders = profile.orders.all()
 
     users_existing_reviews = Review.objects.filter(pname=product.id, username=request.user)
     existing_reviews = len(users_existing_reviews)
@@ -151,10 +151,14 @@ def add_review(request, product_id):
         else:
             messages.error(request, 'Failed to add Review. Please ensure your form is valid.')
     else:
-        form = ReviewForm(initial={'username': request.user,
-                                   'pname': product.id,
-                                   'name': product.name,
-                                   'feedback': 'checked'}, user=request.user)
+        if existing_reviews < 1:
+            form = ReviewForm(initial={'username': request.user,
+                                    'pname': product.id,
+                                    'name': product.name,
+                                    'feedback': 'checked'}, user=request.user)
+        else:
+            messages.success(request, 'This Product has already been review.')
+            return redirect(reverse('products'))
 
     template = 'profiles/add_review.html'
     context = {
