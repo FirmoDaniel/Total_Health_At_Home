@@ -110,8 +110,15 @@
                                     </div>
                                     {% endfor %}
                                 {% else %}
-                                    <div class="col text-left">
-                                        <a href="{% url 'add_testimonial' %}" class="internal-link">Submit a Testimonial</a>
+                                    <div class="list-group my-3">
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                            </div>
+                                            <p class="mb-1">
+                                                You can submit a testimonial 
+                                                <a href="{% url 'add_testimonial' %}" class="internal-link">here.</a>
+                                            </p>
+                                        </div>
                                     </div>
                                 {% endif %}
                                 <span class="border-bottom-green mb-5">Your Reviews :</span>   
@@ -155,9 +162,9 @@
                         <div class="card-body bg-white">
                             <p><a class="btn bg-blue text-white" href="{% url 'add_product' %}">Add a new product</a></p>
                             <!--List all testimonials pending approval-->
-                            <span class="border-bottom-green mb-5">New Testimonial's pending approval :</span>
+                            <div> <span class="border-bottom-green mb-5">New Testimonial's pending approval :</span></div>
                                 {% for testimonial in testimonials %}
-                                    {% if not testimonial.approved %}
+                                    {% if not testimonial.approved %} 
                                         <div class="list-group my-3">
                                             <div class="list-group-item">
                                                 <div class="d-flex w-100 justify-content-between">
@@ -172,7 +179,7 @@
                                         </div>
                                     {% endif %}
                                 {% endfor %}
-                            <span class="border-bottom-green mb-5">New Reviews pending approval :</span>
+                            <div> <span class="border-bottom-green mb-5">New Reviews pending approval :</span></div>
                                 {% for review in reviews %}
                                     {% if not review.approved %}
                                         <div class="list-group mt-3">
