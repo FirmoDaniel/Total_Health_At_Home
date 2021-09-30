@@ -140,7 +140,7 @@ def add_review(request, product_id):
     orders = profile.orders.all()
 
     lineitems = OrderLineItem.objects.all()
-    myorders = lineitems.filter(username=request.user, product=product.id)  # returned (<QuerySet [<Order: 78066E2AAB224A9CBDD02B22EAC46924>]>)
+    myorders = lineitems.filter(username=request.user, product=product.id)
     myorders_exist = len(myorders)
 
     users_existing_reviews = Review.objects.filter(pname=product.id, username=request.user)
@@ -168,10 +168,6 @@ def add_review(request, product_id):
     context = {
         'product': product,
         'form': form,
-        'existing_reviews': existing_reviews,
-        'orders': orders,
-        'myorders': myorders,
-        'myorders_exist': myorders_exist,
     }
 
     return render(request, template, context)
