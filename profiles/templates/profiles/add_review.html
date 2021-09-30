@@ -6,61 +6,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    {% for x in something %}
-        <p>something = {{ x }}</p>
-    {% endfor %}
-</div>
-
-
-<div class="container">
-{% for order in orders %}
-    {% for item in order.lineitems.all %}
-            <div class="col text-left"><p></p></div>
-            {% if item.product.id == product.id %}
-                <div class="container">
-                    <p>Yes this product id is in my order history {{ product.name }} {{ product.id }}</p>
-                    <p>But you can't review this <a href="{% url 'home' %}">home</a></p>
-                </div>
-            {% endif %}
-    {% endfor %}  
-{% endfor %}
-
-<p>existing review : {{ existing_reviews }}</p>
-
-{% for order in orders %}
-    <p>User_profile = {{ order.user_profile }}</p>
-    <p>Original_bag = {{ order.original_bag }}</p>
-    {% for item in order.lineitems.all %}
-    <p> product id = {{ item.product.id }}</p>
-    <p> Order = {{ item.order }}</p>
-    <p> Order Total = {{ item.lineitem_total }}</p>
-           
-    {% endfor %}  
-{% endfor %}
-
 
 <div class="container-fluid bg-grey">
     <div class="container mt-3">
-        {% for order in orders %}
-            {% for item in order.lineitems.all %}
-                {% if item.product.id == product.id %}
-                        <h3>Your Review of : <span class="border-bottom-green">{{ product.name }}</span> </h3>
-                        <div class="row mt-3">
-                            <div class="col-12 col-md-6">
-                                <form method="POST" action="{% url 'add_review' product.id %}" class="mb-3" id="generic-form">
-                                    {% csrf_token %}
-                                    {{ form|crispy }}
-                                    <div class="text-left">
-                                        <a class="btn text-white bg-blue mr-2" href="{% url 'profile' %}">Cancel</a>
-                                        <button class="btn internal-link" type="submit">Submit</button>
-                                    </div>
-                                </form>
-                            </div>            
-                        </div>
-                {% endif %}
-            {% endfor %}  
-        {% endfor %}
+        <h3>Your Review of : <span class="border-bottom-green">{{ product.name }}</span> </h3>
+        <div class="row mt-3">
+            <div class="col-12 col-md-6">
+                <form method="POST" action="{% url 'add_review' product.id %}" class="mb-3" id="generic-form">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-left">
+                        <a class="btn text-white bg-blue mr-2" href="{% url 'profile' %}">Cancel</a>
+                        <button class="btn internal-link" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
     </div>
 </div>
 {% endblock %}

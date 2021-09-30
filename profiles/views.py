@@ -8,7 +8,7 @@ from .forms import TestimonialForm, ReviewForm
 from .models import UserProfile
 from .forms import UserProfileForm
 
-from checkout.models import Order, OrderLineItem
+from checkout.models import Order
 
 from products.models import Product
 
@@ -151,14 +151,14 @@ def add_review(request, product_id):
         else:
             messages.error(request, 'Failed to add Review. Please ensure your form is valid.')
     else:
-        if existing_reviews < 1:
+        if existing_reviews < 1 and orders:
             form = ReviewForm(initial={'username': request.user,
-                                    'pname': product.id,
-                                    'name': product.name,
-                                    'feedback': 'checked'}, user=request.user)
+                                       'pname': product.id,
+                                       'name': product.name,
+                                       'feedback': 'checked'}, user=request.user)
         else:
-            messages.success(request, 'This Product has already been review.')
-            return redirect(reverse('products'))
+            messages.error(request, 'You have already reviewed this product')
+            return redirect(reverse('profile'))
 
     template = 'profiles/add_review.html'
     context = {
