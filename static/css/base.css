@@ -28,6 +28,10 @@
     color: red;
 }
 
+.text-yellow{
+    color: yellow;
+}
+
 .text-orange{
     color: orange;
 }
@@ -79,6 +83,14 @@
 
 .bg-white{
     background-color: white!important;
+}
+
+.bg-yellow{
+    background-color: yellow!important;
+}
+
+.bg-red{
+    background-color: red!important;
 }
 
 /*-------------------------------------------------BORDER COLOURS*/
