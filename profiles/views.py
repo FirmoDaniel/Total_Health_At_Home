@@ -19,6 +19,8 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     testimonials = Testimonial.objects.all()  # get all testimonials
     user_testimonials = Testimonial.objects.filter(username=request.user)  # get only testimonial posted by current user
+    reviews = Review.objects.all()
+    user_reviews = Review.objects.filter(username=request.user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -37,13 +39,15 @@ def profile(request):
         'orders': orders,
         'on_profile_page': True,
         'testimonials': testimonials,
-        'user_testimonials': user_testimonials
+        'user_testimonials': user_testimonials,
+        'reviews': reviews,
+        'user_reviews': user_reviews,
     }
 
     return render(request, template, context)
 
 
-@login_required
+@login_required  # can url if you have an order_number profile/order_history/AA3E474F8D954FDE8F57FBFDB970B23F
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
@@ -52,7 +56,7 @@ def order_history(request, order_number):
         'A confirmation email was sent on the order date.'
     ))
 
-    template = 'checkout/checkout_success.html'  # profile/order_history/AA3E474F8D954FDE8F57FBFDB970B23F
+    template = 'checkout/checkout_success.html'
     context = {
         'order': order,
         'from_profile': True,
@@ -61,6 +65,7 @@ def order_history(request, order_number):
     return render(request, template, context)
 
 #  TESTIMONIALS
+
 
 @login_required
 def add_testimonial(request):

@@ -95,70 +95,106 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body bg-white">
                         {% if orders %}
-                        <!--List current user's testimonial and approval status-->
-                            <div class="row">
+                            <!--List current user's testimonial and approval status-->
+                            <span class="border-bottom-green mb-5">Your Testimonial :</span>
                                 {% if user_testimonials %}
-                                    <div class="col"><p class= "mb-0 font-weight-bold" >Your Testimonial :</p></div>
                                     {% for testimonial in user_testimonials %}
-                                        <div class="col text-left"><p> {{ testimonial.description|capfirst }} >Status: {% if testimonal.approved %} posted ! {% else %} under review {% endif %}</p></div>
+                                    <div class="list-group my-3">
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <small>Left on {{ testimonial.shortdate }}</small>
+                                            </div>
+                                            <p class="mb-1">
+                                                {{ testimonial.description|capfirst }} {% if testimonal.approved %} (See it live 
+                                                <a class="internal-link" href="{% url 'home' %}">here</a> {% else %} 
+                                                <small class="text-orange"> *awaiting approval</small>{% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
                                     {% endfor %}
                                 {% else %}
                                     <div class="col text-left">
                                         <a href="{% url 'add_testimonial' %}" class="internal-link">Submit a Testimonial</a>
                                     </div>
                                 {% endif %}
-                            </div>
-                                
-                            <!--list approved testimonials and pending if superuser-->  
-                            <div class="row">
-                                {% if request.user.is_superuser %}
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Approved Testimonials :</p></div>
-                                    {% for testimonial in testimonials %}
-                                        {% if testimonial.approved %}    
-                                            <div class="col text-left"><p> {{ testimonial.description|capfirst }}</p></div>
-                                            <!--SuperUser can delete and edit existing/approved-->
-                                            <a href="{% url 'edit_testimonial' testimonial.id %}">Edit</a>
-                                            <a class="text-danger" href="{% url 'delete_testimonial' testimonial.id %}">Delete</a>
-                                        {% endif %}    
+                                <span class="border-bottom-green mb-5">Your Reviews :</span>   
+                                {% if user_reviews %}
+                                    {% for review in user_reviews %}
+                                        <div class="list-group mt-3">
+                                            <div class="list-group-item">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <small>Left on {{ review.shortdate }} for {{ review.name }}</small>
+                                                </div>
+                                                <p class="mb-1">
+                                                    {{ review.description|capfirst }} {% if review.approved %} (See it live 
+                                                    <a class="internal-link" href="{% url 'product_detail' review.pname %}">here</a>){% else %} 
+                                                    <small class="text-orange"> *awaiting approval</small>{% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
                                     {% endfor %}
-                            </div>
-                            <div class="row">
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Testimonials pending approval :</p></div>
-                                {% for testimonial in testimonials %}
-                                    {% if not testimonial.approved %}
-                                        <div class="col text-left">
-                                            <p>{{ testimonial.username }} :>>> {{ testimonial.description|capfirst }}</p>
-                                            <small class="ml-3">
-                                                <a href="{% url 'edit_testimonial' testimonial.id %}">Edit</a>
-                                                <a class="text-danger" href="{% url 'delete_testimonial' testimonial.id %}">Delete</a>
-                                            </small>
-                                        </div>   
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                            {% endif %}
+                                {% else %}
+                                    <div class="col text-left">
+                                        <p>Submit a review through 'Order details' via your profile's previous orders.</p>
+                                    </div>
+                                {% endif %}
                         {% else %}
-                            <div class="row">
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Feedback available after first purchase </p></div>
-                            </div>
+                            <span class="border-bottom-green mb-5">Feedback available after first purchase :</span>
                         {% endif %}
-                            <hr>
-                            <div class="row">
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Your Purchased Products :</p></div>
-                                {% for products in product %}
-                                            <div class="col text-left"><p> {{ products.name }} <span><a href="{% url 'add_review' products.id %}">Rate It</a></span></p></div>
-                                     
-                                {% endfor %} 
-                            </div>
-                            <!--display all products here <not working>-->
-                            <div class="row">
-                                <div class="col"><p class= "mb-0 font-weight-bold" >Blank :</p></div>
-                                <div class="col text-left"><p ></p>
-                                </div>   
-                            </div>
                     </div>
                 </div>
             </div>
+            <!--Card 4 Admin Tools-->
+            {% if user.is_superuser %}
+                <div class="card">
+                    <div class="card-header bg-white" id="headingThree">
+                        <h5 class="mb-0">
+                        <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Admin Tools
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body bg-white">
+                            <!--List all testimonials pending approval-->
+                            <span class="border-bottom-green mb-5">New Testimonial's pending approval :</span>
+                                {% for testimonial in testimonials %}
+                                    {% if not testimonial.approved %}
+                                        <div class="list-group my-3">
+                                            <div class="list-group-item">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <small>Left on {{ testimonial.shortdate }}. By {{ testimonail.username }}</small>
+                                                </div>
+                                                <p class="mb-1">
+                                                    {{ testimonial.description|capfirst }}
+                                                    <a class="text-blue" href="{% url 'edit_testimonial' testimonial.id %}">Edit</a>
+                                                    <a class="text-red" href="{% url 'delete_testimonial' testimonial.id %}">Delete</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            <span class="border-bottom-green mb-5">New Reviews pending approval :</span>
+                                {% for review in reviews %}
+                                    {% if not review.approved %}
+                                        <div class="list-group mt-3">
+                                            <div class="list-group-item">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <small>Left on {{ review.shortdate }} for {{ review.name }}. By {{ review.username }}</small>
+                                                </div>
+                                                <p class="mb-1">
+                                                    {{ review.description|capfirst }}
+                                                    <a class="text-blue" href="{% url 'edit_review' review.id %}">Edit</a>
+                                                    <a class="text-red" href="{% url 'delete_review' review.id %}">Delete</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>

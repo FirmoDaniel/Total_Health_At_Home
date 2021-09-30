@@ -71,8 +71,8 @@
                         <div class="col"><p class= "mb-0 font-weight-bold" >Product : {{ forloop.counter }}</p></div>
                         <div class="col text-left">
                           <p> {{ item.product.name }}
-                            <span><a class="small plain-anchor" href="{% url 'product_detail' item.product.id %}">(Details)</a></span>
-                            <span><a class="small plain-anchor" href="{% url 'add_review' item.product.id %}">(Review it)</a></span>
+                            <span><a class="internal-link" href="{% url 'product_detail' item.product.id %}">(More Info)</a></span>
+                            <span><a class="internal-link" href="{% url 'add_review' item.product.id %}">(Add Review)</a></span>
                           </p>
                         </div>   
                     </div>
