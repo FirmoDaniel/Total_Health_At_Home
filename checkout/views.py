@@ -63,6 +63,7 @@ def checkout(request):
                 try:
                     product = Product.objects.get(id=item_id)
                     order_line_item = OrderLineItem(
+                        username=request.user,  #  i added this whiel working on add_review url issue
                         order=order,
                         product=product,
                     )

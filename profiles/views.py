@@ -8,7 +8,7 @@ from .forms import TestimonialForm, ReviewForm
 from .models import UserProfile
 from .forms import UserProfileForm
 
-from checkout.models import Order
+from checkout.models import Order, OrderLineItem
 
 from products.models import Product
 
@@ -139,6 +139,10 @@ def add_review(request, product_id):
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
 
+    lineitems = OrderLineItem.objects.all()
+    myorders = lineitems.filter(username=request.user, product=product.id)  # returned (<QuerySet [<Order: 78066E2AAB224A9CBDD02B22EAC46924>]>)
+    myorders_exist = len(myorders)
+
     users_existing_reviews = Review.objects.filter(pname=product.id, username=request.user)
     existing_reviews = len(users_existing_reviews)
 
@@ -151,13 +155,13 @@ def add_review(request, product_id):
         else:
             messages.error(request, 'Failed to add Review. Please ensure your form is valid.')
     else:
-        if existing_reviews < 1 and orders:
+        if existing_reviews < 1 and myorders_exist > 0:
             form = ReviewForm(initial={'username': request.user,
                                        'pname': product.id,
                                        'name': product.name,
                                        'feedback': 'checked'}, user=request.user)
         else:
-            messages.error(request, 'You have already reviewed this product')
+            messages.error(request, 'You have either not purchased, or have already reviewed, this product')
             return redirect(reverse('profile'))
 
     template = 'profiles/add_review.html'
@@ -166,6 +170,8 @@ def add_review(request, product_id):
         'form': form,
         'existing_reviews': existing_reviews,
         'orders': orders,
+        'myorders': myorders,
+        'myorders_exist': myorders_exist,
     }
 
     return render(request, template, context)
