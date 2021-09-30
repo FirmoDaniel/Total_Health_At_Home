@@ -153,6 +153,7 @@
                     </div>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body bg-white">
+                            <p><a class="btn bg-blue text-white" href="{% url 'add_product' %}">Add a new product</a></p>
                             <!--List all testimonials pending approval-->
                             <span class="border-bottom-green mb-5">New Testimonial's pending approval :</span>
                                 {% for testimonial in testimonials %}
@@ -160,7 +161,7 @@
                                         <div class="list-group my-3">
                                             <div class="list-group-item">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <small>Left on {{ testimonial.shortdate }}. By {{ testimonail.username }}</small>
+                                                    <small>Left on {{ testimonial.shortdate }}. By {{ testimonial.username }}</small>
                                                 </div>
                                                 <p class="mb-1">
                                                     {{ testimonial.description|capfirst }}

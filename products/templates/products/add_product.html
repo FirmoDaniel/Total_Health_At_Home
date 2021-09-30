@@ -1,21 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/product.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container-fluid bg-grey">
-    <div class="container">
-        <div class="row">
+    <div class="container mt-3">
+        <h3> <span class="border-bottom-green">Add a Product</span></h3>
+        <div class="row mt-3">
             <div class="col-12 col-md-6">
-                <hr>
-                <h2 class="logo-font mb-4">Product Management</h2>
-                <h5 class="text-muted">Add a Product</h5>
-                <hr>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'add_product' %}" class="mb-2" id="generic-form" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
                         {% if field.name != 'image' %}
@@ -24,9 +20,9 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
-                    <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Add Product</button>
+                    <div class="text-left">
+                        <a class="btn bg-blue text-white" href="{% url 'profile' %}">Cancel</a>
+                        <button class="btn internal-link" type="submit">Add Product</button>
                     </div>
                 </form>
             </div>            

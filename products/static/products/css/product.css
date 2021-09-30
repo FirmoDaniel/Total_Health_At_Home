@@ -1,0 +1,10 @@
+/* generic form for add and edit product*/
+#generic-form .form-group label {
+    
+    color: rgb(106, 164, 187);
+    border-bottom: 3px solid rgb(57, 250, 18);
+}
+
+#generic-form .form-group .form-check-label {
+    border-bottom: none;
+}
