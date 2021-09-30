@@ -21,7 +21,7 @@
                 <div class="card-header bg-white" id="headingOne">
                     <h5 class="mb-0">
                         <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                         My Info. <span class="per-marker-green">!</span>
+                         My Info
                         </button>
                     </h5>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="card-header bg-white" id="headingTwo">
                 <h5 class="mb-0">
                     <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Previous Orders : <span class="per-marker-green">{% for order in orders %} {% if forloop.last %} {{ forloop.counter}} {% endif %} {% endfor %}</span>
+                    Previous Orders  <span class="per-marker-green">{% for order in orders %} {% if forloop.last %} {{ forloop.counter}} {% endif %} {% endfor %}</span>
                     </button>
                 </h5>
                 </div>
@@ -75,10 +75,7 @@
                             </div>
                         </div>
                         {% else %}
-                        <div class="row">
-                            <div class="col"><p class= "mb-0 font-weight-bold" >No past orders to display </p></div>
-                            <div class="col text-left"><p ></p></div>   
-                        </div>
+                        <span class="border-bottom-green mb-5">No previous orders to display.<a class="internal-link" href="{% url 'products' %}"> Lets Fix that !</a></span>
                         {% endif %}
                     </div>
                 </div>  
@@ -139,7 +136,7 @@
                                     </div>
                                 {% endif %}
                         {% else %}
-                            <span class="border-bottom-green mb-5">Feedback available after first purchase :</span>
+                            <span class="border-bottom-green mb-5">Feedback available after first purchase. <a class="internal-link" href="{% url 'products' %}"> Lets Fix that !</a></span>
                         {% endif %}
                     </div>
                 </div>
@@ -147,14 +144,14 @@
             <!--Card 4 Admin Tools-->
             {% if user.is_superuser %}
                 <div class="card">
-                    <div class="card-header bg-white" id="headingThree">
+                    <div class="card-header bg-white" id="headingFour">
                         <h5 class="mb-0">
-                        <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <button class="btn per-marker-white border-bottom-green bg-blue collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             Admin Tools
                         </button>
                         </h5>
                     </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body bg-white">
                             <!--List all testimonials pending approval-->
                             <span class="border-bottom-green mb-5">New Testimonial's pending approval :</span>
