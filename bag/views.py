@@ -1,10 +1,8 @@
 from django.shortcuts import (
-    render, redirect, HttpResponse, get_object_or_404, reverse)
+    render, redirect, HttpResponse, get_object_or_404)
 from django.contrib import messages
 
 from products.models import Product
-
-# Create your views here.
 
 
 def view_bag(request):
@@ -18,19 +16,19 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """ add item to the bag,  """
     product = get_object_or_404(Product, pk=item_id)
-    redirect_url = request.POST.get('redirect_url')  # redirect user back to previous page after adding product to bag
-    bag = request.session.get('bag', {})  # check if bag in session, create it if not
-    quantity = 1  # default quantity of 1
+    redirect_url = request.POST.get('redirect_url')
+    bag = request.session.get('bag', {})
+    quantity = 1
 
-    if item_id in list(bag.keys()):  # checks if item already in bag
+    if item_id in list(bag.keys()):
         messages.info(request, f'{product.name} already in your bag')
         return redirect('products')
     else:
-        bag[item_id] = quantity  # this can be product.name 
+        bag[item_id] = quantity
         messages.success(request, f'Added {product.name} to your bag')
 
     request.session['bag'] = bag
-    print(request.session['bag'])  # print to console for verification
+    print(request.session['bag'])
     return redirect(redirect_url)
 
 
