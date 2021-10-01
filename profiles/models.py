@@ -41,9 +41,6 @@ class Testimonial(models.Model):
     description = models.TextField(null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
 
-    def shortdate(self):
-        return self.date.strftime('%d %b %Y')
-
     def __str__(self):
         return self.username
 
@@ -58,9 +55,6 @@ class Review(models.Model):
     description = models.TextField(null=False, blank=False)
     feedback = models.BooleanField(default=True, null=False, blank=False)
     approved = models.BooleanField(default=False, null=False, blank=False)
-
-    def shortdate(self):
-        return self.date.strftime('%d %b %Y')
 
     def __str__(self):
         return self.username
