@@ -1,104 +1,293 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Project Name: I Need A Hero
 
-Welcome FirmoDaniel,
+## Project aim
+The site's aim is to provide a markeyplace for people who want to workout from home or their surrounding area's.
+The products available are easily identifiable as being suitable for home, outdoors, done by day, or by night where
+a customer may need to aware of noise levels.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. The last update to this file was: **July 2, 2021**
+Firstly the site offers a hand-holding approach with succint product descriptions and clearly outline goals.
+We endevour to shy away from too much text or fluff and want people to sign up and buy without having to dive 
+down the fittness and health rabbit-hole of conflicting information. 
 
-## Gitpod Reminders
+Getting people started is pour primary goal.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+[View Live Version here](https://total-health-at-home.herokuapp.com/)
 
-`python3 -m http.server`
+## User Experiance (UX)
 
-A blue button should appear to click: _Make Public_,
+### User stories
+-    ## First Time Visitor Goals
+        * I want easily understand the site's purpose. 
+        * I want to navigate the site's content.
+        * I want to see all available products and their distinct features based on my preferences.
+        * I want to make a purchase without signing in.
 
-Another blue button should appear to click: _Open Browser_.
+-    ##   Returning / Registered User Goals
+        * I want to see my order history.
+        * I want to review products I've bought.
+        * I want to suggest alterations on the site.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+-    ## Administrator Goals
+-    ### Via the site
+        * View, approve or delete user testimonials and product reviews.
+        * I want to add, delete or edit products.
+-    ### Via the admin interface (Django)
+        * I want to view all users, their emails, and verification status
+        * I want to view, edit products, categories, reviews and testimonials
 
-A blue button should appear to click: _Make Public_,
+### Design
+-    ### Colour Scheme
+        * rgb(57, 250, 18) (Green) & rgb(106, 164, 187) (Blue),
+        are utlised thourghout for contrast against the sites grey background and defaoult white. 
+        * While standard user buttons adhere to the green, white, blue consensus, Admin buttons for deletion are purposefully garish to further guard against accidental instigation.
+            
+-    ### Typography
+        * Permenant Marker and Shadows into light are used throughout for headers, messages, buttons etc 
+        Both from [Google Fonts](https://fonts.google.com). Sans Serif is used a fallback. 
 
-Another blue button should appear to click: _Open Browser_.
+-    ### Imagery
+        * Product Images, and Hero Image were sourced from unsplash.com
+            * [Hero Image](https://unsplash.com/photos/PHIgYUGQPvU)
+            * [Product: Molten Monk](https://unsplash.com/photos/_Wi5bi-yjXI)
+            * [Product: Ninja](https://unsplash.com/photos/E3CZ_AtzixY)
+            * [Product: Water Dragon](https://unsplash.com/photos/E3CZ_AtzixY)           
+            * [Product: Dynamite](https://unsplash.com/photos/Oi31uKsnM1Q)        
+            * [Product: Dance Machine](https://unsplash.com/photos/JsQ6K5CfJ7s)     
+            * [Product: The Fox](https://unsplash.com/photos/CQl3Y5bV6FA)   
+            * [Product: Mountain Lion](https://unsplash.com/photos/aMBhrrveocw)   
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
-To log into the Heroku toolbelt CLI:
+*   ### Wireframes NOT DONE
+    * Full and mobile Index page [here](readme/index_wireframes.pdf)
+    * Full and mobile Characters page [here](readme/characters_wireframes.pdf)
+    * Full and mobile Roles page [here](readme/roles_wireframes.pdf)
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## Features
+-   Responsive on all devices with:
+    *   CSS Media Queries for scaling card images on screen resizing.
+    *   Collaspible Header with hamburger for mobile devices.
+-   Contains interactive elements such as:
+    *   Product filtering by catgeory and product element such as 'day', indoors', 'night' etc.
+    *   User authentication via registeration with verification email /log in/ log out.
+    *   Loops to hide/show various navigation options depending on user status.
+    *   Form for adding testimonials viewable (after admin approval) to all other users.
+    *   Form for adding product reviews both viewabale (after admin approval) to all other users, and impact the given rating of a product.
+    *   C.R.U.D. functionality scaled with user status.(user/ unregistered / admin).
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Technologies Used
+### Languages Used
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
+- [Python 3](https://www.python.org/)
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
-------
+### Frameworks, Libraries & Programs Used
+- [GMAIL](https://www.google.com/gmail/) - for verification emails via Django
+- [GitHub](https://github.com)
+- [Jquery](https://jquery.com/)
+- [GitPod](https://www.gitpod.io/) - IDE.
+- [Boostrap (including JQuery)](https://getbootstrap.com/) -Utilized for responsiveness via columns, buttons and navbars.
+- [Google Fonts](https://fonts.google.com) - Used for header and body fonts throughout.
+- [Font Awesome](https://fontawesome.com/)  - For icons.
+- Google Chrome's Responsive Viewer found [here](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb)
+- Google Chrome's lighthouse function.
+- [Django](https://www.djangoproject.com/) - for authentication and administration.
+- [AWS](https://aws.amazon.com/) - for hosting static and media files
+- [Heroku](https://www.heroku.com/) - For hosting.
 
-## Release History
+## Testing NOT DONE
+-   Using [W3C validator](https://validator.w3.org/) both HTML and CSS were checked by direct input. Issues arising were promptly corrected. 
+<p>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Valid CSS!" />
+    </a>
+</p>
+<p>
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px"
+        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        alt="Valid CSS!" />
+    </a>
+</p>
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+-   [JsHINT](https://jshint.com)- Used for Java Script validation. Warnings relating to the use of 'let' to declare variables.
+    The script was not amended to address these.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### Testing User Stories from User Experience (UX) section. HERE!!!!!!
+### First Time Visitor Goals :
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+*  I want to easily understand the site's purpose.
+    1.  The index page utilises eye-cathcing colours, fonts and clean lines with an upfront description
+        of the sites aim.
+    2.  Users are immediately granted access to the site's database via clickable images which redirect to the characters page.
+    3.  Users are made aware of the site's policy, and the added benefits to registering.
+     
+* I want to navigate the site's content.
+    1.  A static, collaspible header contains all the nav elemnets available to new users. Although 
+        registration/login is rerquired to access more functions, the main database is available to read.
+        As are the contact, register and Log In pages.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+* I want to understand how to create my own characters.
+    1.  The index and characters pages inform users how to create characters.
+        New users can register a username and password which instantly grants them create, update and delete
+        functionality for their characters. Upon registration, new users are brought to their profile page
+        which, in time, will display all their characters, on first visit they are offered a chance to create
+        their first character.
+    2.  On clicking 'create' a form is rendered where the user can populate the required fields. The character's role
+        must come from an existing list via a dropdown. All users are free to populate the other fields as they wish.
+    3.  Upon completeion, the user is redirected to the characters page with a flash messsage for confirmation,
+        and their new character is added to the database. The new character is also viewable from their profile page. 
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Returning / Registered User Goals :
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+*  I want to see characters I have created.
+    1.  A returning user can log in, afterwhich they are brought to their profile page which displays any 
+        previously created characters listed from newest addition to oldest. The profile page is always available 
+        in the nav bar for logged in users.
+     
+* I want to edit or delete my characters. 
+    1.  Only characters created by a user can be edited or deleted by that user. Characters can be deleted or edit 
+        from the user's personal profile page or from the main characters page.
+    2.  Characters eligible for edit or delete will have the available buttons displayed in their drop down.
+    3.  To Edit : clicking the edit button renders a form populated with the selected character's information.
+        The user can make their intended changes and click 'Save Changes', or cancel the request altogether. Both
+        options return the user to the characters page with a flash confirming edits or a reloaded characters' page
+        in the case of a cancel. 
+    4.  To Delete : clicking the delete button calls a modal to warn the user all deletions are permenant. 
+        The user can cancel the process at the modal, or proceed to final confirmation by accepting the warning.
+        Upon accepting the modal warning a 'delete forever' button is displayed which when clicked deletes the
+        selected character from the database with a flash message to confirm.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+* I want to contact the site admin.
+    1.  All users can navigate to the contact page in the nav bar. There is a simple form available to contact
+        the site's admin. First name, email and a message is all that is required. Links to social media accounts
+        are also available in the footer.  
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### Administrator Goals :
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+* I should be able to edit / delete any character.
+    1.  Upon log in, an administrator is brought to their profile page which lists all their characters.
+        The characters page which lists all charcaters is also available but unlike standard users, the admin
+        has the ability to edit or delete all characters in the database. 
+    2.  To Edit : clicking the edit button renders a form populated with the selected character's information.
+        The admin can make their intended changes and click 'Save Changes', or cancel the request altogether. Both
+        options return the admin to the characters page with a flash confirming edits or a reload characters' page
+        in the case of a cancel. 
+    3.  To Delete : clicking the delete button calls a modal to warn the admin all deletions are permenant. 
+        The admin can cancel the process at the modal, or proceed to final confirmation by accepting the warning.
+        Upon accepting the modal warning a 'delete forever' button is displayed which when clicked deletes the
+        selected character from the database with a flash message to confirm.  
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+* I want to add, edit or delete new character roles.
+    1.  When logged in as admin, the roles page becomes available. The page lists all roles currently live on the site
+        from which users can choose for their characters. Roles are listed in alphabetical order. 
+    2.  To Add : a 'Add Role' button is prominently displayed at the top of the roles page. Clicking the button brings
+        the admin to add_role.html which contains a single row form the admin can populate. (There is a built in check to
+        stop duplicate roles being created which flashes a message and returns admin to the roles page.) Here they can cancel the operation,
+        or proceed with their addition. Adding a role diverts the admin back to the roles page with a flash message as confirmation. 
+    3.  To Edit : a 'Edit / Delete' button is available to the admin for each populated role. Upon clicking the admin is brought to
+        edit_role.html which pre-populates the single row form with the current role selected for edit or delete. The admin can
+        cancel the request, or proceed with editing. A usccessful edit returns the admin to the roles page with flash message for   
+        confirmation.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## Further Testing
+### Google Chrome's Lighthouse results
+| Page    | Performance  | Accessibility  | Best Practise  | Seo |
+|---|---|---|---|---|
+| Index  | 99  | 92  | 93  | 90  |
+| Characters | 99  | 94  | 100  | 89  |
+| Profile | 99  | 100  | 100  | 89  |
+| Roles | 99  | 94  | 100  | 89  |
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Security / Access 
+####   User based access
 
-------
+*   URL access:
+    *   Python checks for the presence of the session cookie before progressing to pages via the url. 
+        In the case of admin only access it also checks the user both exists AND is the admin.
+        Here is a code example: (if session and session[" user "] == "admin":) ref app .py , line 213, add character role.
+        This check can be found throughout the app .py file for any views which require valid log in such as 
+        create_character, edit_character, edit_role, add_role, and all delete functionality.
+*   Unregistered user:
+    *   Can only view the following pages. Home, characters, register, log in and contact.
+    *   Cannot create, edit or delete characters. All relating buttons remain hidden.
+    *   Cannot login prior to registering. Though, the flash messaging doesn't explicity say the username is 
+        unregistered, it does flag an issue to the user regarding their details entered. Both login and register have
+        corresponding links and notes to each other. 'New here? Register Account' or 'Already Registered? Log in'.
+    *   Cannot use URL to access any other pages.
+*   Registered and logged in users:
+    *   Can also view the profile page.
+    *   Can create, update and delete only their own characters.
+    *   Cannot use url to access any extra pages such as roles.html.
+*   Admin :
+    *   Can view all pages including the roles page. 
+    *   Can create, update and delete all created characters.  
 
-## FAQ about the uptime script
+#### Links
+*   Internal page links and external links in the footer were manually tested. 
+#### Loops
+*   Loops are utilised throughout to check user status and decide which nav bar elements can be viewed.
+*   Loops are also tasked with displaying only characters created by a user on their profile page.
+*   A loop also ensures users are kept abreast of all currently searchable roles on the characters page.
+*   Also on the characters page, a loop nudges users to log in or register if no user is detected, 
+    but hides the nudge if user exists.
 
-**Why have you added this script?**
+## Deployment
+### Heroku
+1.  Create a requirements.txt file. Command in gitpod is 'pip3 freeze --local> requirements.txt'
+2.  Create a Procfile (Capital 'P' and no file extension).
+3.  Push the two new files to your repository. 
+4.  Login in to [Heroku](https://www.heroku.com/) and from the dasjboard select 'New' > 'Create new app'.
+5.  Create a unique app name utilising '-' instead of spaces. Select your closest region from the dropdown. Then click
+    'Create app'.
+6.  To connect the app use the 'Connect to Github' option for a simplified process. Enusre you github user profile
+    is display after selction. Then, serach for the github repository you wish to connect. Then click 'Connect'.
+7.  Go to settings at the top of the heroku page. Then, scroll down 'Reveal Config Vars'. 
+8.  Here you enter the following data from your env .py file : Keys for IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME
+    and their corresponding values.
+9.  Return to the delopy tab in heroku and click 'Enable Automatic Deployment, then 'Deploy Branch'.
+10. Upon success you will see 'Your app was successfully deployed' and an option to view the app.
+11. A live version can be found here: [I Need A Hero](https://i-need-a-hero.herokuapp.com/)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Github
+The project was developed using [GitPod](https://www.gitpod.io/) workspace, committed to git and pushed to 
+[GitHub](https://github.com) using the built in function within Gitpod.
+To deploy this page from the [GitHub respository](https://github.com/FirmoDaniel/I_Need_A_Hero), the following steps were taken.
+1.  Log in to **GitHub**.
+2.  From the list of repositories on screen select 'I_Need_A_Hero'.
+3.  Select **Settings** from the menu.
+4.  Scroll down to **GitHub Pages**
+5.  Under **Source** click the dropdown menu labelled **none** and select the **Main Branch**.
+6.  On selecting **Master Branch** the is automatically refreshed, the website is now deployed.
+7.  A link can be found in the **GitHub pages section**, and also in the about section within **I_Need_A_Hero**.
 
-**How will this affect me?**
+### Cloning
+1. Go to GitHub Repository: [I_Need_A_Hero](https://github.com/FirmoDaniel/I_Need_A_Hero)
+2. Select 'Code' dropdown button (next to green 'gitpod' button).
+3. These are your three options **Clone-Options**.
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+    * Copy the URL to your local IDE such as [Visual Studio](https://code.visualstudio.com).
+    * Intsall [GitHub desktop](https://desktop.github.com/).
+    * Download the Zip file and use with local IDE such as [Visual Studio](https://code.visualstudio.com).
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+## Credits   
+### Code
+1.  Validation for character form taken from Code Institute project walkthrough video. Ref script.js line 45 > 72.
 
-**So….?**
+### Content
+1.  Initially uploaded characters were created by the developer.
+2.  README layout taken from Code Institute's sample [README](https://github.com/Code-Institute-Solutions/SampleREADME).
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+### Media
+1. Card images 
+    * [Blue sky](https://static.wikia.nocookie.net/god-of-slaughter/images/3/3a/Thunder2.jpg)
+    * [Red Sky](https://media.freestocktextures.com/cache/4b/b4/4bb46fda2948c0d26699661ac01f212c.jpg)
+    * [Grey Sky](https://sewitall.com/wp-content/uploads/2020/01/Lightning-Grey-cut-piece-scaled.jpg) 
 
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+### Acknowledgements
+1. Code Institute Tutorials, student support and my Mentor.
