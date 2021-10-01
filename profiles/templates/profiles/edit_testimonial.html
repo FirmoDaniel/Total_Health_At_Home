@@ -9,22 +9,65 @@
 <div class="container-fluid bg-grey"></div>
     <div class="container mt-3">
         <h3>You are editing : <span class="border-bottom-green">{{ testimonial.username }}'s</span> testimonial.</h3>
-        <div class="row mt-3">
+        <p id="query">What would you like to do?</p>
+        <p>
+            <a id="query-edit" class="btn bg-blue text-white">edit</a>
+            <a id="query-cancel" class="btn bg-green text-white" href="{% url 'profile' %}">Cancel</a>
+            <a id="query-delete" class="btn bg-yellow text-red">delete</a>
+        </p>
+        <div class="row mt-3" id="form-row">
             <div class="col-12 col-md-6">
                 <form method="POST" action="{% url 'edit_testimonial' testimonial.id %}" class="mb-3" id="generic-form">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <div class="text-left">
                         <a class="btn text-white bg-blue mr-2" href="{% url 'profile' %}">Cancel</a>
-                        <button class="btn internal-link" type="submit">Edit </button>
+                        <button class="btn internal-link" type="submit">Confirm Edit</button>
                     </div>
                 </form>
             </div>            
         </div>
+        <span id="fake-delete-button"><a class="btn bg-yellow text-red" href="">Delete</a></span>
+        <span id="cancel-button"><a class="btn bg-green text-white" href="">Cancel</a></span>
+        <span id="delete-button"><a class="btn bg-red text-yellow" href="{% url 'delete_testimonial' testimonial.id %}">Confirm Delete Forever</a></span>
     </div>
 </div>
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#fake-delete-button").hide();
+            $("#delete-button").hide();
+            $("#cancel-button").hide();
+    
+            $("#form-row").hide()
+            $("#query-edit").on("click", function(e){
+                e.preventDefault();
+                $("#form-row").show();
+                $("#query").hide();
+                $("#query-edit").hide();
+                $("#query-delete").hide();
+                $("#query-cancel").hide();
+            });
+    
+            $("#query-delete").on("click", function(e){
+                e.preventDefault();
+                $("#fake-delete-button").show();
+                $("#query").hide();
+                $("#query-edit").hide();
+                $("#query-delete").hide();
+                $("#query-cancel").hide();
+            });
+        
+            $("#fake-delete-button").on("click", function(e){
+                e.preventDefault();
+                $("#delete-button").show();
+                $("#cancel-button").show();
+                $("#fake-delete-button").disable();
+            });
+        });
+    </script>
 {% endblock %}

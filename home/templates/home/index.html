@@ -83,10 +83,7 @@
                         <p class="mb-1">{{ testimonial.description }} <span class="text-muted">( {{ testimonial.shortdate }} )</span></p>
                         {% if user.is_superuser %}
                         <p>
-                            <span id="edit-button"><a class="btn bg-blue text-white" href="{% url 'edit_testimonial' testimonial.id %}">Edit</a></span>
-                            <span id="fake-delete-button"><a class="btn bg-yellow text-red" href="">Delete</a></span>
-                            <span id="cancel-button"><a class="btn bg-green text-white" href="{% url 'home' %}">Cancel</a></span>
-                            <span id="delete-button"><a class="btn bg-red text-yellow" href="{% url 'delete_testimonial' testimonial.id %}">Confirm Delete Forever</a></span>
+                            <span id="edit-button"><a class="btn bg-blue text-white" href="{% url 'edit_testimonial' testimonial.id %}">Edit / Delete</a></span>
                         </p>
                         {% endif %}
                     </div>
@@ -100,17 +97,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#delete-button").hide();
-            $("#cancel-button").hide();
-        
-            $("#fake-delete-button").on("click", function(e){
-                e.preventDefault();
-                $("#delete-button").show();
-                $("#cancel-button").show();
-                $("#fake-delete-button").disable();
-            });
-        });
-    </script>
+    
 {% endblock %}

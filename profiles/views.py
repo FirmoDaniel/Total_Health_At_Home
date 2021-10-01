@@ -215,7 +215,7 @@ def edit_review(request, review_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated Review!')
-            return redirect(reverse('products'))
+            return redirect(reverse('profile'))
         else:
             messages.error(request, 'Failed to update Review. Please ensure the form is valid.')
     else:

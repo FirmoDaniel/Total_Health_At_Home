@@ -138,9 +138,13 @@
                                         </div>
                                     {% endfor %}
                                 {% else %}
-                                    <div class="col text-left">
-                                        <p>Submit a review through 'Order details' via your profile's previous orders.</p>
+                                <div class="list-group mt-3">
+                                    <div class="list-group-item">
+                                        <div class="d-flex w-100 justify-content-between">
+                                        </div>
+                                        <p class="mb-1">Submit a review through 'Order details' via your profile's previous orders.</p>
                                     </div>
+                                </div>
                                 {% endif %}
                         {% else %}
                             <span class="border-bottom-green mb-5">Feedback available after first purchase. <a class="internal-link" href="{% url 'products' %}"> Lets Fix that !</a></span>
@@ -168,12 +172,11 @@
                                         <div class="list-group my-3">
                                             <div class="list-group-item">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <small>Left on {{ testimonial.shortdate }}. By {{ testimonial.username }}</small>
+                                                    <small class="mb-2">Left on {{ testimonial.shortdate }}. By {{ testimonial.username }}</small>
                                                 </div>
                                                 <p class="mb-1">
                                                     {{ testimonial.description|capfirst }}
-                                                    <a class="text-blue" href="{% url 'edit_testimonial' testimonial.id %}">Edit</a>
-                                                    <a class="text-red" href="{% url 'delete_testimonial' testimonial.id %}">Delete</a>
+                                                    <span id="edit-button"><a class="ml-3 btn btn-sm bg-blue text-white" href="{% url 'edit_testimonial' testimonial.id %}">Edit / Delete</a></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -185,12 +188,11 @@
                                         <div class="list-group mt-3">
                                             <div class="list-group-item">
                                                 <div class="d-flex w-100 justify-content-between">
-                                                    <small>Left on {{ review.shortdate }} for {{ review.name }}. By {{ review.username }}</small>
+                                                    <small class="mb-2">Left on {{ review.shortdate }} for {{ review.name }}. By {{ review.username }}</small>
                                                 </div>
                                                 <p class="mb-1">
                                                     {{ review.description|capfirst }}
-                                                    <a class="text-blue" href="{% url 'edit_review' review.id %}">Edit</a>
-                                                    <a class="text-red" href="{% url 'delete_review' review.id %}">Delete</a>
+                                                    <span id="edit-button"><a class="ml-3 btn btn-sm bg-blue text-white" href="{% url 'edit_review' review.id %}">Edit / Delete</a></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -207,4 +209,5 @@
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+
 {% endblock %}
