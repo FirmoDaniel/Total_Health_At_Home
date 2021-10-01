@@ -80,7 +80,7 @@
                         <div class="d-flex w-100 justify-content-between">
                             <p class="mb-1 text-small">Submitted by: <span>"{{ testimonial.username }}"</span></p>
                         </div>
-                        <p class="mb-1">{{ testimonial.description }} <span class="text-muted">( this used to be shortdate)</span></p>
+                        <p class="mb-1">{{ testimonial.description }}</p>
                         {% if user.is_superuser %}
                         <p>
                             <span id="edit-button"><a class="btn bg-blue text-white" href="{% url 'edit_testimonial' testimonial.id %}">Edit / Delete</a></span>
