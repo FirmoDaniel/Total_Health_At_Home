@@ -19,7 +19,6 @@ class ReviewAdmin(admin.ModelAdmin):
         'description',
         'feedback',
         'approved',
-        'date',
     )
 
 
