@@ -118,15 +118,6 @@
     color: rgb(106, 164, 187)!important;
 }
 
-
-.reverse-internal-link{
-    border-bottom: 5px solid;
-    border-bottom-color: rgb(106, 164, 187);
-    text-decoration: none!important;
-    font-family:'Permanent Marker', sans-serif;
-    color: rgb(57, 250, 18);
-}
-
 .plain-anchor{
     text-decoration: none!important;
     border-bottom: none!important;
@@ -160,36 +151,6 @@
     object-fit: cover;
 }
 
-/*-------------------------------------------------FOOTER*/
-
-.footer-items {
-    display: inline;
-    font-size: 150%;
-    margin: 1%;
-    padding-top:3px;
-    padding-bottom: 3px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    color: white;  
-}
-
-#footer a {
-    border-bottom: none;
-}
-
-#footer a i{
-    color: rgb(57, 250, 18);
-}
-
-#footer a:hover{
-    color: rgb(57, 250, 18);
-    text-decoration: none;
-}
-
-#footer{
-    text-align: center;
-}
-
 /*------------------------------------------------------------------------------FROM COURSE*/
 
 
@@ -209,50 +170,6 @@
     height: 2px;
 }
 
-/* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
-.arrow-up {
-    width: 0; 
-    height: 0; 
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
-    border-bottom: 10px solid black;
-    position: absolute;
-    top: -10px;
-    right: 36px;
-}
-
-/* Convenience classes - colors copied from Bootstrap */
-.arrow-primary {
-    border-bottom-color: #007bff !important;
-}
-
-.arrow-secondary {
-    border-bottom-color: #6c757d !important;
-}
-
-.arrow-success {
-    border-bottom-color: #28a745 !important;
-}
-
-.arrow-danger {
-    border-bottom-color: #dc3545 !important;
-}
-
-.arrow-warning {
-    border-bottom-color: #ffc107 !important;
-}
-
-.arrow-info {
-    border-bottom-color: #17a2b8 !important;
-}
-
-.arrow-light {
-    border-bottom-color: #f8f9fa !important;
-}
-
-.arrow-dark {
-    border-bottom-color: #343a40 !important;
-}
 
 .bag-notification-wrapper {
     height: 100px;
@@ -289,21 +206,11 @@
 }
 
 
-
-
 /*------------------------------------------------------------------------------MEDIA QUERIES*/
 
 /* Footer resizing */
 
 @media screen and (max-width:450px){
-    #footer span {
-        font-size: 0;
-    }
-
-    #footer a i {
-        color: rgb(57, 250, 18);
-    }
-
 /* Card image resizizing */
     .card-img-top {
         width: 100%;

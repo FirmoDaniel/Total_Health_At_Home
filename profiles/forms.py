@@ -1,7 +1,6 @@
 from django import forms
 from .models import UserProfile
 from .models import Testimonial, Review
-from products.models import Product
 
 
 class UserProfileForm(forms.ModelForm):

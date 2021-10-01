@@ -17,8 +17,8 @@ from products.models import Product
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
-    testimonials = Testimonial.objects.all()  # get all testimonials
-    user_testimonials = Testimonial.objects.filter(username=request.user)  # get only testimonial posted by current user
+    testimonials = Testimonial.objects.all()
+    user_testimonials = Testimonial.objects.filter(username=request.user)
     reviews = Review.objects.all()
     user_reviews = Review.objects.filter(username=request.user)
 
@@ -28,7 +28,7 @@ def profile(request):
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid')
+            messages.error(request, 'Update failed. Please ensure a valid form.')
     else:
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
@@ -47,7 +47,7 @@ def profile(request):
     return render(request, template, context)
 
 
-@login_required  # can url if you have an order_number profile/order_history/AA3E474F8D954FDE8F57FBFDB970B23F
+@login_required
 def order_history(request, order_number):
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
@@ -94,7 +94,8 @@ def add_testimonial(request):
         else:
             messages.error(request, 'Failed to add Testimonial. Please ensure your form is valid.')
     else:
-        form = TestimonialForm(initial={'username': request.user}, user=request.user)  # prepop the user name in form
+        form = TestimonialForm(initial={'username': request.user},
+                               user=request.user)
 
     template = 'profiles/add_testimonial.html'
     context = {
@@ -115,7 +116,8 @@ def edit_testimonial(request, testimonial_id):
 
     testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
     if request.method == 'POST':
-        form = TestimonialForm(request.POST, instance=testimonial, user=request.user)  # added user to kwargs
+        form = TestimonialForm(request.POST, instance=testimonial,
+                               user=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated Testimonial!')
@@ -123,7 +125,7 @@ def edit_testimonial(request, testimonial_id):
         else:
             messages.error(request, 'Failed to update Testimonial. Please ensure the form is valid.')
     else:
-        form = TestimonialForm(instance=testimonial, user=request.user)  # added user to kwargs
+        form = TestimonialForm(instance=testimonial, user=request.user)
         messages.info(request, f'You are editing {testimonial.username}(s) testimonial')
 
     template = 'profiles/edit_testimonial.html'
@@ -152,14 +154,16 @@ def delete_testimonial(request, testimonial_id):
 
 @login_required
 def add_review(request, product_id):
-    """render a pre-populated form with product id from profile purchased products """
+    """render a pre-populated form
+    with product id from profile purchased products """
     product = get_object_or_404(Product, pk=product_id)
 
     lineitems = OrderLineItem.objects.all()
     myorders = lineitems.filter(username=request.user, product=product.id)
     myorders_exist = len(myorders)
 
-    users_existing_reviews = Review.objects.filter(pname=product.id, username=request.user)
+    users_existing_reviews = Review.objects.filter(pname=product.id,
+                                                   username=request.user)
     existing_reviews = len(users_existing_reviews)
 
     if request.method == 'POST':
@@ -175,7 +179,8 @@ def add_review(request, product_id):
             form = ReviewForm(initial={'username': request.user,
                                        'pname': product.id,
                                        'name': product.name,
-                                       'feedback': 'checked'}, user=request.user)
+                                       'feedback': 'checked'},
+                              user=request.user)
         else:
             messages.error(request, 'You have either not purchased, or have already reviewed, this product')
             return redirect(reverse('profile'))

@@ -26,10 +26,6 @@
     {% block corejs %}
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-      <!--New Jquery above-->
-        <!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-      old Jquery above-->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
@@ -72,7 +68,6 @@
                 </div>
               </li>
               <li class="nav-item">
-                <!--once bag is working , have no cart icon or number unless bag exists-->
                 <a class="{% if grand_total %}text-green{% else %}text_white{% endif %} nav-link" href="{% url 'view_bag' %}">
                     <div class="">
                         <div><i class="fas fa-shopping-bag fa-lg"></i></div>
@@ -110,18 +105,12 @@
     {% endif %}
 
     {% block page_header %}
-        <!--Extra header or page info outside of main nav-->
+  
     {% endblock %}
 
     {% block content %}
-        <!--This is where page contents go-->
+        
     {% endblock %}
-        <!-- removed footer-->
-    <!-- <footer class="bg-blue" id="footer">
-          <a class="footer-items" href="https://www.facebook.com" target="_blank" rel="noopener"><i class="fab fa-facebook-square" aria-hidden="true"></i><span>Facebook</span></a>
-          <a class="footer-items" href="https://www.twitter.com" target="_blank" rel="noopener"><i class="fab fa-twitter-square" aria-hidden="true"></i><span>Twitter</span></a>
-          <a class="footer-items" href="https://www.instagram.com" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
-    </footer> -->
 
     {% block postloadjs %}
     <script type="text/javascript">
@@ -129,6 +118,5 @@
     </script>
     {% endblock %}
 
-    
   </body>
 </html>
