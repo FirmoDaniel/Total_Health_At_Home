@@ -50,6 +50,8 @@ def checkout(request):
             'town_or_city': request.POST['town_or_city'],
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
+            'postcode': request.POST['postcode'],
+            'county': request.POST['county'],
             'country': request.POST['country'],
         }
         order_form = OrderForm(form_data)
@@ -99,20 +101,22 @@ def checkout(request):
         )
 
         if request.user.is_authenticated:
-                try:
-                    profile = UserProfile.objects.get(user=request.user)
-                    #  initial = initial filling of order form
-                    order_form = OrderForm(initial={
-                        'full_name': profile.user.get_full_name(),
-                        'email': profile.user.email,
-                        'phone_number': profile.default_phone_number,
-                        'street_address1': profile.default_street_address1,
-                        'street_address2': profile.default_street_address2,
-                        'town_or_city': profile.default_town_or_city,
-                        'country': profile.default_country,
-                    })
-                except UserProfile.DoesNotExist:
-                    order_form = OrderForm()
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                #  initial = initial filling of order form
+                order_form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'town_or_city': profile.default_town_or_city,
+                    'county': profile.default_county,
+                    'postcode': profile.default_postcode,
+                    'country': profile.default_country,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
         else:
             order_form = OrderForm()
 
@@ -150,6 +154,8 @@ def checkout_success(request, order_number):
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_town_or_city': order.town_or_city,
+                'default_postcode': order.postcode,
+                'default_county': order.county,
                 'default_country': order.country,
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)

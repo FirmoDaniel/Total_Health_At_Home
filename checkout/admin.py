@@ -18,6 +18,7 @@ class OrderAdmin(admin.ModelAdmin):
               'email', 'phone_number', 'diet', 'town_or_city',
               'street_address1',
               'street_address2',
+              'postcode', 'county',
               'order_total', 'grand_total',
               'original_bag', 'stripe_pid',)
 
