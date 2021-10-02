@@ -28,12 +28,9 @@ Getting people started is pour primary goal.
         * I want to suggest alterations on the site.
 
 -    ## Administrator Goals
--    ### Via the site
         * View, approve or delete user testimonials and product reviews.
-        * I want to add, delete or edit products.
--    ### Via the admin interface (Django)
-        * I want to view all users, their emails, and verification status
-        * I want to view, edit products, categories, reviews and testimonials
+        * I want to add, delete or edit products / Categories.
+        * I want to view all users, their emails, and verification status via Django
 
 ### Design
 -    ### Colour Scheme
@@ -93,11 +90,11 @@ Getting people started is pour primary goal.
 - [Font Awesome](https://fontawesome.com/)  - For icons.
 - Google Chrome's Responsive Viewer found [here](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb)
 - Google Chrome's lighthouse function.
-- [Django](https://www.djangoproject.com/) - for authentication and administration.
-- [AWS](https://aws.amazon.com/) - for hosting static and media files
+- [Django](https://www.djangoproject.com/) - For authentication and administration.
+- [AWS](https://aws.amazon.com/) - For hosting static and media files
 - [Heroku](https://www.heroku.com/) - For hosting.
 
-## Testing NOT DONE
+## Testing
 -   Using [W3C validator](https://validator.w3.org/) both HTML and CSS were checked by direct input. Issues arising were promptly corrected. 
 <p>
     <a href="http://jigsaw.w3.org/css-validator/check/referer">
@@ -118,108 +115,104 @@ Getting people started is pour primary goal.
     The script was not amended to address these.
 
 
-### Testing User Stories from User Experience (UX) section. HERE!!!!!!
+### Testing User Stories from User Experience (UX) section.
 ### First Time Visitor Goals :
 
 *  I want to easily understand the site's purpose.
     1.  The index page utilises eye-cathcing colours, fonts and clean lines with an upfront description
         of the sites aim.
-    2.  Users are immediately granted access to the site's database via clickable images which redirect to the characters page.
-    3.  Users are made aware of the site's policy, and the added benefits to registering.
+    2.  Users are immediately granted access to the site's products, existing testimonials and product reviews.
      
 * I want to navigate the site's content.
     1.  A static, collaspible header contains all the nav elemnets available to new users. Although 
-        registration/login is rerquired to access more functions, the main database is available to read.
-        As are the contact, register and Log In pages.
+        registration/login is rerquired to access more functions, the main content is available to read.
 
-* I want to understand how to create my own characters.
-    1.  The index and characters pages inform users how to create characters.
-        New users can register a username and password which instantly grants them create, update and delete
-        functionality for their characters. Upon registration, new users are brought to their profile page
-        which, in time, will display all their characters, on first visit they are offered a chance to create
-        their first character.
-    2.  On clicking 'create' a form is rendered where the user can populate the required fields. The character's role
-        must come from an existing list via a dropdown. All users are free to populate the other fields as they wish.
-    3.  Upon completeion, the user is redirected to the characters page with a flash messsage for confirmation,
-        and their new character is added to the database. The new character is also viewable from their profile page. 
+* I want to see all available products and their distinct features based on my preferences.
+    1.  The Products page lists all available products on cards. The costs and core category are front and center.
+    2.  The Products page contains seven filtering options designed to help users find applicable products.
+    3.  Further product information, such as verified customer reviews and product rating, is available on the 
+        details page by clicking the product image or using a prominent 'more info' button.
+
+* I want to make a purchase without signing in.
+    1.  Although new users are encouraged to register by signing in and verifiying their email to gain access 
+        to a wellness element, registeration is not necessary to make a purchase. 
+    2.  User are also reminded that by registering the site can save their info in a custom profile page, 
+        as well as allow them to review the site and their purchased products.
+    3.  Upon adding an item to their bag, a user is alerted via a toast message and given the option to navigate directly to the checkout, or remain on
+        their current page.
+    4.  On the bag page their total costs, product count and product details are listed for inspection. They can choose to add more items to, or remove items from, 
+        their bag before checking out.
+    5.  At Checkout, the user is presented with a form to fill in with their details. Here they are kept abreast of their total costs, and current bag contents.
+    6.  Upon submitting a valid form the user's card is charged and they are redirected to a checkout_success page listing all relevant order information. 
+        They should be notified of an impending email with the similiar information.
 
 ### Returning / Registered User Goals :
 
-*  I want to see characters I have created.
-    1.  A returning user can log in, afterwhich they are brought to their profile page which displays any 
-        previously created characters listed from newest addition to oldest. The profile page is always available 
-        in the nav bar for logged in users.
+*  * I want to see my order history.
+    1.  Order History is available on a returning user's Profile page. It details each order seperately and lists the products purchased in those instances. 
      
-* I want to edit or delete my characters. 
-    1.  Only characters created by a user can be edited or deleted by that user. Characters can be deleted or edit 
-        from the user's personal profile page or from the main characters page.
-    2.  Characters eligible for edit or delete will have the available buttons displayed in their drop down.
-    3.  To Edit : clicking the edit button renders a form populated with the selected character's information.
-        The user can make their intended changes and click 'Save Changes', or cancel the request altogether. Both
-        options return the user to the characters page with a flash confirming edits or a reloaded characters' page
-        in the case of a cancel. 
-    4.  To Delete : clicking the delete button calls a modal to warn the user all deletions are permenant. 
-        The user can cancel the process at the modal, or proceed to final confirmation by accepting the warning.
-        Upon accepting the modal warning a 'delete forever' button is displayed which when clicked deletes the
-        selected character from the database with a flash message to confirm.
+* * I want to review products I've bought.
+    1.  Navigating to the Order History section a clickable order number is avaiable to expand particular orders.
+    2.  The subsection of 'Order details' lists the products bought in this instance with an option to see more information on the product,
+        as well as a link to review that product.
+    3.  Upon deciding to review a product the user is brought to a form which pre-populates the user's name and the product to be reviewed.
+        The form allows for a description of feedback and a choice to mark the review as positive or negative.  
+    4.  Although product reviews are sent for admin approval a user can see their reveiw (unapproved or approved) on the product details page as well as
+        in the feedback section on their profile.
 
-* I want to contact the site admin.
-    1.  All users can navigate to the contact page in the nav bar. There is a simple form available to contact
-        the site's admin. First name, email and a message is all that is required. Links to social media accounts
-        are also available in the footer.  
+* I want to suggest alterations on the site.
+    1.  Users can suggest reviews for the overall site via their feedback section on their profile page available after their first purchase using a verified account.
+    2.  Clicking the 'Add a testimonial' link generates a simple form with the user's username pre-populated. Users can leave their response and submit it for admin approval.
+    3.  Although testimonials are sent for admin approval a user can see their testimonial (unapproved or approved) in the feedback section on their profile.
+
 
 ### Administrator Goals :
 
-* I should be able to edit / delete any character.
-    1.  Upon log in, an administrator is brought to their profile page which lists all their characters.
-        The characters page which lists all charcaters is also available but unlike standard users, the admin
-        has the ability to edit or delete all characters in the database. 
-    2.  To Edit : clicking the edit button renders a form populated with the selected character's information.
-        The admin can make their intended changes and click 'Save Changes', or cancel the request altogether. Both
-        options return the admin to the characters page with a flash confirming edits or a reload characters' page
-        in the case of a cancel. 
-    3.  To Delete : clicking the delete button calls a modal to warn the admin all deletions are permenant. 
-        The admin can cancel the process at the modal, or proceed to final confirmation by accepting the warning.
-        Upon accepting the modal warning a 'delete forever' button is displayed which when clicked deletes the
-        selected character from the database with a flash message to confirm.  
+* View, approve or delete user testimonials and product reviews.
+    1.  CRUD operations for reviews and testimonials are available to the admin in two area's depending on their approval status.
+    2.  Approved testimonials are lsited on the index page accompanied by an 'Edit/Delete' button viewable only to the admin. Once clicked 
+        the admin is brought to the edit_testimonial page and asked to confirm their intentions as editing or deleting.
+        If editing a tetsimonial, the approved testimonial is generated. Only the description and approval status' can be edited.
+        If Deleting a testimonial, the admin must confirm consecutive delete actions via intentionally garish buttons.
+    3.  Approved product reviews are lsited on their related product details page accompanied by an 'Edit/Delete' button viewable only to the admin. Once clicked 
+        the admin is brought to the edit_review page and asked to confirm their intentions as editing or deleting.
+        If editing a review, the approved review is generated. Only the description, feedback and approval status' can be edited.
+        If Deleting a review, the admin must confirm consecutive delete actions via intentionally garish buttons.
+    4.  Unapproved testimonials are lsited in the 'admin tools' section on the admin's profile page accompanied by an 'Edit/Delete' button viewable only to the admin.
+        Once clicked the admin is brought to the edit_testimonial page and asked to confirm their intentions as editing or deleting.
+        If editing a tetsimonial, the approved testimonial is generated. Only the description and approval status' can be edited.
+        If Deleting a testimonial, the admin must confirm consecutive delete actions via intentionally garish buttons. 
+    5.  Unapproved product reviews are lsited in the 'admin tools' section on the admin's profile page accompanied by an 'Edit/Delete' button viewable only to the admin.
+        Once clicked the admin is brought to the edit_review page and asked to confirm their intentions as editing or deleting.
+        If editing a review, the approved testimonial is generated. Only the description and approval status' can be edited.
+        If Deleting a review, the admin must confirm consecutive delete actions via intentionally garish buttons.
 
-* I want to add, edit or delete new character roles.
-    1.  When logged in as admin, the roles page becomes available. The page lists all roles currently live on the site
-        from which users can choose for their characters. Roles are listed in alphabetical order. 
-    2.  To Add : a 'Add Role' button is prominently displayed at the top of the roles page. Clicking the button brings
-        the admin to add_role.html which contains a single row form the admin can populate. (There is a built in check to
-        stop duplicate roles being created which flashes a message and returns admin to the roles page.) Here they can cancel the operation,
-        or proceed with their addition. Adding a role diverts the admin back to the roles page with a flash message as confirmation. 
-    3.  To Edit : a 'Edit / Delete' button is available to the admin for each populated role. Upon clicking the admin is brought to
-        edit_role.html which pre-populates the single row form with the current role selected for edit or delete. The admin can
-        cancel the request, or proceed with editing. A usccessful edit returns the admin to the roles page with flash message for   
-        confirmation.
+* I want to add, delete or edit products / Categories.
+    1.  Adding new products can be done via the admin's profile in the 'Admin Tools' section.
+    2.  The 'add_product' form contains fields for all relevant information (category, name, price etc) as well as an option to upload a suitable product image.
+    3.  Products can be edited from their individual details page which generates a 'edit_product' form populated with the products current details.  
+    4.  Products can be deleted from their individual details page via a delete button only available to the admin. The admin must confirm consecutive
+        delete actions via intentionally garish buttons which use jquery to display. 
+    5.  Categories can only be edited, created or deleted from the Django admin interface under their respective section. Accessible by '/admin' to the main site url.
+    6.  All previous listed admin CRUD operations done from the site can also be executed form the Django admin interface.
+
+* I want to view all users, their emails, and verification status via Django
+    1.  All current user information (verified or pending verification) is available via the site's admin interface. Accessible by '/admin' to the main site url.
 
 
 ## Further Testing
-### Google Chrome's Lighthouse results
-| Page    | Performance  | Accessibility  | Best Practise  | Seo |
-|---|---|---|---|---|
-| Index  | 99  | 92  | 93  | 90  |
-| Characters | 99  | 94  | 100  | 89  |
-| Profile | 99  | 100  | 100  | 89  |
-| Roles | 99  | 94  | 100  | 89  |
 
 ### Security / Access 
 ####   User based access
 
 *   URL access:
-    *   Python checks for the presence of the session cookie before progressing to pages via the url. 
-        In the case of admin only access it also checks the user both exists AND is the admin.
-        Here is a code example: (if session and session[" user "] == "admin":) ref app .py , line 213, add character role.
-        This check can be found throughout the app .py file for any views which require valid log in such as 
-        create_character, edit_character, edit_role, add_role, and all delete functionality.
+    *   Sensitive views are protected by requesting users by authenticated, and their account meets certain criteria. Since users can create reviews and testimonials,
+        relying wholly on authentication doesn't suffice. The site employs a variety of checks depening on the users intentions. The site may check if a user has previous orders, or has purchased a specific product. It may check if a user has previously submitted a product review and deny multiple reviews of the same product. Testimonials are resticted to one per registered user.
+        A notable acception found is for the Order_history page. If an authenticated user, with their own previous orders can, if they obtain a someone's unique order number, access that order's information via the url. A suggested fix would be to add a username field to the order model which could be directly compared to the current user. 
 *   Unregistered user:
-    *   Can only view the following pages. Home, characters, register, log in and contact.
-    *   Cannot create, edit or delete characters. All relating buttons remain hidden.
-    *   Cannot login prior to registering. Though, the flash messaging doesn't explicity say the username is 
-        unregistered, it does flag an issue to the user regarding their details entered. Both login and register have
-        corresponding links and notes to each other. 'New here? Register Account' or 'Already Registered? Log in'.
+    *   Can only view the following pages. Home, Products, Product details, bag, 
+    *   Cannot create, edit or delete products, reviews or testimonials.
+    *   Cannot login prior to registering.
     *   Cannot use URL to access any other pages.
 *   Registered and logged in users:
     *   Can also view the profile page.
