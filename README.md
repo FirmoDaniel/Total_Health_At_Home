@@ -57,10 +57,12 @@ Getting people started is pour primary goal.
             * [Product: Mountain Lion](https://unsplash.com/photos/aMBhrrveocw)   
 
 
-*   ### Wireframes NOT DONE
-    * Full and mobile Index page [here](readme/index_wireframes.pdf)
-    * Full and mobile Characters page [here](readme/characters_wireframes.pdf)
-    * Full and mobile Roles page [here](readme/roles_wireframes.pdf)
+*   ### Wireframes
+    * Index page [here](readme/wireframes/Wireframe_Index.pdf)
+    * Products [here](readme/wireframes/Wireframe_Product.pdf)
+    * Product Details[here](readme/wireframes/Wireframe_Product_Detail.pdff)
+    * Bag [here](readme/wireframes/Wireframe_Bag.pdf)
+    * Profile[here](readme/wireframes/Wireframe_Profile.pdf)
 
 ## Features
 -   Responsive on all devices with:

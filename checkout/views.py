@@ -61,11 +61,11 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
-            for item_id, __ in bag.items():  # remove quantity after item_id
+            for item_id, __ in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
                     order_line_item = OrderLineItem(
-                        username=request.user,  #  i added this whiel working on add_review url issue
+                        username=request.user,
                         order=order,
                         product=product,
                     )
