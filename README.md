@@ -213,25 +213,30 @@ Getting people started is pour primary goal.
     *   Can only view the following pages. Home, Products, Product details, bag, 
     *   Cannot create, edit or delete products, reviews or testimonials.
     *   Cannot login prior to registering.
-    *   Cannot use URL to access any other pages.
-*   Registered and logged in users:
-    *   Can also view the profile page.
-    *   Can create, update and delete only their own characters.
-    *   Cannot use url to access any extra pages such as roles.html.
+    *   Cannot use url to access any extra pages.
+*   Registered and logged in users with no orders:
+    *   Can also view the profile page in addition to Home, Products, Product details, bag.
+    *   Cannot create, edit or delete products, reviews or testimonials.
+    *   Cannot use url to access any extra pages.
+*   Registered and logged in users with orders:
+    *   Can also view the profile page in addition to Home, Products, Product details, bag.
+    *   Can create one review per product they've purchased. Can create one testimonial.
+    *   Can url to access checkout_success page if they obtain another users order number.
 *   Admin :
-    *   Can view all pages including the roles page. 
-    *   Can create, update and delete all created characters.  
+    *   Can view all pages, access CRUD via the site buttons hidden from other users or the admin interface.
+    *   Can access all CRUD operations as per the main site with the addition of categories and user info from the admin interface (Django).
 
 #### Links
-*   Internal page links and external links in the footer were manually tested. 
+*   Internal page links and external links were manually tested. 
 #### Loops
 *   Loops are utilised throughout to check user status and decide which nav bar elements can be viewed.
-*   Loops are also tasked with displaying only characters created by a user on their profile page.
-*   A loop also ensures users are kept abreast of all currently searchable roles on the characters page.
-*   Also on the characters page, a loop nudges users to log in or register if no user is detected, 
-    but hides the nudge if user exists.
+*   Loops are also tasked with displaying a user's unapproved testimonials and reviews on their profile page, 
+    and highlight user's approved testimonials on the home page and reviews on the intent product detail page.
+*   Loops direct users or all status' to their next step. An unregistered user is directed to sign up. 
+    A registered user with no orders is prompted to make their first purchase in the profile tab. A registered user with previous
+    orders is nudged to review their products and submit a testimonial. 
 
-## Deployment
+## Deployment   HERE!!!!!!!!!!!!!!!!!!!!!!
 ### Heroku
 1.  Create a requirements.txt file. Command in gitpod is 'pip3 freeze --local> requirements.txt'
 2.  Create a Procfile (Capital 'P' and no file extension).
