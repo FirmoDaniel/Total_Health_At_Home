@@ -14,7 +14,10 @@ def view_bag(request):
 
 
 def add_to_bag(request, item_id):
-    """ add item to the bag,  """
+    """
+    add item to the bag, with a default quantity
+    of 1 and disallows multiples of the same product
+    """
     product = get_object_or_404(Product, pk=item_id)
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
@@ -33,7 +36,7 @@ def add_to_bag(request, item_id):
 
 
 def remove_from_bag(request, item_id):
-    """Remove the item from the shopping bag"""
+    """Remove items from the shopping bag"""
 
     product = get_object_or_404(Product, pk=item_id)
 

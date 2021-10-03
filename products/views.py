@@ -18,9 +18,9 @@ def all_products(request):
     if request.GET:
         # filtering by categories
         if 'category' in request.GET:
-            categories = request.GET['category'].split(',')  # splits query into a list at the comma
-            products = products.filter(category__name__in=categories)  # filter products by those with matching category name
-            categories = Category.objects.filter(name__in=categories)  # filter categories down to ones existing in the url to show what categorys are veing viewed by friendly name
+            categories = request.GET['category'].split(',')
+            products = products.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
         #  filtering by product details (day,home,night,outdoors)
         if 'night' in request.GET:
             products = products.filter(night__in=products)
@@ -36,7 +36,7 @@ def all_products(request):
             product_detail = 'outdoors'
 
     context = {
-        'products': products,  # products variable sent to template via context
+        'products': products,
         'current_categories': categories,
         'product_detail': product_detail,
     }
@@ -45,16 +45,22 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show individual product details and thier specific reviews """
-    product = get_object_or_404(Product, pk=product_id)  #  this was product_id
-    reviews = Review.objects.filter(pname=product.id)  # get only reviews related to the specific product on display
-    approved_reviews = Review.objects.filter(pname=product.id, approved=True)  # get only reviews related to the specific product on display which are approved
-    postivie_feedback = Review.objects.filter(pname=product.id, feedback=True, approved=True)  # get only positive reviews related to the specific product on display which are approved
-    negative_feedback = Review.objects.filter(pname=product.id, feedback=False, approved=True)  # get only negative reviews related to the specific product on display which are approved
+    """
+    A view to show individual product details and thier specific reviews.
+    Includes checks to guard against multiple reviews by one user.
+    Calculates product rating based on approved reviews.
+    """
+    product = get_object_or_404(Product, pk=product_id)
+    reviews = Review.objects.filter(pname=product.id)
+    approved_reviews = Review.objects.filter(pname=product.id, approved=True)
+    postivie_feedback = Review.objects.filter(pname=product.id, feedback=True,
+                                              approved=True)
+    negative_feedback = Review.objects.filter(pname=product.id, feedback=False,
+                                              approved=True)
     number_of_reviews = 0
 
-    positive = len(postivie_feedback)  # get number of positive/true feedbacks
-    negative = -len(negative_feedback)  # get number of negative/false feedbacks
+    positive = len(postivie_feedback)
+    negative = -len(negative_feedback)
     live_rating = product.rating + positive + negative
     if live_rating < 0:
         live_rating = 0
@@ -63,12 +69,12 @@ def product_detail(request, product_id):
     else:
         live_rating
 
-    number_of_reviews = len(approved_reviews)  # get the len of the reviews loop.
+    number_of_reviews = len(approved_reviews)
 
     context = {
         'product': product,
         'reviews': reviews,
-        'number_of_reviews': number_of_reviews,  # working
+        'number_of_reviews': number_of_reviews,
         'live_rating': live_rating,
     }
 

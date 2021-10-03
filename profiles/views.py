@@ -49,6 +49,7 @@ def profile(request):
 
 @login_required
 def order_history(request, order_number):
+    """ Display the user's Order History. """
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
     if not orders:
@@ -154,7 +155,7 @@ def delete_testimonial(request, testimonial_id):
 
 @login_required
 def add_review(request, product_id):
-    """render a pre-populated form
+    """ Render a pre-populated form
     with product id from profile purchased products """
     product = get_object_or_404(Product, pk=product_id)
 

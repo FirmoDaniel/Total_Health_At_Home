@@ -1,8 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.contrib import messages
+from django.shortcuts import render
 from products.models import Product
 from profiles.models import Testimonial
-from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -10,8 +8,8 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     """
-    Returns Index Page which displays three highest arted products in cards
-     and customer testimonials on a list.
+    Returns Index Page which displays products
+    and customer testimonials on a list.
     """
     products = Product.objects.all()
     testimonials = Testimonial.objects.all()
