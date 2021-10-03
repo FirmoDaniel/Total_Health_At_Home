@@ -1,7 +1,7 @@
 # Project Name: I Need A Hero
 
 ## Project aim
-The site's aim is to provide a markeyplace for people who want to workout from home or their surrounding area's.
+The site's aim is to provide a marketplace for people who want to workout from home or in their surrounding area's.
 The products available are easily identifiable as being suitable for home, outdoors, done by day, or by night where
 a customer may need to aware of noise levels.
 
@@ -9,7 +9,7 @@ Firstly the site offers a hand-holding approach with succint product description
 We endevour to shy away from too much text or fluff and want people to sign up and buy without having to dive 
 down the fittness and health rabbit-hole of conflicting information. 
 
-Getting people started is pour primary goal.
+Getting people started is our primary goal.
 
 [View Live Version here](https://total-health-at-home.herokuapp.com/)
 
@@ -35,11 +35,11 @@ Getting people started is pour primary goal.
 ### Design
 -    ### Colour Scheme
         * rgb(57, 250, 18) (Green) & rgb(106, 164, 187) (Blue),
-        are utlised thourghout for contrast against the sites grey background and defaoult white. 
-        * While standard user buttons adhere to the green, white, blue consensus, Admin buttons for deletion are purposefully garish to further guard against accidental instigation.
+        are utlised thourghout for contrast against the sites grey background and default white. 
+        * While standard user buttons and link adhere to the green, white, blue consensus, Admin buttons for deletion are purposefully garish to further guard against accidental instigation.
             
 -    ### Typography
-        * Permenant Marker and Shadows into light are used throughout for headers, messages, buttons etc 
+        * 'Permenant Marker' and 'Shadows into light' are used throughout for headers, messages, buttons etc 
         Both from [Google Fonts](https://fonts.google.com). Sans Serif is used a fallback. 
 
 -    ### Imagery
@@ -47,7 +47,7 @@ Getting people started is pour primary goal.
             * [Hero Image](https://unsplash.com/photos/PHIgYUGQPvU)
             * [Product: Molten Monk](https://unsplash.com/photos/_Wi5bi-yjXI)
             * [Product: Ninja](https://unsplash.com/photos/E3CZ_AtzixY)
-            * [Product: Water Dragon](https://unsplash.com/photos/E3CZ_AtzixY)           
+            * [Product: Water Dragon](https://unsplash.com/photos/a4_vdJ3gbHE)           
             * [Product: Dynamite](https://unsplash.com/photos/Oi31uKsnM1Q)        
             * [Product: Dance Machine](https://unsplash.com/photos/JsQ6K5CfJ7s)     
             * [Product: The Fox](https://unsplash.com/photos/CQl3Y5bV6FA)   
@@ -125,7 +125,7 @@ Getting people started is pour primary goal.
      
 * I want to navigate the site's content.
     1.  A static, collaspible header contains all the nav elemnets available to new users. Although 
-        registration/login is rerquired to access more functions, the main content is available to read.
+        registration/login is required to access more functions, the main content is available to read.
 
 * I want to see all available products and their distinct features based on my preferences.
     1.  The Products page lists all available products on cards. The costs and core category are front and center.
@@ -136,7 +136,7 @@ Getting people started is pour primary goal.
 * I want to make a purchase without signing in.
     1.  Although new users are encouraged to register by signing in and verifiying their email to gain access 
         to a wellness element, registeration is not necessary to make a purchase. 
-    2.  User are also reminded that by registering the site can save their info in a custom profile page, 
+    2.  Users are also reminded that by registering the site can save their info in a custom profile page, 
         as well as allow them to review the site and their purchased products.
     3.  Upon adding an item to their bag, a user is alerted via a toast message and given the option to navigate directly to the checkout, or remain on
         their current page.
@@ -158,7 +158,7 @@ Getting people started is pour primary goal.
     3.  Upon deciding to review a product the user is brought to a form which pre-populates the user's name and the product to be reviewed.
         The form allows for a description of feedback and a choice to mark the review as positive or negative.  
     4.  Although product reviews are sent for admin approval a user can see their reveiw (unapproved or approved) on the product details page as well as
-        in the feedback section on their profile.
+        in the feedback section on their profile. Unapproved reviews or testimonials remain hidden to other users. 
 
 * I want to suggest alterations on the site.
     1.  Users can suggest reviews for the overall site via their feedback section on their profile page available after their first purchase using a verified account.
@@ -193,7 +193,7 @@ Getting people started is pour primary goal.
     3.  Products can be edited from their individual details page which generates a 'edit_product' form populated with the products current details.  
     4.  Products can be deleted from their individual details page via a delete button only available to the admin. The admin must confirm consecutive
         delete actions via intentionally garish buttons which use jquery to display. 
-    5.  Categories can only be edited, created or deleted from the Django admin interface under their respective section. Accessible by '/admin' to the main site url.
+    5.  Categories can only be edited, created or deleted from the Django admin interface under their respective section. Accessible by appendind '/admin' to the main site url.
     6.  All previous listed admin CRUD operations done from the site can also be executed form the Django admin interface.
 
 * I want to view all users, their emails, and verification status via Django
@@ -207,8 +207,8 @@ Getting people started is pour primary goal.
 
 *   URL access:
     *   Sensitive views are protected by requesting users by authenticated, and their account meets certain criteria. Since users can create reviews and testimonials,
-        relying wholly on authentication doesn't suffice. The site employs a variety of checks depening on the users intentions. The site may check if a user has previous orders, or has purchased a specific product. It may check if a user has previously submitted a product review and deny multiple reviews of the same product. Testimonials are resticted to one per registered user.
-        A notable acception found is for the Order_history page. If an authenticated user, with their own previous orders can, if they obtain a someone's unique order number, access that order's information via the url. A suggested fix would be to add a username field to the order model which could be directly compared to the current user. 
+        relying wholly on authentication doesn't suffice. The site employs a variety of checks depening on the users intentions. The site may check if a user has previous orders, or has purchased a specific product. It may check if a user has previously submitted a product review and deny multiple reviews of the same product. Testimonials are resticted to one per registered user with a previous orders.
+        A notable acception found is for the Order_history page. If an authenticated user, with their own previous orders, obtains someone's unique order number, they can access that order's information via the url. A suggested fix would be to add a username field to the order model which could be directly compared to the current user. 
 *   Unregistered user:
     *   Can only view the following pages. Home, Products, Product details, bag, 
     *   Cannot create, edit or delete products, reviews or testimonials.
@@ -231,7 +231,7 @@ Getting people started is pour primary goal.
 #### Loops
 *   Loops are utilised throughout to check user status and decide which nav bar elements can be viewed.
 *   Loops are also tasked with displaying a user's unapproved testimonials and reviews on their profile page, 
-    and highlight user's approved testimonials on the home page and reviews on the intent product detail page.
+    and highlight user's approved testimonials on the home page and reviews on the intended product detail page.
 *   Loops direct users of all status' to their next step. An unregistered user is directed to sign up. 
     A registered user with no orders is prompted to make their first purchase in the profile tab. A registered user with previous
     orders is nudged to review their products and submit a testimonial.
@@ -241,7 +241,8 @@ Getting people started is pour primary goal.
 ### Forms
 *   Validation is achieved via [crispy forms](https://django-crispy-forms.readthedocs.io/en/latest/).
 *   Payment forms involving stripe are handled by java script in the checkout app's static folder.
- 
+### Known Bugs
+*   As outlined above referencing the Order_History view  If an authenticated user, with their own previous orders, obtains someone's unique order number, they can access that order's information via the url. A suggested fix would be to add a username field to the order model which could be directly compared to the current user. This was discovered close to Milestone deadline with not enough time to implement and test a fix. 
 
 ## Deployment 
 ### Heroku
