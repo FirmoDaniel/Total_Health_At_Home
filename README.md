@@ -86,13 +86,13 @@ Getting people started is pour primary goal.
 - [Jquery](https://jquery.com/)
 - [GitPod](https://www.gitpod.io/) - IDE.
 - [Boostrap (including JQuery)](https://getbootstrap.com/) -Utilized for responsiveness via columns, buttons and navbars.
-- [Google Fonts](https://fonts.google.com) - Used for header and body fonts throughout.
+- [Google Fonts](https://fonts.google.com) - Used for fonts throughout.
 - [Font Awesome](https://fontawesome.com/)  - For icons.
-- Google Chrome's Responsive Viewer found [here](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb)
-- Google Chrome's lighthouse function.
 - [Django](https://www.djangoproject.com/) - For authentication and administration.
 - [AWS](https://aws.amazon.com/) - For hosting static and media files
 - [Heroku](https://www.heroku.com/) - For hosting.
+- [Stripe](https://stripe.com/en-ie) - For payment intergartion.
+- [Gmail](https://www.google.com) - For automated emails.
 
 ## Testing
 -   Using [W3C validator](https://validator.w3.org/) both HTML and CSS were checked by direct input. Issues arising were promptly corrected. 
@@ -232,11 +232,18 @@ Getting people started is pour primary goal.
 *   Loops are utilised throughout to check user status and decide which nav bar elements can be viewed.
 *   Loops are also tasked with displaying a user's unapproved testimonials and reviews on their profile page, 
     and highlight user's approved testimonials on the home page and reviews on the intent product detail page.
-*   Loops direct users or all status' to their next step. An unregistered user is directed to sign up. 
+*   Loops direct users of all status' to their next step. An unregistered user is directed to sign up. 
     A registered user with no orders is prompted to make their first purchase in the profile tab. A registered user with previous
-    orders is nudged to review their products and submit a testimonial. 
+    orders is nudged to review their products and submit a testimonial.
+#### Views
+*   Display error, info, warning or success messages via toasts dependant on the user's action.
+*   Check various user status' around reviews, testimonials to dictate user access.
+### Forms
+*   Validation is achieved via [crispy forms](https://django-crispy-forms.readthedocs.io/en/latest/).
+*   Payment forms involving stripe are handled by java script in the checkout app's static folder.
+ 
 
-## Deployment   HERE!!!!!!!!!!!!!!!!!!!!!!
+## Deployment 
 ### Heroku
 1.  Create a requirements.txt file. Command in gitpod is 'pip3 freeze --local> requirements.txt'
 2.  Create a Procfile (Capital 'P' and no file extension).
@@ -251,12 +258,12 @@ Getting people started is pour primary goal.
     and their corresponding values.
 9.  Return to the delopy tab in heroku and click 'Enable Automatic Deployment, then 'Deploy Branch'.
 10. Upon success you will see 'Your app was successfully deployed' and an option to view the app.
-11. A live version can be found here: [I Need A Hero](https://i-need-a-hero.herokuapp.com/)
+11. A live version can be found here: [Total Health At Home](https://total-health-at-home.herokuapp.com/)
 
 ### Github
 The project was developed using [GitPod](https://www.gitpod.io/) workspace, committed to git and pushed to 
 [GitHub](https://github.com) using the built in function within Gitpod.
-To deploy this page from the [GitHub respository](https://github.com/FirmoDaniel/I_Need_A_Hero), the following steps were taken.
+To deploy this page from the [GitHub respository](https://github.com/FirmoDaniel/Total_Health_At_Home), the following steps were taken.
 1.  Log in to **GitHub**.
 2.  From the list of repositories on screen select 'I_Need_A_Hero'.
 3.  Select **Settings** from the menu.
@@ -266,7 +273,7 @@ To deploy this page from the [GitHub respository](https://github.com/FirmoDaniel
 7.  A link can be found in the **GitHub pages section**, and also in the about section within **I_Need_A_Hero**.
 
 ### Cloning
-1. Go to GitHub Repository: [I_Need_A_Hero](https://github.com/FirmoDaniel/I_Need_A_Hero)
+1. Go to GitHub Repository: [Total_Health_At_Home](https://github.com/FirmoDaniel/Total_Health_At_Home)
 2. Select 'Code' dropdown button (next to green 'gitpod' button).
 3. These are your three options **Clone-Options**.
 
@@ -277,17 +284,12 @@ To deploy this page from the [GitHub respository](https://github.com/FirmoDaniel
 
 ## Credits   
 ### Code
-1.  Validation for character form taken from Code Institute project walkthrough video. Ref script.js line 45 > 72.
+1.  CSS for taken from Course Institute (see base.css starting line 154 > 208)
 
 ### Content
-1.  Initially uploaded characters were created by the developer.
+1.  Initial product idea's abd descriptions created by the developer. The Images sourced from Unsplash as detailed in the Design/Imagery section above.
 2.  README layout taken from Code Institute's sample [README](https://github.com/Code-Institute-Solutions/SampleREADME).
 
-### Media
-1. Card images 
-    * [Blue sky](https://static.wikia.nocookie.net/god-of-slaughter/images/3/3a/Thunder2.jpg)
-    * [Red Sky](https://media.freestocktextures.com/cache/4b/b4/4bb46fda2948c0d26699661ac01f212c.jpg)
-    * [Grey Sky](https://sewitall.com/wp-content/uploads/2020/01/Lightning-Grey-cut-piece-scaled.jpg) 
 
 ### Acknowledgements
 1. Code Institute Tutorials, student support and my Mentor.
