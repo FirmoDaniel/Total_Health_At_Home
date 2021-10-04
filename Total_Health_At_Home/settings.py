@@ -95,7 +95,7 @@ TEMPLATES = [
 ]
 
 # added this from ci source code
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+# MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -214,10 +214,8 @@ if 'DEVELOPMENT' in os.environ:
     DEFAULT_FROM_EMAIL = 'totalhealthathome@example.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_USE_TLS = True
-    EMAIL_USE_SSL = True
-# EMAIL_POST = 587
-    EMAIL_POST = 465
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
     EMAIL_HOTS = 'smtp.gmail.com'
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
