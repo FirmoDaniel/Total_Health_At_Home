@@ -243,7 +243,9 @@ Getting people started is our primary goal.
 *   Payment forms involving stripe are handled by java script in the checkout app's static folder.
 ### Known Bugs
 *   As outlined above referencing the Order_History view  If an authenticated user, with their own previous orders, obtains someone's unique order number, they can access that order's information via the url. A suggested fix would be to add a username field to the order model which could be directly compared to the current user. This was discovered close to Milestone deadline with not enough time to implement and test a fix.
-
+### Emails
+*   Django sends working email verification emails upon new user registration.
+*   Django send working 'Forgot my password' emails for returning user's if needed.
 
 ## Deployment 
 ### Heroku
