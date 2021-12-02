@@ -1,4 +1,4 @@
-# Project Name: I Need A Hero
+# Project Name: Total Health At Home
 
 ## Project aim
 The site's aim is to provide a marketplace for people who want to workout from home or in their surrounding area's.
